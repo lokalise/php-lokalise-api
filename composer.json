@@ -28,7 +28,6 @@
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
-  "target-dir": "Lokalise/LokaliseApi",
   "extra": {
     "branch-alias": {
       "dev-master": "1.x.x-dev"
