@@ -8,10 +8,8 @@ class LokaliseApiClient
 {
 
     const VERSION = '0.0.1';
-    const ENDPOINT = 'https://api.lokalise.co/';
 
-    /** @var null|string `X-Api-Token` authentication header */
-    protected $apiToken = null;
+    const ENDPOINT = 'https://api.lokalise.co/';
 
     /** @var Comments */
     public $comments;
@@ -19,12 +17,11 @@ class LokaliseApiClient
     /**
      * LokaliseApiClient constructor.
      *
-     * @param $apiToken
+     * @param string $apiToken
      */
     public function __construct($apiToken)
     {
-        $this->apiToken = $apiToken;
-        $this->comments = new Comments();
+        $this->comments = new Comments(self::ENDPOINT, $apiToken);
     }
 
     /**
