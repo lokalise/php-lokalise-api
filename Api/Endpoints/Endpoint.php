@@ -2,7 +2,11 @@
 
 namespace Lokalise\Endpoints;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Lokalise\Exceptions\LokaliseApiException;
+use Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\LokaliseApiResponse;
 
 class Endpoint implements EndpointInterface
 {
@@ -28,39 +32,58 @@ class Endpoint implements EndpointInterface
     /**
      * @param string $requestType GET|POST|PUT|DELETE
      * @param string $uri
-     * @param null|string $query
+     * @param array $params
+     * @param array $body
      *
-     * @return array
+     * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function request($requestType, $uri, $query)
+    protected function request($requestType, $uri, $params = [], $body = [])
     {
-        $url = (!empty($query) ? "$uri?$query" : $uri);
 
-        $curl = curl_init();
+        $client = new Client();
 
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "{$this->baseUrl}$url",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => $requestType,
-            CURLOPT_HTTPHEADER => [
-                "X-Api-Token: {$this->apiToken}",
+        $options = [
+            'headers' => [
+                'X-Api-Token' => $this->apiToken,
             ],
-        ]);
-
-        $response = curl_exec($curl);
-        $error = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($error) {
-            throw new LokaliseApiException($error);
+        ];
+        if (!empty($params)) {
+            $options['query'] = $params;
+        }
+        if (!empty($body)) {
+            $options['json'] = $body;
         }
 
-        return $response;
+        try {
+            $guzzleResponse = $client->request($requestType, "{$this->baseUrl}$uri", $options);
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $guzzleResponse = $e->getResponse();
+            } else {
+                throw new LokaliseApiException($e->getMessage(), $e->getCode());
+            }
+        }
+
+        $body = $guzzleResponse->getBody();
+        if (is_null($body)) {
+            throw new LokaliseApiException('Not found', 404);
+        }
+        $bodyJson = @json_decode($body, true);
+        if (!is_array($bodyJson) || json_last_error() !== JSON_ERROR_NONE) {
+            throw new LokaliseApiException('Not found', 404);
+        }
+
+        return new LokaliseApiResponse($guzzleResponse);
+    }
+
+    /**
+     * @param $params
+     *
+     * @return null|string
+     */
+    protected function paramsToQueryString($params)
+    {
+        return (!empty($params) ? http_build_query($params) : null);
     }
 }
