@@ -1,0 +1,7 @@
+composer.phar
+.idea
+.DS_Store
+.vagrant
+Vagrantfile
+*.vdi
+*.icloud
