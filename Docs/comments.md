@@ -13,7 +13,7 @@ $comments = $client->comments->listProject(
     $projectId,
     [
         'limit' => 20,
-        'offset' => 1,
+        'page' => 1,
     ]
 );
 ```
@@ -26,7 +26,7 @@ $comments = $client->comments->listKey(
     $keyId,
     [
         'limit' => 20,
-        'offset' => 1,
+        'page' => 1,
     ]
 ); 
 ```

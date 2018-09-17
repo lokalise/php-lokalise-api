@@ -32,14 +32,14 @@ class Comments extends Endpoint implements EndpointInterface
      */
     public function fetchAllProject($projectId)
     {
-        $offset = 0;
+        $page = 1;
         $limit = 100;
 
-        $result = $this->listProject($projectId, ['limit' => $limit, 'offset' => $offset]);
-        while ($result->getPageCount() > $offset) {
-            $offset++;
+        $result = $this->listProject($projectId, ['limit' => $limit, 'page' => $page]);
+        while ($result->getPageCount() >= $page) {
+            $page++;
             $previousResult = clone $result;
-            $result = $this->listProject($projectId, ['limit' => $limit, 'offset' => $offset]);
+            $result = $this->listProject($projectId, ['limit' => $limit, 'page' => $page]);
             if (is_array($result->body['comments']) && is_array($previousResult->body['comments'])) {
                 $result->body['comments'] = array_merge($previousResult->body['comments'], $result->body['comments']);
             }
@@ -74,14 +74,14 @@ class Comments extends Endpoint implements EndpointInterface
      */
     public function fetchAllKey($projectId, $keyId)
     {
-        $offset = 0;
+        $page = 1;
         $limit = 100;
 
-        $result = $this->listKey($projectId, $keyId, ['limit' => $limit, 'offset' => $offset]);
-        while ($result->getPageCount() > $offset) {
-            $offset++;
+        $result = $this->listKey($projectId, $keyId, ['limit' => $limit, 'page' => $page]);
+        while ($result->getPageCount() >= $page) {
+            $page++;
             $previousResult = clone $result;
-            $result = $this->listKey($projectId, $keyId, ['limit' => $limit, 'offset' => $offset]);
+            $result = $this->listKey($projectId, $keyId, ['limit' => $limit, 'page' => $page]);
             if (is_array($result->body['comments']) && is_array($previousResult->body['comments'])) {
                 $result->body['comments'] = array_merge($previousResult->body['comments'], $result->body['comments']);
             }
