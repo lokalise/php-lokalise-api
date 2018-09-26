@@ -3,13 +3,13 @@
 ## Create a LokaliseApiClient
 
 ```php
-$client = new LokaliseApiClient($apiToken);
+$client = new /Lokalise/LokaliseApiClient($apiToken);
 ```
 
 ### List project comments
 
 ```php
-$comments = $client->comments->listProject(
+$response = $client->comments->listProject(
     $projectId,
     [
         'limit' => 20,
@@ -21,7 +21,7 @@ $comments = $client->comments->listProject(
 ### List key comments
 
 ```php
-$comments = $client->comments->listKey(
+$response = $client->comments->listKey(
     $projectId,
     $keyId,
     [
@@ -34,7 +34,7 @@ $comments = $client->comments->listKey(
 ### Create comments
 
 ```php
-$comments = $client->comments->create(
+$response = $client->comments->create(
     $projectId,
     $keyId,
     [
@@ -53,11 +53,11 @@ $comments = $client->comments->create(
 ### Retrieve a comment
 
 ```php
-$comment = $client->comments->retrieve($projectId, $keyId, $commentId);
+$response = $client->comments->retrieve($projectId, $keyId, $commentId);
 ```
 
 ### Delete a comment
 
 ```php
-$comment = $client->comments->delete($projectId, $keyId, $commentId);
+$response = $client->comments->delete($projectId, $keyId, $commentId);
 ```

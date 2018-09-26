@@ -1,6 +1,5 @@
 composer.phar
 .idea
-.idea/*
 .DS_Store
 .vagrant
 Vagrantfile

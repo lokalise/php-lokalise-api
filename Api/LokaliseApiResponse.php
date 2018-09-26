@@ -10,7 +10,7 @@ class LokaliseApiResponse
     const HEADER_PAGINATION_COUNT = "X-Pagination-Total-Count";
     const HEADER_PAGINATION_PAGES = "X-Pagination-Page-Count";
     const HEADER_PAGINATION_LIMIT = "X-Pagination-Limit";
-    const HEADER_PAGINATION_OFFSET = "X-Pagination-Offset";
+    const HEADER_PAGINATION_PAGE = "X-Pagination-Page";
 
     /** @var array */
     public $headers;
@@ -29,7 +29,7 @@ class LokaliseApiResponse
             self::HEADER_PAGINATION_COUNT,
             self::HEADER_PAGINATION_PAGES,
             self::HEADER_PAGINATION_LIMIT,
-            self::HEADER_PAGINATION_OFFSET,
+            self::HEADER_PAGINATION_PAGE,
         ];
 
         foreach ($headers as $header) {
@@ -41,6 +41,32 @@ class LokaliseApiResponse
         } catch (\Throwable $e) {
             $this->body = [];
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getContent()
+    {
+        return $this->body;
+    }
+
+    /**
+     * Returns body content of the response
+     * @return array
+     */
+    public function __toArray()
+    {
+        return $this->getContent();
+    }
+
+    /**
+     * Return body content of the response encoded to JSON string
+     * @return false|string
+     */
+    public function __toString()
+    {
+        return json_encode($this->getContent());
     }
 
     /**
@@ -70,9 +96,9 @@ class LokaliseApiResponse
     /**
      * @return int|null
      */
-    public function getPaginationOffset()
+    public function getPaginationPage()
     {
-        return $this->getPaginationHeader(self::HEADER_PAGINATION_OFFSET);
+        return $this->getPaginationHeader(self::HEADER_PAGINATION_PAGE);
     }
 
     /**
