@@ -6,6 +6,7 @@ use Lokalise\Endpoints\Comments;
 use Lokalise\Endpoints\Contributors;
 use Lokalise\Endpoints\Files;
 use Lokalise\Endpoints\Keys;
+use Lokalise\Endpoints\Languages;
 use Lokalise\Endpoints\Projects;
 use Lokalise\Endpoints\Screenshots;
 use Lokalise\Endpoints\Snapshots;
@@ -33,6 +34,9 @@ class LokaliseApiClient
 
     /** @var Keys */
     public $keys;
+
+    /** @var Languages */
+    public $languages;
 
     /** @var Projects */
     public $projects;
@@ -66,6 +70,7 @@ class LokaliseApiClient
         $this->contributors = new Contributors(self::ENDPOINT, $apiToken);
         $this->files = new Files(self::ENDPOINT, $apiToken);
         $this->keys = new Keys(self::ENDPOINT, $apiToken);
+        $this->languages = new Languages(self::ENDPOINT, $apiToken);
         $this->projects = new Projects(self::ENDPOINT, $apiToken);
         $this->screenshots = new Screenshots(self::ENDPOINT, $apiToken);
         $this->snapshots = new Snapshots(self::ENDPOINT, $apiToken);

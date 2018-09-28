@@ -1,12 +1,7 @@
 # Comments API
 
-## Create a LokaliseApiClient
-
-```php
-$client = new /Lokalise/LokaliseApiClient($apiToken);
-```
-
 ### List project comments
+https://lokalise.co/api2docs/php/#transition-list-project-comments-get
 
 ```php
 $response = $client->comments->listProject(
@@ -19,6 +14,7 @@ $response = $client->comments->listProject(
 ```
 
 ### List key comments
+https://lokalise.co/api2docs/php/#transition-list-key-comments-get
 
 ```php
 $response = $client->comments->listKey(
@@ -32,6 +28,7 @@ $response = $client->comments->listKey(
 ```
 
 ### Create comments
+https://lokalise.co/api2docs/php/#transition-create-comments-post
 
 ```php
 $response = $client->comments->create(
@@ -51,12 +48,14 @@ $response = $client->comments->create(
 ```
 
 ### Retrieve a comment
+https://lokalise.co/api2docs/php/#transition-retrieve-a-comment-get
 
 ```php
 $response = $client->comments->retrieve($projectId, $keyId, $commentId);
 ```
 
 ### Delete a comment
+https://lokalise.co/api2docs/php/#transition-delete-a-comment-delete
 
 ```php
 $response = $client->comments->delete($projectId, $keyId, $commentId);
