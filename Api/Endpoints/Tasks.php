@@ -6,15 +6,15 @@ use Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
 
 /**
- * Class Contributors
+ * Class Tasks
  * @package Lokalise\Endpoints
- * @link https://lokalise.co/api2docs/php/#resource-contributors
+ * @link https://lokalise.co/api2docs/php/#object-tasks
  */
-class Contributors extends Endpoint implements EndpointInterface
+class Tasks extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-contributors-get
+     * @link https://lokalise.co/api2docs/php/#transition-list-all-tasks-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -26,13 +26,13 @@ class Contributors extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'GET',
-            "projects/$projectId/contributors",
+            "projects/$projectId/tasks",
             $queryParams
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-contributors-get
+     * @link https://lokalise.co/api2docs/php/#transition-list-all-tasks-get
      *
      * @param string $projectId
      *
@@ -43,15 +43,15 @@ class Contributors extends Endpoint implements EndpointInterface
     {
         return $this->requestAll(
             'GET',
-            "projects/$projectId/contributors",
+            "projects/$projectId/tasks",
             [],
             [],
-            'contributors'
+            'tasks'
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-contributors-post
+     * @link https://lokalise.co/api2docs/php/#transition-create-a-task-post
      *
      * @param string $projectId
      * @param array $body
@@ -63,63 +63,63 @@ class Contributors extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'POST',
-            "projects/$projectId/contributors",
+            "projects/$projectId/tasks",
             [],
             $body
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-contributor-get
+     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-task-get
      *
      * @param string $projectId
-     * @param int $contributorId
+     * @param int $taskId
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function retrieve($projectId, $contributorId)
+    public function retrieve($projectId, $taskId)
     {
         return $this->request(
             'GET',
-            "projects/$projectId/contributors/$contributorId"
+            "projects/$projectId/tasks/$taskId"
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-a-contributor-put
+     * @link https://lokalise.co/api2docs/php/#transition-update-a-task-put
      *
      * @param string $projectId
-     * @param int $contributorId
+     * @param int $taskId
      * @param array $body
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function update($projectId, $contributorId, $body)
+    public function update($projectId, $taskId, $body)
     {
         return $this->request(
             'PUT',
-            "projects/$projectId/contributors/$contributorId",
+            "projects/$projectId/tasks/$taskId",
             [],
             $body
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-contributor-delete
+     * @link https://lokalise.co/api2docs/php/#transition-delete-a-task-delete
      *
      * @param string $projectId
-     * @param int $contributorId
+     * @param int $taskId
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function delete($projectId, $contributorId)
+    public function delete($projectId, $taskId)
     {
         return $this->request(
             'DELETE',
-            "projects/$projectId/contributors/$contributorId"
+            "projects/$projectId/tasks/$taskId"
         );
     }
 }

@@ -5,26 +5,35 @@ namespace Lokalise\Endpoints;
 use Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
 
+/**
+ * Class Comments
+ * @package Lokalise\Endpoints]
+ * @link https://lokalise.co/api2docs/php/#resource-comments
+ */
 class Comments extends Endpoint implements EndpointInterface
 {
 
     /**
+     * @link https://lokalise.co/api2docs/php/#transition-list-project-comments-get
+     *
      * @param string $projectId
-     * @param array $params
+     * @param array $queryParams
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function listProject($projectId, $params = [])
+    public function listProject($projectId, $queryParams = [])
     {
         return $this->request(
             'GET',
             "projects/$projectId/comments",
-            $params
+            $queryParams
         );
     }
 
     /**
+     * @link https://lokalise.co/api2docs/php/#transition-list-project-comments-get
+     *
      * @param string $projectId
      *
      * @return LokaliseApiResponse
@@ -32,67 +41,59 @@ class Comments extends Endpoint implements EndpointInterface
      */
     public function fetchAllProject($projectId)
     {
-        $page = 1;
-        $limit = 100;
-
-        $result = $this->listProject($projectId, ['limit' => $limit, 'page' => $page]);
-        while ($result->getPageCount() >= $page) {
-            $page++;
-            $previousResult = clone $result;
-            $result = $this->listProject($projectId, ['limit' => $limit, 'page' => $page]);
-            if (is_array($result->body['comments']) && is_array($previousResult->body['comments'])) {
-                $result->body['comments'] = array_merge($previousResult->body['comments'], $result->body['comments']);
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * @param string $projectId
-     * @param integer $keyId
-     * @param array $params
-     *
-     * @return LokaliseApiResponse
-     * @throws LokaliseApiException
-     */
-    public function listKey($projectId, $keyId, $params = [])
-    {
-        return $this->request(
+        return $this->requestAll(
             'GET',
-            "projects/$projectId/keys/$keyId/comments",
-            $params
+            "projects/$projectId/comments",
+            [],
+            [],
+            'comments'
         );
     }
 
     /**
+     * @link https://lokalise.co/api2docs/php/#transition-list-key-comments-get
+     *
      * @param string $projectId
-     * @param integer $keyId
+     * @param int $keyId
+     * @param array $queryParams
+     *
+     * @return LokaliseApiResponse
+     * @throws LokaliseApiException
+     */
+    public function listKey($projectId, $keyId, $queryParams = [])
+    {
+        return $this->request(
+            'GET',
+            "projects/$projectId/keys/$keyId/comments",
+            $queryParams
+        );
+    }
+
+    /**
+     * @link https://lokalise.co/api2docs/php/#transition-list-key-comments-get
+     *
+     * @param string $projectId
+     * @param int $keyId
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
     public function fetchAllKey($projectId, $keyId)
     {
-        $page = 1;
-        $limit = 100;
-
-        $result = $this->listKey($projectId, $keyId, ['limit' => $limit, 'page' => $page]);
-        while ($result->getPageCount() >= $page) {
-            $page++;
-            $previousResult = clone $result;
-            $result = $this->listKey($projectId, $keyId, ['limit' => $limit, 'page' => $page]);
-            if (is_array($result->body['comments']) && is_array($previousResult->body['comments'])) {
-                $result->body['comments'] = array_merge($previousResult->body['comments'], $result->body['comments']);
-            }
-        }
-
-        return $result;
+        return $this->requestAll(
+            'GET',
+            "projects/$projectId/keys/$keyId/comments",
+            [],
+            [],
+            'comments'
+        );
     }
 
     /**
+     * @link https://lokalise.co/api2docs/php/#transition-create-comments-post
+     *
      * @param string $projectId
-     * @param integer $keyId
+     * @param int $keyId
      * @param array $body
      *
      * @return LokaliseApiResponse
@@ -109,6 +110,8 @@ class Comments extends Endpoint implements EndpointInterface
     }
 
     /**
+     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-comment-get
+     *
      * @param string $projectId
      * @param int $keyId
      * @param int $commentId
@@ -125,9 +128,11 @@ class Comments extends Endpoint implements EndpointInterface
     }
 
     /**
+     * @link https://lokalise.co/api2docs/php/#transition-delete-a-comment-delete
+     *
      * @param string $projectId
-     * @param integer $keyId
-     * @param integer $commentId
+     * @param int $keyId
+     * @param int $commentId
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException

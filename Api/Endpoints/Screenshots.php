@@ -6,15 +6,15 @@ use Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
 
 /**
- * Class Contributors
- * @package Lokalise\Endpoints
- * @link https://lokalise.co/api2docs/php/#resource-contributors
+ * Class Screenshots
+ * @package Lokalise\Endpoints]
+ * @link https://lokalise.co/api2docs/php/#resource-screenshots
  */
-class Contributors extends Endpoint implements EndpointInterface
+class Screenshots extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-contributors-get
+     * @link https://lokalise.co/api2docs/php/#transition-list-all-screenshots-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -26,13 +26,13 @@ class Contributors extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'GET',
-            "projects/$projectId/contributors",
+            "projects/$projectId/screenshots",
             $queryParams
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-contributors-get
+     * @link https://lokalise.co/api2docs/php/#transition-list-all-screenshots-get
      *
      * @param string $projectId
      *
@@ -43,15 +43,15 @@ class Contributors extends Endpoint implements EndpointInterface
     {
         return $this->requestAll(
             'GET',
-            "projects/$projectId/contributors",
+            "projects/$projectId/screenshots",
             [],
             [],
-            'contributors'
+            'screenshots'
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-contributors-post
+     * @link https://lokalise.co/api2docs/php/#transition-create-screenshots-post
      *
      * @param string $projectId
      * @param array $body
@@ -63,63 +63,63 @@ class Contributors extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'POST',
-            "projects/$projectId/contributors",
+            "projects/$projectId/screenshots",
             [],
             $body
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-contributor-get
+     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-screenshot-get
      *
      * @param string $projectId
-     * @param int $contributorId
+     * @param int $screenshotId
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function retrieve($projectId, $contributorId)
+    public function retrieve($projectId, $screenshotId)
     {
         return $this->request(
             'GET',
-            "projects/$projectId/contributors/$contributorId"
+            "projects/$projectId/screenshots/$screenshotId"
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-a-contributor-put
+     * @link https://lokalise.co/api2docs/php/#transition-update-a-screenshot-put
      *
      * @param string $projectId
-     * @param int $contributorId
+     * @param int $screenshotId
      * @param array $body
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function update($projectId, $contributorId, $body)
+    public function update($projectId, $screenshotId, $body)
     {
         return $this->request(
             'PUT',
-            "projects/$projectId/contributors/$contributorId",
+            "projects/$projectId/screenshots/$screenshotId",
             [],
             $body
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-contributor-delete
+     * @link https://lokalise.co/api2docs/php/#transition-delete-a-screenshot-delete
      *
      * @param string $projectId
-     * @param int $contributorId
+     * @param int $screenshotId
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function delete($projectId, $contributorId)
+    public function delete($projectId, $screenshotId)
     {
         return $this->request(
             'DELETE',
-            "projects/$projectId/contributors/$contributorId"
+            "projects/$projectId/screenshots/$screenshotId"
         );
     }
 }
