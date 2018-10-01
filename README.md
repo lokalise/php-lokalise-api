@@ -18,7 +18,7 @@ Lokalise API [Docs](https://lokalise.co/api2docs/php/).
 Create and grab your API token at [Lokalise profile](http://lokalise.local/profile)
 
 ```php
-$client = new /Lokalise/LokaliseApiClient($apiToken);
+$client = new \Lokalise\LokaliseApiClient($apiToken);
 ```
 
 ## Request
