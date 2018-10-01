@@ -63,9 +63,3 @@ $response->
     getPaginationLimit()   // Return pagination limit used in the request
     getPaginationPage()    // Return current page of the request
 ```
-
-<br/>
-<div align="right">
-    <b><a href="#----">↥ Back to top</a></b>
-</div>
-<br/>

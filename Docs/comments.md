@@ -69,4 +69,10 @@ https://lokalise.co/api2docs/php/#transition-delete-a-comment-delete
 $response = $client->comments->delete($projectId, $keyId, $commentId);
 ```
 
-[Back](/README.md)
+<br/>
+<div align="right">
+    <b>
+        [Back](/README.md)
+    </b>
+</div>
+<br/>
