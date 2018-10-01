@@ -97,14 +97,18 @@ class Endpoint implements EndpointInterface
         $page = 1;
         $queryParams = array_merge($queryParams, ['limit' => self::FETCH_ALL_LIMIT, 'page' => $page]);
 
+        $bodyData = [];
         $result = $this->request($requestType, $uri, $queryParams, $body);
+        if (is_array($result->body[$bodyResponseKey])) {
+            $bodyData = $result->body[$bodyResponseKey];
+        }
         while ($result->getPageCount() > $page) {
             $page++;
             $queryParams = array_merge($queryParams, ['limit' => self::FETCH_ALL_LIMIT, 'page' => $page]);
-            $previousResult = clone $result;
             $result = $this->request($requestType, $uri, $queryParams, $body);
-            if (is_array($result->body[$bodyResponseKey]) && is_array($previousResult->body[$bodyResponseKey])) {
-                $result->body[$bodyResponseKey] = array_merge($previousResult->body[$bodyResponseKey], $result->body[$bodyResponseKey]);
+            if (is_array($result->body[$bodyResponseKey])) {
+                $bodyData = array_merge($result->body[$bodyResponseKey], $bodyData);
+                $result->body[$bodyResponseKey] = $bodyData;
             }
         }
 
