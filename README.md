@@ -8,7 +8,7 @@ Lokalise API [Docs](https://lokalise.co/api2docs/php/).
 1. PHP 5.3.x or greater is required
 2. Install LokaliseApiClient using [Composer](#composer-installation) (recommended) or manually
 
-## Composer Installation
+## Composer installation
 
 1. Get [Composer](http://getcomposer.org/)
 2. Require LokaliseApiClient with `php composer.phar require lokalise/php-lokalise-api`
