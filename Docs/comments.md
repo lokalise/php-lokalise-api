@@ -71,6 +71,6 @@ $response = $client->comments->delete($projectId, $keyId, $commentId);
 
 <br/><br/><br/>
 <div align="right">
-    <b><a href="/lokalise/php-lokalise-api/blob/master/README.md#request">⇚ Back</a></b>
+    <b><a href="/README.md#request">⇚ Back</a></b>
 </div>
 <br/>
