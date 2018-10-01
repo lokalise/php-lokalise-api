@@ -1,4 +1,4 @@
-# PHP Lokalise api
+# PHP Lokalise API
 
 A simple REST API for [Lokalise](https://lokalise.co), written with PHP5.
 Lokalise API [Docs](https://lokalise.co/api2docs/php/).
