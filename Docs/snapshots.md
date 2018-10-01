@@ -42,3 +42,9 @@ https://lokalise.co/api2docs/php/#transition-delete-a-snapshot-delete
 ```php
 $response = $client->snapshots->delete($projectId, $snapshotId);
 ```
+
+<br/><br/><br/>
+<div align="right">
+    <b><a href="/README.md#request">⇚ Back</a></b>
+</div>
+<br/>

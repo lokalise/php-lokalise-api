@@ -43,3 +43,9 @@ https://lokalise.co/api2docs/php/#transition-delete-a-team-user-delete
 ```php
 $response = $client->teamUsers->delete($teamId, $userId);
 ```
+
+<br/><br/><br/>
+<div align="right">
+    <b><a href="/README.md#request">⇚ Back</a></b>
+</div>
+<br/>

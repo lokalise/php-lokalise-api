@@ -81,3 +81,9 @@ https://lokalise.co/api2docs/php/#transition-delete-a-contributor-delete
 ```php
 $response = $client->contributors->delete($projectId, $contributorId);
 ```
+
+<br/><br/><br/>
+<div align="right">
+    <b><a href="/README.md#request">⇚ Back</a></b>
+</div>
+<br/>
