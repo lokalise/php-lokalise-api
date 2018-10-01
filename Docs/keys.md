@@ -92,7 +92,7 @@ $response = $client->keys->retrieve($projectId, $keyId);
 ```
 
 ### Update a key
-https://lokalise.co/api2docs/php/#transition-retrieve-a-key-get
+https://lokalise.co/api2docs/php/#transition-update-a-key-put
 
 ```php
 $response = $client->keys->update(
@@ -114,14 +114,22 @@ $response = $client->keys->bulkUpdate(
     $projectId,
     [
         'keys' => [
-            'key_id' => 420,
-            'tags' => [
-                'index', 'meta', 'updated',
+            [
+                'key_id' => 420,
+                'tags' => [
+                    'index', 'meta', 'updated',
+                ],
+                'translations' => [
+                    [
+                        'language_iso' => 'en',
+                        'translation' => 'Frontpage',
+                    ],
+                ],
             ],
-            'translations' => [
-                [
-                    'language_iso' => 'en',
-                    'translation' => 'Frontpage',
+            [
+                'key_id' => 421,
+                'tags' => [
+                    'updated',
                 ],
             ],
         ],

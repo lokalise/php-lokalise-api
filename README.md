@@ -15,7 +15,7 @@ Lokalise API [Docs](https://lokalise.co/api2docs/php/).
 3. Add the following to your application's main PHP file: `require 'vendor/autoload.php';`
 
 ## Construct LokaliseApiClient
-Create and grab your API token at [Lokalise profile](http://lokalise.local/profile)
+Create and grab your API token at [Lokalise profile](https://lokalise.co/profile)
 
 ```php
 $client = new \Lokalise\LokaliseApiClient($apiToken);
