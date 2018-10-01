@@ -29,6 +29,24 @@ $client = new /Lokalise/LokaliseApiClient($apiToken);
 
 [Files](Docs/files.md)
 
+[Keys](Docs/keys.md)
+
+[Languages](Docs/languages.md)
+
+[Projects](Docs/projects.md)
+
+[Screenshots](Docs/screenshots.md)
+
+[Snapshots](Docs/snapshots.md)
+
+[Tasks](Docs/tasks.md)
+
+[Teams](Docs/teams.md)
+
+[Team Users](Docs/teamUsers.md)
+
+[Translations](Docs/translations.md)
+
 ## Response
 
 ```php

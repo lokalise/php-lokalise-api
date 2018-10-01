@@ -1,0 +1,82 @@
+# Languages API
+
+### List system languages
+https://lokalise.co/api2docs/php/#transition-list-system-languages-get
+
+```php
+$response = $client->languages->listSystem(
+    [
+        'limit' => 200,
+        'page' => 1,
+    ]
+);
+```
+
+```php
+$response = $client->languages->fetchAllSystem();
+```
+
+### List project languages
+https://lokalise.co/api2docs/php/#transition-list-project-languages-get
+
+```php
+$response = $client->languages->list(
+    $projectId,
+    [
+        'limit' => 200,
+        'page' => 1,
+    ]
+);
+```
+
+```php
+$response = $client->languages->fetchAll($projectId);
+```
+
+### Create languages
+https://lokalise.co/api2docs/php/#transition-create-languages-post
+
+```php
+$response = $client->languages->create(
+    $projectId,
+    [
+        'languages' => [
+            [
+                'lang_iso' => 'en_GB',
+                'custom_iso' => 'en-gb',
+            ],
+            [
+                'lang_iso' => 'en_CA',
+                'custom_iso' => 'en-ca',
+            ],
+        ]
+    ]
+);
+```
+
+### Retrieve a language
+https://lokalise.co/api2docs/php/#transition-retrieve-a-language-get
+
+```php
+$response = $client->languages->retrieve($projectId, $languageId);
+```
+
+### Update a language
+https://lokalise.co/api2docs/php/#transition-update-a-language-put
+
+```php
+$response = $client->languages->update(
+    $projectId,
+    $languageId,
+    [
+        'lang_iso' => 'en-ca',
+    ]
+);
+```
+
+### Delete a language
+https://lokalise.co/api2docs/php/#transition-delete-a-language-delete
+
+```php
+$response = $client->languages->delete($projectId, $languageId);
+```

@@ -35,17 +35,16 @@ class Translations extends Endpoint implements EndpointInterface
      * @link https://lokalise.co/api2docs/php/#transition-list-all-translations-get
      *
      * @param string $projectId
-     * @param array $queryParams
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function fetchAll($projectId, $queryParams = [])
+    public function fetchAll($projectId)
     {
         return $this->requestAll(
             'GET',
             "projects/$projectId/translations",
-            $queryParams,
+            [],
             [],
             'translations'
         );

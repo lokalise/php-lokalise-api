@@ -35,16 +35,17 @@ class Tasks extends Endpoint implements EndpointInterface
      * @link https://lokalise.co/api2docs/php/#transition-list-all-tasks-get
      *
      * @param string $projectId
+     * @param array $queryParams
      *
      * @return LokaliseApiResponse
      * @throws LokaliseApiException
      */
-    public function fetchAll($projectId)
+    public function fetchAll($projectId, $queryParams = [])
     {
         return $this->requestAll(
             'GET',
             "projects/$projectId/tasks",
-            [],
+            $queryParams,
             [],
             'tasks'
         );

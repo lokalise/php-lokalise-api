@@ -13,6 +13,10 @@ $response = $client->contributors->list(
 );
 ```
 
+```php
+$response = $client->contributors->fetchAll($projectId);
+```
+
 ### Create project contributors
 https://lokalise.co/api2docs/php/#transition-create-contributors-post
 

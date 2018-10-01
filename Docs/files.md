@@ -13,6 +13,10 @@ $response = $client->files->list(
 );
 ```
 
+```php
+$response = $client->files->fetchAll($projectId);
+```
+
 ### Upload a file
 https://lokalise.co/api2docs/php/#transition-upload-a-file-post
 

@@ -1,0 +1,82 @@
+# Tasks API
+
+### List tasks
+https://lokalise.co/api2docs/php/#transition-list-all-tasks-get
+
+```php
+$response = $client->tasks->list(
+    $projectId,
+    [
+        'filter_title' => 'Ads',
+        'limit' => 20,
+        'page' => 1,
+    ]
+);
+```
+
+```php
+$response = $client->tasks->fetchAll(
+    $projectId,
+    [
+        'filter_title' => 'Ads',
+    ]
+);
+```
+
+### Create a task
+https://lokalise.co/api2docs/php/#transition-create-a-task-post
+
+```php
+$response = $client->tasks->create(
+    $projectId,
+    [
+        'title' => 'New ads',
+        'keys' => [
+            12345, 12346, 12347,
+        ],
+        'languages' => [
+            [
+                'language_iso' => 'en-gb',
+                'users' => [
+                    1111, 2222, 3333,
+                ],
+            ],
+            [
+                'language_iso' => 'en-ca',
+                'users' => [
+                    4444, 5555,
+                ],
+            ],
+        ],
+        'auto_close_languages' => true,
+        'auto_close_task' => true,
+    ]
+);
+```
+
+### Retrieve a task
+https://lokalise.co/api2docs/php/#transition-retrieve-a-task-get
+
+```php
+$response = $client->tasks->retrieve($projectId, $taskId);
+```
+
+### Update a task
+https://lokalise.co/api2docs/php/#transition-update-a-task-put
+
+```php
+$response = $client->tasks->list(
+    $projectId,
+    $taskId,
+    [
+        'close_task' => true,
+    ]
+);
+```
+
+### Delete a task
+https://lokalise.co/api2docs/php/#transition-delete-a-task-delete
+
+```php
+$response = $client->tasks->delete($projectId, $taskId);
+```

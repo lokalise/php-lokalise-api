@@ -103,7 +103,7 @@ class Projects extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-empty-project-put
+     * @link https://lokalise.co/api2docs/php/#transition-empty-a-project-put
      *
      * @param string $projectId
      *

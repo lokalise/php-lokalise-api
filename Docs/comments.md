@@ -13,6 +13,10 @@ $response = $client->comments->listProject(
 );
 ```
 
+```php
+$response = $client->comments->fetchAllProject($projectId);
+```
+
 ### List key comments
 https://lokalise.co/api2docs/php/#transition-list-key-comments-get
 
@@ -25,6 +29,10 @@ $response = $client->comments->listKey(
         'page' => 1,
     ]
 ); 
+```
+
+```php
+$response = $client->comments->fetchAllKey($projectId, $keyId); 
 ```
 
 ### Create comments
