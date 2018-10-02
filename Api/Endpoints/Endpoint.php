@@ -2,12 +2,12 @@
 
 namespace Lokalise\Endpoints;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\GuzzleException;
-use Lokalise\Exceptions\LokaliseApiException;
-use Lokalise\Exceptions\LokaliseResponseException;
-use Lokalise\LokaliseApiResponse;
+use \GuzzleHttp\Client;
+use \GuzzleHttp\Exception\RequestException;
+use \GuzzleHttp\Exception\GuzzleException;
+use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
+use \Lokalise\LokaliseApiResponse;
 
 class Endpoint implements EndpointInterface
 {
@@ -39,7 +39,9 @@ class Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     protected function request($requestType, $uri, $queryParams = [], $body = [])
     {
@@ -79,6 +81,10 @@ class Endpoint implements EndpointInterface
             throw new LokaliseApiException('Not found', 404);
         }
 
+        if (!empty($bodyJson['error']['code']) && isset($bodyJson['error']['message'])) {
+            throw new LokaliseResponseException($bodyJson['error']['message'], $bodyJson['error']['code']);
+        }
+
         return new LokaliseApiResponse($guzzleResponse);
     }
 
@@ -90,7 +96,9 @@ class Endpoint implements EndpointInterface
      * @param string $bodyResponseKey
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     protected function requestAll($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '')
     {
@@ -130,6 +138,7 @@ class Endpoint implements EndpointInterface
      * @link https://lokalise.co/api2docs/curl/
      *
      * @param array $queryParams
+     *
      * @return array
      */
     private function fixArraysInQueryParams($queryParams)
@@ -144,6 +153,7 @@ class Endpoint implements EndpointInterface
      * Recursion method to replace arrays with imploded values
      *
      * @param mixed $array
+     *
      * @return array|string
      */
     private function replaceArrayWithCommaSeparatedString($array)

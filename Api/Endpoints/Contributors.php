@@ -2,8 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use Lokalise\LokaliseApiResponse;
+use \Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
  * Class Contributors
@@ -20,7 +21,9 @@ class Contributors extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function list($projectId, $queryParams = [])
     {
@@ -37,7 +40,9 @@ class Contributors extends Endpoint implements EndpointInterface
      * @param string $projectId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAll($projectId)
     {
@@ -57,7 +62,9 @@ class Contributors extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function create($projectId, $body)
     {
@@ -76,7 +83,9 @@ class Contributors extends Endpoint implements EndpointInterface
      * @param int $contributorId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function retrieve($projectId, $contributorId)
     {
@@ -94,7 +103,9 @@ class Contributors extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function update($projectId, $contributorId, $body)
     {
@@ -113,7 +124,9 @@ class Contributors extends Endpoint implements EndpointInterface
      * @param int $contributorId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function delete($projectId, $contributorId)
     {

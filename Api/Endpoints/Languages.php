@@ -2,8 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use Lokalise\LokaliseApiResponse;
+use \Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
  * Class Languages
@@ -19,7 +20,9 @@ class Languages extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function listSystem($queryParams = [])
     {
@@ -34,7 +37,9 @@ class Languages extends Endpoint implements EndpointInterface
      * @link https://lokalise.co/api2docs/php/#transition-list-system-languages-get
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAllSystem()
     {
@@ -54,7 +59,9 @@ class Languages extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function list($projectId, $queryParams = [])
     {
@@ -71,7 +78,9 @@ class Languages extends Endpoint implements EndpointInterface
      * @param string $projectId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAll($projectId)
     {
@@ -91,7 +100,9 @@ class Languages extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function create($projectId, $body)
     {
@@ -110,7 +121,9 @@ class Languages extends Endpoint implements EndpointInterface
      * @param int $languageId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function retrieve($projectId, $languageId)
     {
@@ -128,7 +141,9 @@ class Languages extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function update($projectId, $languageId, $body)
     {
@@ -147,7 +162,9 @@ class Languages extends Endpoint implements EndpointInterface
      * @param int $languageId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function delete($projectId, $languageId)
     {

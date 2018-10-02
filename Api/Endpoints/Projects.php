@@ -2,8 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use Lokalise\LokaliseApiResponse;
+use \Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
  * Class Projects
@@ -19,7 +20,9 @@ class Projects extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function list($queryParams = [])
     {
@@ -36,7 +39,9 @@ class Projects extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAll($queryParams = [])
     {
@@ -55,7 +60,9 @@ class Projects extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function create($body)
     {
@@ -73,7 +80,9 @@ class Projects extends Endpoint implements EndpointInterface
      * @param string $projectId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function retrieve($projectId)
     {
@@ -90,7 +99,9 @@ class Projects extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function update($projectId, $body)
     {
@@ -108,7 +119,9 @@ class Projects extends Endpoint implements EndpointInterface
      * @param string $projectId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function empty($projectId)
     {
@@ -124,7 +137,9 @@ class Projects extends Endpoint implements EndpointInterface
      * @param string $projectId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function delete($projectId)
     {

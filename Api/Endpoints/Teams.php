@@ -2,8 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use Lokalise\LokaliseApiResponse;
+use \Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
  * Class Teams
@@ -19,7 +20,9 @@ class Teams extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function list($queryParams = [])
     {
@@ -34,7 +37,9 @@ class Teams extends Endpoint implements EndpointInterface
      * @link https://lokalise.co/api2docs/php/#transition-list-all-teams-get
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAll()
     {

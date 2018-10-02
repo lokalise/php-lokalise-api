@@ -2,7 +2,7 @@
 
 namespace Lokalise;
 
-use Psr\Http\Message\ResponseInterface;
+use \Psr\Http\Message\ResponseInterface;
 
 class LokaliseApiResponse
 {

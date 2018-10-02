@@ -2,8 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use Lokalise\LokaliseApiResponse;
+use \Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
  * Class Comments
@@ -20,7 +21,9 @@ class Comments extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function listProject($projectId, $queryParams = [])
     {
@@ -37,7 +40,9 @@ class Comments extends Endpoint implements EndpointInterface
      * @param string $projectId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAllProject($projectId)
     {
@@ -58,7 +63,9 @@ class Comments extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function listKey($projectId, $keyId, $queryParams = [])
     {
@@ -76,7 +83,9 @@ class Comments extends Endpoint implements EndpointInterface
      * @param int $keyId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAllKey($projectId, $keyId)
     {
@@ -97,7 +106,9 @@ class Comments extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function create($projectId, $keyId, $body)
     {
@@ -117,7 +128,9 @@ class Comments extends Endpoint implements EndpointInterface
      * @param int $commentId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function retrieve($projectId, $keyId, $commentId)
     {
@@ -135,7 +148,9 @@ class Comments extends Endpoint implements EndpointInterface
      * @param int $commentId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function delete($projectId, $keyId, $commentId)
     {

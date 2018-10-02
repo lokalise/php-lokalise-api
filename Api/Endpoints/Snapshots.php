@@ -2,8 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use Lokalise\LokaliseApiResponse;
+use \Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
  * Class Snapshots
@@ -20,7 +21,9 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function list($projectId, $queryParams = [])
     {
@@ -37,7 +40,9 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @param string $projectId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAll($projectId)
     {
@@ -57,7 +62,9 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function create($projectId, $body)
     {
@@ -76,7 +83,9 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @param int $snapshotId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function restore($projectId, $snapshotId)
     {
@@ -93,7 +102,9 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @param int $snapshotId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function delete($projectId, $snapshotId)
     {

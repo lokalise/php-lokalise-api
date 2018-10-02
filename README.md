@@ -70,3 +70,25 @@ $response->
 \Lokalise\Utils::
     base64FileEncode($filePath)    // Get base64 encoded contents with leading mime type
 ```
+
+## Exceptions and errors
+
+```php
+\Lokalise\Exceptions\LokaliseApiException       // Exception throws when Lokalise API can't be reached using Guzzle
+\Lokalise\Exceptions\LokaliseResponseException  // Exception throws when Lokalise API responded with a single error
+```
+
+Best practise
+
+```php
+$client = new \Lokalise\LokaliseApiClient($apiToken);
+
+try {
+    $language = $client->languages->retrieve($projectId, $languageId)->getContent();
+} catch (\Lokalise\Exceptions\LokaliseApiException $e) {
+    // try again later or break
+} catch (\Lokalise\Exceptions\LokaliseResponseException $e) {
+    // Request cannot be completed. More details in {$e->getCode()} and {$e->getMessage()}
+    // break
+}
+```

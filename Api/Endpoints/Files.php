@@ -2,8 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use Lokalise\LokaliseApiResponse;
+use \Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
  * Class Files
@@ -20,7 +21,9 @@ class Files extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function list($projectId, $queryParams = [])
     {
@@ -37,7 +40,9 @@ class Files extends Endpoint implements EndpointInterface
      * @param string $projectId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAll($projectId)
     {
@@ -55,8 +60,11 @@ class Files extends Endpoint implements EndpointInterface
      *
      * @param string $projectId
      * @param array $body
+     *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function upload($projectId, $body)
     {
@@ -73,8 +81,11 @@ class Files extends Endpoint implements EndpointInterface
      *
      * @param string $projectId
      * @param array $body
+     *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function download($projectId, $body)
     {

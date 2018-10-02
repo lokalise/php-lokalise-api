@@ -2,8 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use Lokalise\LokaliseApiResponse;
+use \Lokalise\LokaliseApiResponse;
 use \Lokalise\Exceptions\LokaliseApiException;
+use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
  * Class TeamUsers
@@ -20,7 +21,9 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function list($teamId, $queryParams = [])
     {
@@ -37,7 +40,9 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @param int $teamId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function fetchAll($teamId)
     {
@@ -57,7 +62,9 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @param int $userId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function retrieve($teamId, $userId)
     {
@@ -75,7 +82,9 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @param array $body
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function update($teamId, $userId, $body)
     {
@@ -94,7 +103,9 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @param int $userId
      *
      * @return LokaliseApiResponse
+     *
      * @throws LokaliseApiException
+     * @throws LokaliseResponseException
      */
     public function delete($teamId, $userId)
     {

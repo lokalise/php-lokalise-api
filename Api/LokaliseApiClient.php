@@ -2,18 +2,18 @@
 
 namespace Lokalise;
 
-use Lokalise\Endpoints\Comments;
-use Lokalise\Endpoints\Contributors;
-use Lokalise\Endpoints\Files;
-use Lokalise\Endpoints\Keys;
-use Lokalise\Endpoints\Languages;
-use Lokalise\Endpoints\Projects;
-use Lokalise\Endpoints\Screenshots;
-use Lokalise\Endpoints\Snapshots;
-use Lokalise\Endpoints\Tasks;
-use Lokalise\Endpoints\Teams;
-use Lokalise\Endpoints\TeamUsers;
-use Lokalise\Endpoints\Translations;
+use \Lokalise\Endpoints\Comments;
+use \Lokalise\Endpoints\Contributors;
+use \Lokalise\Endpoints\Files;
+use \Lokalise\Endpoints\Keys;
+use \Lokalise\Endpoints\Languages;
+use \Lokalise\Endpoints\Projects;
+use \Lokalise\Endpoints\Screenshots;
+use \Lokalise\Endpoints\Snapshots;
+use \Lokalise\Endpoints\Tasks;
+use \Lokalise\Endpoints\Teams;
+use \Lokalise\Endpoints\TeamUsers;
+use \Lokalise\Endpoints\Translations;
 
 class LokaliseApiClient
 {
