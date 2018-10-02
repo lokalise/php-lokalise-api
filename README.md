@@ -63,3 +63,10 @@ $response->
     getPaginationLimit()   // Return pagination limit used in the request
     getPaginationPage()    // Return current page of the request
 ```
+
+## Utils
+
+```php
+\Lokalise\Utils::
+    base64FileEncode($filePath)    // Get base64 encoded contents with leading mime type
+```

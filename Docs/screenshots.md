@@ -25,12 +25,23 @@ $response = $client->screenshots->create(
     $projectId,
     [
         'screenshots' => [
-            'data' => 'data:image/jpeg;base64,D94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGL.....',
-            'key_ids' => [
-                12345, 12346
+            [
+                'data' => 'data:image/jpeg;base64,D94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGL.....',
+                'key_ids' => [
+                    12345, 12346
+                ],
+                'tags' => [
+                    'onboarding',
+                ],
             ],
-            'tags' => [
-                'onboarding',
+            [
+                'data' => \Lokalise\Utils::base64FileEncode('/tmp/onboarding.jpg'),
+                'key_ids' => [
+                    12347, 12348
+                ],
+                'tags' => [
+                    'onboarding',
+                ],
             ],
         ]
     ]
