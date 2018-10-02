@@ -78,7 +78,7 @@ $response->
 \Lokalise\Exceptions\LokaliseResponseException  // Exception throws when Lokalise API responded with a single error
 ```
 
-Best practise
+Best practice
 
 ```php
 $client = new \Lokalise\LokaliseApiClient($apiToken);
