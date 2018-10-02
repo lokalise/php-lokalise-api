@@ -1,7 +1,7 @@
-# PHP Lokalise API
+# Lokalise API 2.0 official PHP library
 
-A simple REST API for [Lokalise](https://lokalise.co), written with PHP5.
-Lokalise API [Docs](https://lokalise.co/api2docs/php/).
+An API 2.0 wrapper for [Lokalise](https://lokalise.co) API 2.0, written with PHP5.
+Lokalise API 2.0 [Docs](https://lokalise.co/api2docs/php/).
 
 ## Getting started
 
