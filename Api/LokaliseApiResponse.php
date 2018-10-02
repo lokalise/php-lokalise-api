@@ -38,7 +38,7 @@ class LokaliseApiResponse
 
         try {
             $this->body = json_decode($guzzleResponse->getBody(), true);
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             $this->body = [];
         }
     }
