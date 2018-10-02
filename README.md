@@ -1,7 +1,7 @@
 # Lokalise API 2.0 official PHP library
 
 Client library for [Lokalise](https://lokalise.co) API 2.0, written with PHP5.
-Lokalise API 2.0 [Docs](https://lokalise.co/api2docs/php/).
+[Full API reference](https://lokalise.co/api2docs/php/).
 
 ## Getting started
 
