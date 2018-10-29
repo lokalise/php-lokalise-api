@@ -12,6 +12,10 @@ class Utils
      */
     public static function base64FileEncode($path)
     {
+        if (empty($path)) {
+            return null;
+        }
+
         $realPath = realpath($path);
 
         if (!empty($realPath)) {

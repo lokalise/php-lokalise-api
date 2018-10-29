@@ -20,6 +20,9 @@ class Endpoint implements EndpointInterface
     /** @var null|string `X-Api-Token` authentication header */
     protected $apiToken;
 
+    /** @var Client */
+    private $client;
+
     /**
      * Endpoint constructor.
      *
@@ -30,6 +33,14 @@ class Endpoint implements EndpointInterface
     {
         $this->baseUrl = $baseUrl;
         $this->apiToken = $apiToken;
+    }
+
+    /**
+     * @param $client
+     */
+    protected function setClient(Client $client)
+    {
+        $this->client = $client;
     }
 
     /**
@@ -45,8 +56,9 @@ class Endpoint implements EndpointInterface
      */
     protected function request($requestType, $uri, $queryParams = [], $body = [])
     {
-
-        $client = new Client();
+        if (is_null($this->client)) {
+            $this->setClient(new Client());
+        }
 
         $options = [
             'headers' => [
@@ -61,7 +73,7 @@ class Endpoint implements EndpointInterface
         }
 
         try {
-            $guzzleResponse = $client->request($requestType, "{$this->baseUrl}$uri", $options);
+            $guzzleResponse = $this->client->request($requestType, "{$this->baseUrl}$uri", $options);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
                 $guzzleResponse = $e->getResponse();
