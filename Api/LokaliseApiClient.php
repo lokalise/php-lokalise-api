@@ -18,7 +18,7 @@ use \Lokalise\Endpoints\Translations;
 class LokaliseApiClient
 {
 
-    const VERSION = '2.0.1';
+    const VERSION = '2.0.4';
 
     const ENDPOINT = 'https://api.lokalise.co/api2/';
 
