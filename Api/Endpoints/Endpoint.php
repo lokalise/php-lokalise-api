@@ -38,7 +38,7 @@ class Endpoint implements EndpointInterface
     /**
      * @param $client
      */
-    protected function setClient(Client $client)
+    public function setClient(Client $client)
     {
         $this->client = $client;
     }
