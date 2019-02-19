@@ -12,6 +12,7 @@ use \Lokalise\Endpoints\Screenshots;
 use \Lokalise\Endpoints\Snapshots;
 use \Lokalise\Endpoints\Tasks;
 use \Lokalise\Endpoints\Teams;
+use Lokalise\Endpoints\TeamUserGroups;
 use \Lokalise\Endpoints\TeamUsers;
 use \Lokalise\Endpoints\Translations;
 
@@ -58,6 +59,9 @@ class LokaliseApiClient
     /** @var Translations */
     public $translations;
 
+    /** @var TeamUserGroups */
+    public $teamUserGroups;
+
     /**
      * LokaliseApiClient constructor.
      *
@@ -77,6 +81,7 @@ class LokaliseApiClient
         $this->teams = new Teams(self::ENDPOINT, $apiToken);
         $this->teamUsers = new TeamUsers(self::ENDPOINT, $apiToken);
         $this->translations = new Translations(self::ENDPOINT, $apiToken);
+        $this->teamUserGroups = new TeamUserGroups(self::ENDPOINT, $apiToken);
     }
 
     /**

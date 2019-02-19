@@ -16,6 +16,7 @@ use \Lokalise\Endpoints\Tasks;
 use \Lokalise\Endpoints\Teams;
 use \Lokalise\Endpoints\TeamUsers;
 use \Lokalise\Endpoints\Translations;
+use Lokalise\Endpoints\TeamUserGroups;
 
 final class LokaliseApiClientTest extends TestCase
 {
@@ -84,13 +85,17 @@ final class LokaliseApiClientTest extends TestCase
         $this->assertInstanceOf(Translations::class, $this->apiClient->translations);
         $this->assertInstanceOf(Endpoint::class, $this->apiClient->translations);
         $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->translations);
+
+        $this->assertInstanceOf(TeamUserGroups::class, $this->apiClient->teamUserGroups);
+        $this->assertInstanceOf(Endpoint::class, $this->apiClient->teamUserGroups);
+        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->teamUserGroups);
     }
 
     public function testEndpointUrl()
     {
         $this->assertEquals(
             'https://api.lokalise.co/api2/',
-            $this->apiClient::ENDPOINT
+            ApiClient::ENDPOINT
         );
     }
 
