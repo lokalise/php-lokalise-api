@@ -110,7 +110,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     public function create($teamId, $body)
     {
         return $this->request(
-            'PUT',
+            'POST',
             "teams/$teamId/groups",
             [],
             $body
