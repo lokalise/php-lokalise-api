@@ -45,6 +45,8 @@ $client = new \Lokalise\LokaliseApiClient($apiToken);
 
 [Team Users](Docs/teamUsers.md)
 
+[Team User Groups](Docs/teamUserGroups.md)
+
 [Translations](Docs/translations.md)
 
 ## Response
