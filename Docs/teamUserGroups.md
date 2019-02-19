@@ -17,6 +17,26 @@ $response = $client->teamUserGroups->list(
 $response = $client->teamUserGroups->fetchAll($teamId);
 ```
 
+### Create a team user group
+https://lokalise.co/api2docs/php/#transition-create-a-group-post
+
+```php
+$response = $client->teamUserGroups->create(
+    $teamId, 
+    [
+        'name' => 'Proofreaders',
+        'is_reviewer' => true,
+        'is_admin' => false,
+        'admin_rights' => [],
+        'languages' => [
+            'reference'=> [],
+            'contributable'=> [640]
+        ]
+    ]
+);
+```
+
+
 ### Retrieve a team user group
 https://lokalise.co/api2docs/php/#transition-retrieve-a-group-get
 
