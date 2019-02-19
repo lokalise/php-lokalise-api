@@ -19,7 +19,7 @@ use \Lokalise\Endpoints\Translations;
 class LokaliseApiClient
 {
 
-    const VERSION = '2.0.5';
+    const VERSION = '2.1.0';
 
     const ENDPOINT = 'https://api.lokalise.co/api2/';
 
