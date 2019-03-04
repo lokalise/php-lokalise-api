@@ -48,7 +48,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
             "payment_cards",
             [],
             [],
-            'cards'
+            'payment_cards'
         );
     }
 
