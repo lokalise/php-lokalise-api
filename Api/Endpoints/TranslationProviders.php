@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://lokalise.co/api2docs/php/#resource-providers
  */
-class Providers extends Endpoint implements EndpointInterface
+class TranslationProviders extends Endpoint implements EndpointInterface
 {
 
     /**
@@ -28,7 +28,7 @@ class Providers extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'GET',
-            "providers",
+            "translation_providers",
             $queryParams
         );
     }
@@ -45,10 +45,10 @@ class Providers extends Endpoint implements EndpointInterface
     {
         return $this->requestAll(
             'GET',
-            "providers",
+            "translation_providers",
             [],
             [],
-            'providers'
+            'translation_providers'
         );
     }
 
@@ -66,7 +66,7 @@ class Providers extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'GET',
-            "providers/$providerId"
+            "translation_providers/$providerId"
         );
     }
 }

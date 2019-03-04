@@ -1,22 +1,22 @@
 <?php
 
 use \PHPUnit\Framework\TestCase;
-use Lokalise\Endpoints\Providers;
+use Lokalise\Endpoints\PaymentCards;
 
-final class ProvidersTest extends TestCase
+final class PaymentCardsTest extends TestCase
 {
-    /** @var Providers */
-    protected $mockedProviders;
+    /** @var PaymentCards */
+    protected $mockedCards;
 
     protected function setUp()
     {
-        $this->mockedProviders = $this
-            ->getMockBuilder(Providers::class)
+        $this->mockedCards = $this
+            ->getMockBuilder(PaymentCards::class)
             ->setConstructorArgs([null, '{Test_Api_Token}'])
             ->setMethods(['request', 'requestAll'])
             ->getMock();
 
-        $this->mockedProviders->method('request')->willReturnCallback(
+        $this->mockedCards->method('request')->willReturnCallback(
             function ($requestType, $uri, $queryParams = [], $body = []) {
                 return [
                     'requestType' => $requestType,
@@ -27,7 +27,7 @@ final class ProvidersTest extends TestCase
             }
         );
 
-        $this->mockedProviders->method('requestAll')->willReturnCallback(
+        $this->mockedCards->method('requestAll')->willReturnCallback(
             function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
                 return [
                     'requestType' => $requestType,
@@ -42,13 +42,13 @@ final class ProvidersTest extends TestCase
 
     protected function tearDown()
     {
-        $this->mockedProviders = null;
+        $this->mockedCards = null;
     }
 
     public function testEndpointClass()
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedProviders);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedProviders);
+        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedCards);
+        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedCards);
     }
 
     public function testList()
@@ -58,11 +58,11 @@ final class ProvidersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "providers",
+                'uri' => "payment_cards",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedProviders->list($getParameters)
+            $this->mockedCards->list($getParameters)
         );
     }
 
@@ -71,27 +71,57 @@ final class ProvidersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "providers",
+                'uri' => "payment_cards",
                 'queryParams' => [],
                 'body' => [],
-                'bodyResponseKey' => 'providers',
+                'bodyResponseKey' => 'payment_cards',
             ],
-            $this->mockedProviders->fetchAll()
+            $this->mockedCards->fetchAll()
         );
     }
 
     public function testRetrieve()
     {
-        $providerId = '{Provider_Id}';
+        $cardId = '{Card_Id}';
 
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "providers/$providerId",
+                'uri' => "payment_cards/$cardId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedProviders->retrieve($providerId)
+            $this->mockedCards->retrieve($cardId)
+        );
+    }
+
+    public function testCreate()
+    {
+        $body = ['params' => ['any']];
+
+        $this->assertEquals(
+            [
+                'requestType' => 'POST',
+                'uri' => "payment_cards",
+                'queryParams' => [],
+                'body' => $body,
+            ],
+            $this->mockedCards->create($body)
+        );
+    }
+
+    public function testDelete()
+    {
+        $cardId = '{Card_Id}';
+
+        $this->assertEquals(
+            [
+                'requestType' => 'DELETE',
+                'uri' => "payment_cards/{$cardId}",
+                'queryParams' => [],
+                'body' => [],
+            ],
+            $this->mockedCards->delete($cardId)
         );
     }
 }

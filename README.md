@@ -33,6 +33,8 @@ $client = new \Lokalise\LokaliseApiClient($apiToken);
 
 [Languages](Docs/languages.md)
 
+[Payment Cards](Docs/paymentCards.md)
+
 [Projects](Docs/projects.md)
 
 [Screenshots](Docs/screenshots.md)
@@ -49,9 +51,7 @@ $client = new \Lokalise\LokaliseApiClient($apiToken);
 
 [Translations](Docs/translations.md)
 
-[Providers](Docs/providers.md)
-
-[Cards](Docs/cards.md)
+[Translation Providers](Docs/translationProviders.md)
 
 [Orders](Docs/orders.md)
 

@@ -4,7 +4,7 @@
 https://lokalise.co/api2docs/php/#transition-list-all-providers-get
 
 ```php
-$response = $client->providers->list(
+$response = $client->translationProviders->list(
     $teamId,
     [
         'limit' => 20,
@@ -14,14 +14,14 @@ $response = $client->providers->list(
 ```
 
 ```php
-$response = $client->providers->fetchAll();
+$response = $client->translationProviders->fetchAll();
 ```
 
 ### Retrieve a provider
 https://lokalise.co/api2docs/php/#transition-retrieve-a-provider-get
 
 ```php
-$response = $client->providers->retrieve($providerId);
+$response = $client->translationProviders->retrieve($providerId);
 ```
 
 

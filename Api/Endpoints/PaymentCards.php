@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://lokalise.co/api2docs/php/#resource-team-user-groups
  */
-class Cards extends Endpoint implements EndpointInterface
+class PaymentCards extends Endpoint implements EndpointInterface
 {
 
     /**
@@ -28,7 +28,7 @@ class Cards extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'GET',
-            "cards",
+            "payment_cards",
             $queryParams
         );
     }
@@ -45,7 +45,7 @@ class Cards extends Endpoint implements EndpointInterface
     {
         return $this->requestAll(
             'GET',
-            "cards",
+            "payment_cards",
             [],
             [],
             'cards'
@@ -66,7 +66,7 @@ class Cards extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'GET',
-            "cards/$cardId"
+            "payment_cards/$cardId"
         );
     }
 
@@ -84,7 +84,7 @@ class Cards extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'POST',
-            "cards",
+            "payment_cards",
             [],
             $body
         );
@@ -104,7 +104,7 @@ class Cards extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'DELETE',
-            "cards/$cardId"
+            "payment_cards/$cardId"
         );
     }
 }

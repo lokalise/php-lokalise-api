@@ -2,7 +2,7 @@
 
 namespace Lokalise;
 
-use Lokalise\Endpoints\Cards;
+use Lokalise\Endpoints\PaymentCards;
 use \Lokalise\Endpoints\Comments;
 use \Lokalise\Endpoints\Contributors;
 use \Lokalise\Endpoints\Files;
@@ -10,7 +10,7 @@ use \Lokalise\Endpoints\Keys;
 use \Lokalise\Endpoints\Languages;
 use Lokalise\Endpoints\Orders;
 use \Lokalise\Endpoints\Projects;
-use Lokalise\Endpoints\Providers;
+use Lokalise\Endpoints\TranslationProviders;
 use \Lokalise\Endpoints\Screenshots;
 use \Lokalise\Endpoints\Snapshots;
 use \Lokalise\Endpoints\Tasks;
@@ -64,11 +64,11 @@ class LokaliseApiClient
     /** @var TeamUserGroups */
     public $teamUserGroups;
 
-    /** @var Providers */
-    public $providers;
+    /** @var TranslationProviders */
+    public $translationProviders;
 
-    /** @var Cards */
-    public $cards;
+    /** @var PaymentCards */
+    public $paymentCards;
 
     /** @var Orders */
     public $orders;
@@ -93,8 +93,8 @@ class LokaliseApiClient
         $this->teamUsers = new TeamUsers(self::ENDPOINT, $apiToken);
         $this->translations = new Translations(self::ENDPOINT, $apiToken);
         $this->teamUserGroups = new TeamUserGroups(self::ENDPOINT, $apiToken);
-        $this->providers = new Providers(self::ENDPOINT, $apiToken);
-        $this->cards = new Cards(self::ENDPOINT, $apiToken);
+        $this->translationProviders = new TranslationProviders(self::ENDPOINT, $apiToken);
+        $this->paymentCards = new PaymentCards(self::ENDPOINT, $apiToken);
         $this->orders = new Orders(self::ENDPOINT, $apiToken);
     }
 

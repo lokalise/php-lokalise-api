@@ -4,7 +4,7 @@
 https://lokalise.co/api2docs/php/#transition-list-all-cards-get
 
 ```php
-$response = $client->cards->list(
+$response = $client->paymentCards->list(
     $teamId,
     [
         'limit' => 20,
@@ -14,14 +14,14 @@ $response = $client->cards->list(
 ```
 
 ```php
-$response = $client->cards->fetchAll($teamId);
+$response = $client->paymentCards->fetchAll($teamId);
 ```
 
 ### Create a card
 https://lokalise.co/api2docs/php/#transition-create-a-card-post
 
 ```php
-$response = $client->cards->create(
+$response = $client->paymentCards->create(
     [
         'number' => '1234123412341234',
         'exp_month' => 12,
@@ -36,14 +36,14 @@ $response = $client->cards->create(
 https://lokalise.co/api2docs/php/#transition-retrieve-a-card-get
 
 ```php
-$response = $client->cards->retrieve($cardId);
+$response = $client->paymentCards->retrieve($cardId);
 ```
 
 ### Delete a card
 https://lokalise.co/api2docs/php/#transition-delete-a-card-delete
 
 ```php
-$response = $client->cards->delete($cardId);
+$response = $client->paymentCards->delete($cardId);
 ```
 
 
