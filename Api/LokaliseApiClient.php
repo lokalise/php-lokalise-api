@@ -8,6 +8,7 @@ use \Lokalise\Endpoints\Contributors;
 use \Lokalise\Endpoints\Files;
 use \Lokalise\Endpoints\Keys;
 use \Lokalise\Endpoints\Languages;
+use Lokalise\Endpoints\Orders;
 use \Lokalise\Endpoints\Projects;
 use Lokalise\Endpoints\Providers;
 use \Lokalise\Endpoints\Screenshots;
@@ -69,6 +70,9 @@ class LokaliseApiClient
     /** @var Cards */
     public $cards;
 
+    /** @var Orders */
+    public $orders;
+
     /**
      * LokaliseApiClient constructor.
      *
@@ -91,6 +95,7 @@ class LokaliseApiClient
         $this->teamUserGroups = new TeamUserGroups(self::ENDPOINT, $apiToken);
         $this->providers = new Providers(self::ENDPOINT, $apiToken);
         $this->cards = new Cards(self::ENDPOINT, $apiToken);
+        $this->orders = new Orders(self::ENDPOINT, $apiToken);
     }
 
     /**
