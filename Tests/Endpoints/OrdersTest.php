@@ -60,7 +60,7 @@ final class OrdersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "team/{$teamId}/orders",
+                'uri' => "teams/{$teamId}/orders",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
@@ -75,7 +75,7 @@ final class OrdersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "team/{$teamId}/orders",
+                'uri' => "teams/{$teamId}/orders",
                 'queryParams' => [],
                 'body' => [],
                 'bodyResponseKey' => 'orders',
@@ -92,7 +92,7 @@ final class OrdersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "team/{$teamId}/orders/{$orderId}",
+                'uri' => "teams/{$teamId}/orders/{$orderId}",
                 'queryParams' => [],
                 'body' => [],
             ],
@@ -109,7 +109,7 @@ final class OrdersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'POST',
-                'uri' => "team/{$teamId}/orders",
+                'uri' => "teams/{$teamId}/orders",
                 'queryParams' => [],
                 'body' => $body,
             ],
