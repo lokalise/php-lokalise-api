@@ -49,6 +49,12 @@ $client = new \Lokalise\LokaliseApiClient($apiToken);
 
 [Translations](Docs/translations.md)
 
+[Providers](Docs/providers.md)
+
+[Cards](Docs/cards.md)
+
+[Orders](Docs/orders.md)
+
 ## Response
 
 ```php
