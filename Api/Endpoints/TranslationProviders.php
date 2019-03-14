@@ -17,6 +17,7 @@ class TranslationProviders extends Endpoint implements EndpointInterface
     /**
      * @link https://lokalise.co/api2docs/php/#transition-list-all-providers-get
      *
+     * @param int $teamId
      * @param array $queryParams
      *
      * @return LokaliseApiResponse
@@ -24,11 +25,11 @@ class TranslationProviders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($queryParams = [])
+    public function list($teamId, $queryParams = [])
     {
         return $this->request(
             'GET',
-            "translation_providers",
+            "teams/{$teamId}/translation_providers",
             $queryParams
         );
     }
@@ -36,16 +37,18 @@ class TranslationProviders extends Endpoint implements EndpointInterface
     /**
      * @link https://lokalise.co/api2docs/php/#transition-list-all-providers-get
      *
+     * @param int $teamId
+     *
      * @return LokaliseApiResponse
      *
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll()
+    public function fetchAll($teamId)
     {
         return $this->requestAll(
             'GET',
-            "translation_providers",
+            "teams/{$teamId}/translation_providers",
             [],
             [],
             'translation_providers'
@@ -55,6 +58,7 @@ class TranslationProviders extends Endpoint implements EndpointInterface
     /**
      * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-provider-get
      *
+     * @param int $teamId
      * @param int $providerId
      *
      * @return LokaliseApiResponse
@@ -62,11 +66,11 @@ class TranslationProviders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($providerId)
+    public function retrieve($teamId, $providerId)
     {
         return $this->request(
             'GET',
-            "translation_providers/$providerId"
+            "teams/{$teamId}/translation_providers/$providerId"
         );
     }
 }

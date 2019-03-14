@@ -14,14 +14,14 @@ $response = $client->translationProviders->list(
 ```
 
 ```php
-$response = $client->translationProviders->fetchAll();
+$response = $client->translationProviders->fetchAll($teamId);
 ```
 
 ### Retrieve a provider
 https://lokalise.co/api2docs/php/#transition-retrieve-a-provider-get
 
 ```php
-$response = $client->translationProviders->retrieve($providerId);
+$response = $client->translationProviders->retrieve($teamId, $providerId);
 ```
 
 

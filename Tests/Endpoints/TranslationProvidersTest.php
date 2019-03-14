@@ -55,6 +55,8 @@ final class TranslationProvidersTest extends TestCase
     {
         $getParameters = ['params' => ['any']];
 
+        $teamId = '{Team_Id}';
+
         $this->assertEquals(
             [
                 'requestType' => 'GET',
@@ -62,12 +64,14 @@ final class TranslationProvidersTest extends TestCase
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedProviders->list($getParameters)
+            $this->mockedProviders->list($teamId, $getParameters)
         );
     }
 
     public function testFetchAll()
     {
+        $teamId = '{Team_Id}';
+
         $this->assertEquals(
             [
                 'requestType' => 'GET',
@@ -76,12 +80,13 @@ final class TranslationProvidersTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'translation_providers',
             ],
-            $this->mockedProviders->fetchAll()
+            $this->mockedProviders->fetchAll($teamId)
         );
     }
 
     public function testRetrieve()
     {
+        $teamId = '{Team_Id}';
         $providerId = '{Provider_Id}';
 
         $this->assertEquals(
@@ -91,7 +96,7 @@ final class TranslationProvidersTest extends TestCase
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedProviders->retrieve($providerId)
+            $this->mockedProviders->retrieve($teamId, $providerId)
         );
     }
 }
