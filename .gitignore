@@ -5,3 +5,4 @@ composer.phar
 Vagrantfile
 *.vdi
 *.icloud
+vendor

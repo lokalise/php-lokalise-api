@@ -60,7 +60,7 @@ final class TranslationProvidersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "translation_providers",
+                'uri' => "teams/{$teamId}/translation_providers",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
@@ -75,7 +75,7 @@ final class TranslationProvidersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "translation_providers",
+                'uri' => "teams/{$teamId}/translation_providers",
                 'queryParams' => [],
                 'body' => [],
                 'bodyResponseKey' => 'translation_providers',
@@ -92,7 +92,7 @@ final class TranslationProvidersTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "translation_providers/$providerId",
+                'uri' => "teams/{$teamId}/translation_providers/$providerId",
                 'queryParams' => [],
                 'body' => [],
             ],
