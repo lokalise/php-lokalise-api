@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        bootstrap="./../vendor/autoload.php"
+        colors="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        convertErrorsToExceptions="true"
+        verbose="true"
+>
+    <testsuites>
+        <testsuite name="app">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+
+    <groups>
+        <exclude>
+            <group>integrationTest</group>
+        </exclude>
+    </groups>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="false">
+            <directory suffix=".php">./..</directory>
+            <exclude>
+                <directory>./../vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+    <php>
+
+    </php>
+</phpunit>
