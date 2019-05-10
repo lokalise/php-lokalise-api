@@ -1,24 +1,24 @@
 <?php
 
-use Lokalise\Endpoints\AdvancedReviewStatuses;
+use Lokalise\Endpoints\CustomTranslationStatuses;
 use \PHPUnit\Framework\TestCase;
 use \PHPUnit\Framework\MockObject\MockObject;
 
-final class AdvancedReviewStatusesTest extends TestCase
+final class CustomTranslationStatusesTest extends TestCase
 {
 
     /** @var MockObject */
-    protected $mockedAdvancedReviewStatuses;
+    protected $mockedCustomTranslationStatuses;
 
     protected function setUp()
     {
-        $this->mockedAdvancedReviewStatuses = $this
-            ->getMockBuilder(AdvancedReviewStatuses::class)
+        $this->mockedCustomTranslationStatuses = $this
+            ->getMockBuilder(CustomTranslationStatuses::class)
             ->setConstructorArgs([null, '{Test_Api_Token}'])
             ->setMethods(['request', 'requestAll'])
             ->getMock();
 
-        $this->mockedAdvancedReviewStatuses->method('request')->willReturnCallback(
+        $this->mockedCustomTranslationStatuses->method('request')->willReturnCallback(
             function ($requestType, $uri, $queryParams = [], $body = []) {
                 return [
                     'requestType' => $requestType,
@@ -29,7 +29,7 @@ final class AdvancedReviewStatusesTest extends TestCase
             }
         );
 
-        $this->mockedAdvancedReviewStatuses->method('requestAll')->willReturnCallback(
+        $this->mockedCustomTranslationStatuses->method('requestAll')->willReturnCallback(
             function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
                 return [
                     'requestType' => $requestType,
@@ -44,13 +44,13 @@ final class AdvancedReviewStatusesTest extends TestCase
 
     protected function tearDown()
     {
-        $this->mockedAdvancedReviewStatuses = null;
+        $this->mockedCustomTranslationStatuses = null;
     }
 
     public function testEndpointClass()
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedAdvancedReviewStatuses);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedAdvancedReviewStatuses);
+        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedCustomTranslationStatuses);
+        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedCustomTranslationStatuses);
     }
 
     public function testList()
@@ -61,11 +61,11 @@ final class AdvancedReviewStatusesTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "projects/$projectId/advanced-review-statuses",
+                'uri' => "projects/$projectId/custom-translation-statuses",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedAdvancedReviewStatuses->list($projectId, $getParameters)
+            $this->mockedCustomTranslationStatuses->list($projectId, $getParameters)
         );
     }
 
@@ -76,12 +76,12 @@ final class AdvancedReviewStatusesTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "projects/$projectId/advanced-review-statuses",
+                'uri' => "projects/$projectId/custom-translation-statuses",
                 'queryParams' => [],
                 'body' => [],
-                'bodyResponseKey' => 'advanced_review_statuses',
+                'bodyResponseKey' => 'custom_translation_statuses',
             ],
-            $this->mockedAdvancedReviewStatuses->fetchAll($projectId)
+            $this->mockedCustomTranslationStatuses->fetchAll($projectId)
         );
     }
 
@@ -93,11 +93,11 @@ final class AdvancedReviewStatusesTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'POST',
-                'uri' => "projects/$projectId/advanced-review-statuses",
+                'uri' => "projects/$projectId/custom-translation-statuses",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedAdvancedReviewStatuses->create($projectId, $body)
+            $this->mockedCustomTranslationStatuses->create($projectId, $body)
         );
     }
 
@@ -109,11 +109,11 @@ final class AdvancedReviewStatusesTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'GET',
-                'uri' => "projects/$projectId/advanced-review-statuses/$statusId",
+                'uri' => "projects/$projectId/custom-translation-statuses/$statusId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedAdvancedReviewStatuses->retrieve($projectId, $statusId)
+            $this->mockedCustomTranslationStatuses->retrieve($projectId, $statusId)
         );
     }
 
@@ -126,11 +126,11 @@ final class AdvancedReviewStatusesTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'PUT',
-                'uri' => "projects/$projectId/advanced-review-statuses/$statusId",
+                'uri' => "projects/$projectId/custom-translation-statuses/$statusId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedAdvancedReviewStatuses->update($projectId, $statusId, $body)
+            $this->mockedCustomTranslationStatuses->update($projectId, $statusId, $body)
         );
     }
 
@@ -142,11 +142,11 @@ final class AdvancedReviewStatusesTest extends TestCase
         $this->assertEquals(
             [
                 'requestType' => 'DELETE',
-                'uri' => "projects/$projectId/advanced-review-statuses/$statusId",
+                'uri' => "projects/$projectId/custom-translation-statuses/$statusId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedAdvancedReviewStatuses->delete($projectId, $statusId)
+            $this->mockedCustomTranslationStatuses->delete($projectId, $statusId)
         );
     }
 }

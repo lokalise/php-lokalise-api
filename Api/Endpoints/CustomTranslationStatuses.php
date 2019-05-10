@@ -7,15 +7,15 @@ use \Lokalise\Exceptions\LokaliseApiException;
 use \Lokalise\Exceptions\LokaliseResponseException;
 
 /**
- * Class AdvancedReviewStatuses
+ * Class CustomTranslationStatuses
  * @package Lokalise\Endpoints
- * @link https://lokalise.co/api2docs/php/#object-advanced-review-statuses
+ * @link https://lokalise.co/api2docs/php/#object-custom-translation-statuses
  */
-class AdvancedReviewStatuses extends Endpoint implements EndpointInterface
+class CustomTranslationStatuses extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-advanced-review-statuses-get
+     * @link https://lokalise.co/api2docs/php/#transition-list-all-custom-translation-statuses-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -29,13 +29,13 @@ class AdvancedReviewStatuses extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'GET',
-            "projects/$projectId/advanced-review-statuses",
+            "projects/$projectId/custom-translation-statuses",
             $queryParams
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-advanced-review-statuses-get
+     * @link https://lokalise.co/api2docs/php/#transition-list-all-custom-translation-statuses-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -49,15 +49,15 @@ class AdvancedReviewStatuses extends Endpoint implements EndpointInterface
     {
         return $this->requestAll(
             'GET',
-            "projects/$projectId/advanced-review-statuses",
+            "projects/$projectId/custom-translation-statuses",
             $queryParams,
             [],
-            'advanced_review_statuses'
+            'custom_translation_statuses'
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-an-advanced-review-status-post
+     * @link https://lokalise.co/api2docs/php/#transition-create-a-custom-translation-status-post
      *
      * @param string $projectId
      * @param array $body
@@ -71,14 +71,14 @@ class AdvancedReviewStatuses extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'POST',
-            "projects/$projectId/advanced-review-statuses",
+            "projects/$projectId/custom-translation-statuses",
             [],
             $body
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-an-advanced-review-status-get
+     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-custom-translation-status-get
      *
      * @param string $projectId
      * @param int $statusId
@@ -92,12 +92,12 @@ class AdvancedReviewStatuses extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'GET',
-            "projects/$projectId/advanced-review-statuses/$statusId"
+            "projects/$projectId/custom-translation-statuses/$statusId"
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-an-advanced-review-status-put
+     * @link https://lokalise.co/api2docs/php/#transition-update-a-custom-translation-status-put
      *
      * @param string $projectId
      * @param int $statusId
@@ -112,14 +112,14 @@ class AdvancedReviewStatuses extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'PUT',
-            "projects/$projectId/advanced-review-statuses/$statusId",
+            "projects/$projectId/custom-translation-statuses/$statusId",
             [],
             $body
         );
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-an-advanced-review-status-delete
+     * @link https://lokalise.co/api2docs/php/#transition-delete-a-custom-translation-status-delete
      *
      * @param string $projectId
      * @param int $statusId
@@ -133,7 +133,7 @@ class AdvancedReviewStatuses extends Endpoint implements EndpointInterface
     {
         return $this->request(
             'DELETE',
-            "projects/$projectId/advanced-review-statuses/$statusId"
+            "projects/$projectId/custom-translation-statuses/$statusId"
         );
     }
 }
