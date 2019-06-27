@@ -2,6 +2,7 @@
 
 namespace Lokalise;
 
+use Lokalise\Endpoints\CustomTranslationStatuses;
 use Lokalise\Endpoints\PaymentCards;
 use \Lokalise\Endpoints\Comments;
 use \Lokalise\Endpoints\Contributors;
@@ -73,6 +74,9 @@ class LokaliseApiClient
     /** @var Orders */
     public $orders;
 
+    /** @var CustomTranslationStatuses */
+    public $customTranslationStatuses;
+
     /**
      * LokaliseApiClient constructor.
      *
@@ -96,6 +100,7 @@ class LokaliseApiClient
         $this->translationProviders = new TranslationProviders(self::ENDPOINT, $apiToken);
         $this->paymentCards = new PaymentCards(self::ENDPOINT, $apiToken);
         $this->orders = new Orders(self::ENDPOINT, $apiToken);
+        $this->customTranslationStatuses = new CustomTranslationStatuses(self::ENDPOINT, $apiToken);
     }
 
     /**
