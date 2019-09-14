@@ -1,7 +1,7 @@
 # Lokalise API 2.0 official PHP library
 
-Client library for [Lokalise](https://lokalise.co) API 2.0, written with PHP5.
-[Full API reference](https://lokalise.co/api2docs/curl/).
+Client library for [Lokalise](https://lokalise.com) API 2.0, written with PHP5.
+[Full API reference](https://lokalise.com/api2docs/curl/).
 
 ## Getting started
 
@@ -15,7 +15,7 @@ Client library for [Lokalise](https://lokalise.co) API 2.0, written with PHP5.
 3. Add the following to your application's main PHP file: `require 'vendor/autoload.php';`
 
 ## Construct LokaliseApiClient
-Create and grab your API token at [Lokalise profile](https://lokalise.co/profile)
+Create and grab your API token at [Lokalise profile](https://lokalise.com/profile)
 
 ```php
 $client = new \Lokalise\LokaliseApiClient($apiToken);
