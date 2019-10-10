@@ -1,7 +1,7 @@
 # Contributors API
 
 ### List project contributors
-https://lokalise.co/api2docs/php/#transition-list-all-contributors-get
+https://lokalise.com/api2docs/curl/#transition-list-all-contributors-get
 
 ```php
 $response = $client->contributors->list(
@@ -18,7 +18,7 @@ $response = $client->contributors->fetchAll($projectId);
 ```
 
 ### Create project contributors
-https://lokalise.co/api2docs/php/#transition-create-contributors-post
+https://lokalise.com/api2docs/curl/#transition-create-contributors-post
 
 ```php
 $response = $client->contributors->create(
@@ -51,14 +51,14 @@ $response = $client->contributors->create(
 ```
 
 ### Retrieve project contributor
-https://lokalise.co/api2docs/php/#transition-retrieve-a-contributor-get
+https://lokalise.com/api2docs/curl/#transition-retrieve-a-contributor-get
 
 ```php
 $response = $client->contributors->retrieve($projectId, $contributorId);
 ```
 
 ### Update project contributor
-https://lokalise.co/api2docs/php/#transition-update-a-contributor-put
+https://lokalise.com/api2docs/curl/#transition-update-a-contributor-put
 
 ```php
 $response = $client->contributors->update(
@@ -76,7 +76,7 @@ $response = $client->contributors->update(
 ```
 
 ### Delete project contributor
-https://lokalise.co/api2docs/php/#transition-delete-a-contributor-delete
+https://lokalise.com/api2docs/curl/#transition-delete-a-contributor-delete
 
 ```php
 $response = $client->contributors->delete($projectId, $contributorId);
