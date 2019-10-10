@@ -1,7 +1,7 @@
 # Snapshots API
 
 ### List snapshots
-https://lokalise.co/api2docs/php/#transition-list-all-snapshots-get
+https://lokalise.com/api2docs/curl/#transition-list-all-snapshots-get
 
 ```php
 $response = $client->snapshots->list(
@@ -18,7 +18,7 @@ $response = $client->snapshots->fetchAll($projectId);
 ```
 
 ### Create a snapshot
-https://lokalise.co/api2docs/php/#transition-create-a-snapshot-post
+https://lokalise.com/api2docs/curl/#transition-create-a-snapshot-post
 
 ```php
 $response = $client->snapshots->create(
@@ -30,14 +30,14 @@ $response = $client->snapshots->create(
 ```
 
 ### Restore a snapshot
-https://lokalise.co/api2docs/php/#transition-restore-a-snapshot-post
+https://lokalise.com/api2docs/curl/#transition-restore-a-snapshot-post
 
 ```php
 $response = $client->snapshots->restore($projectId, $snapshotId);
 ```
 
 ### Delete a snapshot
-https://lokalise.co/api2docs/php/#transition-delete-a-snapshot-delete
+https://lokalise.com/api2docs/curl/#transition-delete-a-snapshot-delete
 
 ```php
 $response = $client->snapshots->delete($projectId, $snapshotId);
