@@ -1,7 +1,7 @@
 # Projects API
 
 ### List projects
-https://lokalise.co/api2docs/php/#transition-list-all-projects-get
+https://lokalise.com/api2docs/curl/#transition-list-all-projects-get
 
 ```php
 $response = $client->projects->list(
@@ -22,7 +22,7 @@ $response = $client->projects->fetchAll(
 ```
 
 ### Create a project
-https://lokalise.co/api2docs/php/#transition-create-a-project-post
+https://lokalise.com/api2docs/curl/#transition-create-a-project-post
 
 ```php
 $response = $client->projects->create(
@@ -34,14 +34,14 @@ $response = $client->projects->create(
 ```
 
 ### Retrieve a project
-https://lokalise.co/api2docs/php/#transition-retrieve-a-project-get
+https://lokalise.com/api2docs/curl/#transition-retrieve-a-project-get
 
 ```php
 $response = $client->projects->retrieve($projectId);
 ```
 
 ### Update a project
-https://lokalise.co/api2docs/php/#transition-update-a-project-put
+https://lokalise.com/api2docs/curl/#transition-update-a-project-put
 
 ```php
 $response = $client->projects->update(
@@ -53,14 +53,14 @@ $response = $client->projects->update(
 ```
 
 ### Empty a project
-https://lokalise.co/api2docs/php/#transition-empty-a-project-put
+https://lokalise.com/api2docs/curl/#transition-empty-a-project-put
 
 ```php
 $response = $client->projects->empty($projectId);
 ```
 
 ### Delete a project
-https://lokalise.co/api2docs/php/#transition-delete-a-project-delete
+https://lokalise.com/api2docs/curl/#transition-delete-a-project-delete
 
 ```php
 $response = $client->projects->delete($projectId);
