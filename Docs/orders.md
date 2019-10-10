@@ -1,7 +1,7 @@
 # Orders API
 
 ### List orders
-https://lokalise.co/api2docs/php/#transition-list-all-orders-get
+https://lokalise.com/api2docs/curl/#transition-list-all-orders-get
 
 ```php
 $response = $client->orders->list(
@@ -18,7 +18,7 @@ $response = $client->orders->fetchAll($teamId);
 ```
 
 ### Create an order
-https://lokalise.co/api2docs/php/#transition-create-an-order-post
+https://lokalise.com/api2docs/curl/#transition-create-an-order-post
 
 ```php
 $response = $client->orders->create(
@@ -45,7 +45,7 @@ $response = $client->orders->create(
 
 
 ### Retrieve an order
-https://lokalise.co/api2docs/php/#transition-retrieve-an-order-get
+https://lokalise.com/api2docs/curl/#transition-retrieve-an-order-get
 
 ```php
 $response = $client->orders->retrieve($teamId, $orderId);
