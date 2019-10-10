@@ -1,7 +1,7 @@
 # Team Users API
 
 ### List team users
-https://lokalise.co/api2docs/php/#transition-list-all-team-users-get
+https://lokalise.com/api2docs/curl/#transition-list-all-team-users-get
 
 ```php
 $response = $client->teamUsers->list(
@@ -18,14 +18,14 @@ $response = $client->teamUsers->fetchAll($teamId);
 ```
 
 ### Retrieve a team user
-https://lokalise.co/api2docs/php/#transition-retrieve-a-team-user-get
+https://lokalise.com/api2docs/curl/#transition-retrieve-a-team-user-get
 
 ```php
 $response = $client->teamUsers->retrieve($teamId, $userId);
 ```
 
 ### Update a team user
-https://lokalise.co/api2docs/php/#transition-update-a-team-user-put
+https://lokalise.com/api2docs/curl/#transition-update-a-team-user-put
 
 ```php
 $response = $client->teamUsers->update(
@@ -38,7 +38,7 @@ $response = $client->teamUsers->update(
 ```
 
 ### Delete a team user
-https://lokalise.co/api2docs/php/#transition-delete-a-team-user-delete
+https://lokalise.com/api2docs/curl/#transition-delete-a-team-user-delete
 
 ```php
 $response = $client->teamUsers->delete($teamId, $userId);
