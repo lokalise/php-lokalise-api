@@ -1,7 +1,7 @@
 # Cards API
 
 ### List cards
-https://lokalise.co/api2docs/php/#transition-list-all-cards-get
+https://lokalise.com/api2docs/curl/#transition-list-all-cards-get
 
 ```php
 $response = $client->paymentCards->list(
@@ -18,7 +18,7 @@ $response = $client->paymentCards->fetchAll($teamId);
 ```
 
 ### Create a card
-https://lokalise.co/api2docs/php/#transition-create-a-card-post
+https://lokalise.com/api2docs/curl/#transition-create-a-card-post
 
 ```php
 $response = $client->paymentCards->create(
@@ -33,14 +33,14 @@ $response = $client->paymentCards->create(
 
 
 ### Retrieve a card
-https://lokalise.co/api2docs/php/#transition-retrieve-a-card-get
+https://lokalise.com/api2docs/curl/#transition-retrieve-a-card-get
 
 ```php
 $response = $client->paymentCards->retrieve($cardId);
 ```
 
 ### Delete a card
-https://lokalise.co/api2docs/php/#transition-delete-a-card-delete
+https://lokalise.com/api2docs/curl/#transition-delete-a-card-delete
 
 ```php
 $response = $client->paymentCards->delete($cardId);
