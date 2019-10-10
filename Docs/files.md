@@ -1,7 +1,7 @@
 # Files API
 
 ### List project files
-https://lokalise.co/api2docs/php/#transition-list-all-files-get
+https://lokalise.com/api2docs/curl/#transition-list-all-files-get
 
 ```php
 $response = $client->files->list(
@@ -18,7 +18,7 @@ $response = $client->files->fetchAll($projectId);
 ```
 
 ### Upload a file
-https://lokalise.co/api2docs/php/#transition-upload-a-file-post
+https://lokalise.com/api2docs/curl/#transition-upload-a-file-post
 
 ```php
 $response = $client->files->upload(
@@ -33,7 +33,7 @@ $response = $client->files->upload(
 ```
 
 ### Download files
-https://lokalise.co/api2docs/php/#transition-download-files-post
+https://lokalise.com/api2docs/curl/#transition-download-files-post
 
 ```php
 $response = $client->files->download(
