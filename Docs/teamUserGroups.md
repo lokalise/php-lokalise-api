@@ -1,7 +1,7 @@
 # Team Users API
 
 ### List team user groups
-https://lokalise.co/api2docs/php/#transition-list-all-groups-get
+https://lokalise.com/api2docs/curl/#transition-list-all-groups-get
 
 ```php
 $response = $client->teamUserGroups->list(
@@ -18,7 +18,7 @@ $response = $client->teamUserGroups->fetchAll($teamId);
 ```
 
 ### Create a team user group
-https://lokalise.co/api2docs/php/#transition-create-a-group-post
+https://lokalise.com/api2docs/curl/#transition-create-a-group-post
 
 ```php
 $response = $client->teamUserGroups->create(
@@ -38,14 +38,14 @@ $response = $client->teamUserGroups->create(
 
 
 ### Retrieve a team user group
-https://lokalise.co/api2docs/php/#transition-retrieve-a-group-get
+https://lokalise.com/api2docs/curl/#transition-retrieve-a-group-get
 
 ```php
 $response = $client->teamUserGroups->retrieve($teamId, $groupId);
 ```
 
 ### Update a team user group
-https://lokalise.co/api2docs/php/#transition-update-a-group-put
+https://lokalise.com/api2docs/curl/#transition-update-a-group-put
 
 ```php
 $response = $client->teamUserGroups->update(
@@ -76,14 +76,14 @@ $response = $client->teamUserGroups->update(
 ```
 
 ### Delete a team user group
-https://lokalise.co/api2docs/php/#transition-delete-a-group-delete
+https://lokalise.com/api2docs/curl/#transition-delete-a-group-delete
 
 ```php
 $response = $client->teamUserGroups->delete($teamId, $groupId);
 ```
 
 ### Add projects to team user group
-https://lokalise.co/api2docs/php/#transition-add-projects-to-group-put
+https://lokalise.com/api2docs/curl/#transition-add-projects-to-group-put
 
 ```php
 $response = $client->teamUserGroups->addProjects(
@@ -98,7 +98,7 @@ $response = $client->teamUserGroups->addProjects(
 
 
 ### Remove projects from team user group
-https://lokalise.co/api2docs/php/#transition-remove-projects-from-group-put
+https://lokalise.com/api2docs/curl/#transition-remove-projects-from-group-put
 
 ```php
 $response = $client->teamUserGroups->removeProjects(
@@ -113,7 +113,7 @@ $response = $client->teamUserGroups->removeProjects(
 
 
 ### Add members to team user group
-https://lokalise.co/api2docs/php/#transition-add-members-to-group-put
+https://lokalise.com/api2docs/curl/#transition-add-members-to-group-put
 
 ```php
 $response = $client->teamUserGroups->addMembers(
@@ -128,7 +128,7 @@ $response = $client->teamUserGroups->addMembers(
 
 
 ### Remove projects from team user group
-https://lokalise.co/api2docs/php/#transition-remove-members-from-group-put
+https://lokalise.com/api2docs/curl/#transition-remove-members-from-group-put
 
 ```php
 $response = $client->teamUserGroups->removeMembers(
