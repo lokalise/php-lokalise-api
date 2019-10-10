@@ -1,7 +1,7 @@
 # Keys API
 
 ### List project keys
-https://lokalise.co/api2docs/php/#transition-list-all-keys-get
+https://lokalise.com/api2docs/curl/#transition-list-all-keys-get
 
 ```php
 $response = $client->keys->list(
@@ -32,7 +32,7 @@ $response = $client->keys->fetchAll(
 ```
 
 ### Create keys
-https://lokalise.co/api2docs/php/#transition-create-keys-post
+https://lokalise.com/api2docs/curl/#transition-create-keys-post
 
 ```php
 $response = $client->keys->create(
@@ -85,14 +85,14 @@ $response = $client->keys->create(
 ```
 
 ### Retrieve a key
-https://lokalise.co/api2docs/php/#transition-retrieve-a-key-get
+https://lokalise.com/api2docs/curl/#transition-retrieve-a-key-get
 
 ```php
 $response = $client->keys->retrieve($projectId, $keyId);
 ```
 
 ### Update a key
-https://lokalise.co/api2docs/php/#transition-update-a-key-put
+https://lokalise.com/api2docs/curl/#transition-update-a-key-put
 
 ```php
 $response = $client->keys->update(
@@ -107,7 +107,7 @@ $response = $client->keys->update(
 ```
 
 ### Update multiple keys (bulk update)
-https://lokalise.co/api2docs/php/#transition-bulk-update-put
+https://lokalise.com/api2docs/curl/#transition-bulk-update-put
 
 ```php
 $response = $client->keys->bulkUpdate(
@@ -138,14 +138,14 @@ $response = $client->keys->bulkUpdate(
 ```
 
 ### Delete a key
-https://lokalise.co/api2docs/php/#transition-delete-a-key-delete
+https://lokalise.com/api2docs/curl/#transition-delete-a-key-delete
 
 ```php
 $response = $client->keys->delete($projectId, $keyId);
 ```
 
 ### Delete multiple keys
-https://lokalise.co/api2docs/php/#transition-delete-multiple-keys-delete
+https://lokalise.com/api2docs/curl/#transition-delete-multiple-keys-delete
 
 ```php
 $response = $client->keys->bulkDelete(
