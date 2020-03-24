@@ -19,3 +19,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Execute tests via PHPUnit
+        run: vendor/bin/phpunit Tests
