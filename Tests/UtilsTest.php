@@ -29,7 +29,7 @@ final class UtilsTest extends TestCase
         );
 
         $this->assertEquals(
-            'data:text/plain;base64,ewogICJ0ZXN0X2tleV9uYW1lIjogIlRyYW5zbGF0aW9uIDEyMyIsCiAgImFub3RoZXJfa2V5' .
+            'data:application/json;base64,ewogICJ0ZXN0X2tleV9uYW1lIjogIlRyYW5zbGF0aW9uIDEyMyIsCiAgImFub3RoZXJfa2V5' .
             'X25hbWUiOiAiIgp9Cg==',
             Utils::base64FileEncode(__DIR__ . '/fixtures/fileFixture.json')
         );
