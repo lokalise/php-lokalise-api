@@ -88,7 +88,7 @@ final class FilesTest extends TestCase
     public function testUpload()
     {
         $projectId = '{Project_Id}';
-        $body = ['params' => ['any']];
+        $body = ['params' => ['any'], 'queue' => true];
 
         $this->assertEquals(
             [
