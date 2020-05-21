@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class TeamUserGroups
  * @package Lokalise\Endpoints]
- * @link https://lokalise.co/api2docs/php/#resource-team-user-groups
+ * @link https://lokalise.com/api2docs/curl/#resource-team-user-groups
  */
 class TeamUserGroups extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-groups-get
+     * @link https://lokalise.com/api2docs/curl/#transition-list-all-groups-get
      *
      * @param int $teamId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-team-groups-get
+     * @link https://lokalise.com/api2docs/curl/#transition-list-all-team-groups-get
      *
      * @param int $teamId
      *
@@ -56,7 +56,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-group-get
+     * @link https://lokalise.com/api2docs/curl/#transition-retrieve-a-group-get
      *
      * @param int $teamId
      * @param int $groupId
@@ -75,7 +75,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-a-group-put
+     * @link https://lokalise.com/api2docs/curl/#transition-update-a-group-put
      *
      * @param int $teamId
      * @param int $groupId
@@ -97,7 +97,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-a-group-post
+     * @link https://lokalise.com/api2docs/curl/#transition-create-a-group-post
      *
      * @param int $teamId
      * @param array $body
@@ -118,7 +118,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-group-delete
+     * @link https://lokalise.com/api2docs/curl/#transition-delete-a-group-delete
      *
      * @param int $teamId
      * @param int $groupId
@@ -137,7 +137,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-add-projects-to-group-put
+     * @link https://lokalise.com/api2docs/curl/#transition-add-projects-to-group-put
      *
      * @param int $teamId
      * @param int $groupId
@@ -159,7 +159,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-remove-projects-from-group-put
+     * @link https://lokalise.com/api2docs/curl/#transition-remove-projects-from-group-put
      *
      * @param int $teamId
      * @param int $groupId
@@ -181,7 +181,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-add-members-to-group-put
+     * @link https://lokalise.com/api2docs/curl/#transition-add-members-to-group-put
      *
      * @param int $teamId
      * @param int $groupId
@@ -203,7 +203,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-remove-members-from-group-put
+     * @link https://lokalise.com/api2docs/curl/#transition-remove-members-from-group-put
      *
      * @param int $teamId
      * @param int $groupId

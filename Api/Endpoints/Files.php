@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Files
  * @package Lokalise\Endpoints
- * @link https://lokalise.co/api2docs/php/#resource-files
+ * @link https://lokalise.com/api2docs/curl/#resource-files
  */
 class Files extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-files-get
+     * @link https://lokalise.com/api2docs/curl/#transition-list-all-files-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Files extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-files-get
+     * @link https://lokalise.com/api2docs/curl/#transition-list-all-files-get
      *
      * @param string $projectId
      *
@@ -56,7 +56,7 @@ class Files extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-upload-a-file-post
+     * @link https://lokalise.com/api2docs/curl/#transition-upload-a-file-post
      *
      * @param string $projectId
      * @param array $body
@@ -77,7 +77,7 @@ class Files extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-download-files-post
+     * @link https://lokalise.com/api2docs/curl/#transition-download-files-post
      *
      * @param string $projectId
      * @param array $body

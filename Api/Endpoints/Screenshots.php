@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Screenshots
  * @package Lokalise\Endpoints]
- * @link https://lokalise.co/api2docs/php/#resource-screenshots
+ * @link https://lokalise.com/api2docs/curl/#resource-screenshots
  */
 class Screenshots extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-screenshots-get
+     * @link https://lokalise.com/api2docs/curl/#transition-list-all-screenshots-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Screenshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-screenshots-get
+     * @link https://lokalise.com/api2docs/curl/#transition-list-all-screenshots-get
      *
      * @param string $projectId
      *
@@ -56,7 +56,7 @@ class Screenshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-screenshots-post
+     * @link https://lokalise.com/api2docs/curl/#transition-create-screenshots-post
      *
      * @param string $projectId
      * @param array $body
@@ -77,7 +77,7 @@ class Screenshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-screenshot-get
+     * @link https://lokalise.com/api2docs/curl/#transition-retrieve-a-screenshot-get
      *
      * @param string $projectId
      * @param int $screenshotId
@@ -96,7 +96,7 @@ class Screenshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-a-screenshot-put
+     * @link https://lokalise.com/api2docs/curl/#transition-update-a-screenshot-put
      *
      * @param string $projectId
      * @param int $screenshotId
@@ -118,7 +118,7 @@ class Screenshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-screenshot-delete
+     * @link https://lokalise.com/api2docs/curl/#transition-delete-a-screenshot-delete
      *
      * @param string $projectId
      * @param int $screenshotId

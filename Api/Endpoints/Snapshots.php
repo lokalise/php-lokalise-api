@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Snapshots
  * @package Lokalise\Endpoints]
- * @link https://lokalise.co/api2docs/php/#resource-snapshots
+ * @link https://lokalise.com/api2docs/curl/#resource-snapshots
  */
 class Snapshots extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-snapshots-get
+     * @link https://lokalise.com/api2docs/curl/#transition-list-all-snapshots-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Snapshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-snapshots-get
+     * @link https://lokalise.com/api2docs/curl/#transition-list-all-snapshots-get
      *
      * @param string $projectId
      *
@@ -56,7 +56,7 @@ class Snapshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-a-snapshot-post
+     * @link https://lokalise.com/api2docs/curl/#transition-create-a-snapshot-post
      *
      * @param string $projectId
      * @param array $body
@@ -77,7 +77,7 @@ class Snapshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-restore-a-snapshot-post
+     * @link https://lokalise.com/api2docs/curl/#transition-restore-a-snapshot-post
      *
      * @param string $projectId
      * @param int $snapshotId
@@ -96,7 +96,7 @@ class Snapshots extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-snapshot-delete
+     * @link https://lokalise.com/api2docs/curl/#transition-delete-a-snapshot-delete
      *
      * @param string $projectId
      * @param int $snapshotId
