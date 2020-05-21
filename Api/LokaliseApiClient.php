@@ -11,6 +11,7 @@ use \Lokalise\Endpoints\Keys;
 use \Lokalise\Endpoints\Languages;
 use Lokalise\Endpoints\Orders;
 use \Lokalise\Endpoints\Projects;
+use Lokalise\Endpoints\QueuedProcesses;
 use Lokalise\Endpoints\TranslationProviders;
 use \Lokalise\Endpoints\Screenshots;
 use \Lokalise\Endpoints\Snapshots;
@@ -43,6 +44,9 @@ class LokaliseApiClient
 
     /** @var Projects */
     public $projects;
+
+    /** @var QueuedProcesses */
+    public $queuedProcesses;
 
     /** @var Screenshots */
     public $screenshots;
@@ -90,6 +94,7 @@ class LokaliseApiClient
         $this->keys = new Keys(self::ENDPOINT, $apiToken);
         $this->languages = new Languages(self::ENDPOINT, $apiToken);
         $this->projects = new Projects(self::ENDPOINT, $apiToken);
+        $this->queuedProcesses = new QueuedProcesses(self::ENDPOINT, $apiToken);
         $this->screenshots = new Screenshots(self::ENDPOINT, $apiToken);
         $this->snapshots = new Snapshots(self::ENDPOINT, $apiToken);
         $this->tasks = new Tasks(self::ENDPOINT, $apiToken);
