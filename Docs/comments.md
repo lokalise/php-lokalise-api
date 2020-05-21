@@ -1,7 +1,7 @@
 # Comments API
 
 ### List project comments
-https://lokalise.com/api2docs/curl/#transition-list-project-comments-get
+https://app.lokalise.com/api2docs/curl/#transition-list-project-comments-get
 
 ```php
 $response = $client->comments->listProject(
@@ -18,7 +18,7 @@ $response = $client->comments->fetchAllProject($projectId);
 ```
 
 ### List key comments
-https://lokalise.com/api2docs/curl/#transition-list-key-comments-get
+https://app.lokalise.com/api2docs/curl/#transition-list-key-comments-get
 
 ```php
 $response = $client->comments->listKey(
@@ -36,7 +36,7 @@ $response = $client->comments->fetchAllKey($projectId, $keyId);
 ```
 
 ### Create comments
-https://lokalise.com/api2docs/curl/#transition-create-comments-post
+https://app.lokalise.com/api2docs/curl/#transition-create-comments-post
 
 ```php
 $response = $client->comments->create(
@@ -56,14 +56,14 @@ $response = $client->comments->create(
 ```
 
 ### Retrieve a comment
-https://lokalise.com/api2docs/curl/#transition-retrieve-a-comment-get
+https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-comment-get
 
 ```php
 $response = $client->comments->retrieve($projectId, $keyId, $commentId);
 ```
 
 ### Delete a comment
-https://lokalise.com/api2docs/curl/#transition-delete-a-comment-delete
+https://app.lokalise.com/api2docs/curl/#transition-delete-a-comment-delete
 
 ```php
 $response = $client->comments->delete($projectId, $keyId, $commentId);

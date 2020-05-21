@@ -1,7 +1,7 @@
 # Tasks API
 
 ### List tasks
-https://lokalise.com/api2docs/curl/#transition-list-all-tasks-get
+https://app.lokalise.com/api2docs/curl/#transition-list-all-tasks-get
 
 ```php
 $response = $client->tasks->list(
@@ -24,7 +24,7 @@ $response = $client->tasks->fetchAll(
 ```
 
 ### Create a task
-https://lokalise.com/api2docs/curl/#transition-create-a-task-post
+https://app.lokalise.com/api2docs/curl/#transition-create-a-task-post
 
 ```php
 $response = $client->tasks->create(
@@ -55,14 +55,14 @@ $response = $client->tasks->create(
 ```
 
 ### Retrieve a task
-https://lokalise.com/api2docs/curl/#transition-retrieve-a-task-get
+https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-task-get
 
 ```php
 $response = $client->tasks->retrieve($projectId, $taskId);
 ```
 
 ### Update a task
-https://lokalise.com/api2docs/curl/#transition-update-a-task-put
+https://app.lokalise.com/api2docs/curl/#transition-update-a-task-put
 
 ```php
 $response = $client->tasks->list(
@@ -75,7 +75,7 @@ $response = $client->tasks->list(
 ```
 
 ### Delete a task
-https://lokalise.com/api2docs/curl/#transition-delete-a-task-delete
+https://app.lokalise.com/api2docs/curl/#transition-delete-a-task-delete
 
 ```php
 $response = $client->tasks->delete($projectId, $taskId);

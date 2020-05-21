@@ -1,7 +1,7 @@
 # Teams API
 
 ### List teams
-https://lokalise.com/api2docs/curl/#transition-list-all-teams-get
+https://app.lokalise.com/api2docs/curl/#transition-list-all-teams-get
 
 ```php
 $response = $client->teams->list(

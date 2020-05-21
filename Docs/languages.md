@@ -1,7 +1,7 @@
 # Languages API
 
 ### List system languages
-https://lokalise.com/api2docs/curl/#transition-list-system-languages-get
+https://app.lokalise.com/api2docs/curl/#transition-list-system-languages-get
 
 ```php
 $response = $client->languages->listSystem(
@@ -17,7 +17,7 @@ $response = $client->languages->fetchAllSystem();
 ```
 
 ### List project languages
-https://lokalise.com/api2docs/curl/#transition-list-project-languages-get
+https://app.lokalise.com/api2docs/curl/#transition-list-project-languages-get
 
 ```php
 $response = $client->languages->list(
@@ -34,7 +34,7 @@ $response = $client->languages->fetchAll($projectId);
 ```
 
 ### Create languages
-https://lokalise.com/api2docs/curl/#transition-create-languages-post
+https://app.lokalise.com/api2docs/curl/#transition-create-languages-post
 
 ```php
 $response = $client->languages->create(
@@ -55,14 +55,14 @@ $response = $client->languages->create(
 ```
 
 ### Retrieve a language
-https://lokalise.com/api2docs/curl/#transition-retrieve-a-language-get
+https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-language-get
 
 ```php
 $response = $client->languages->retrieve($projectId, $languageId);
 ```
 
 ### Update a language
-https://lokalise.com/api2docs/curl/#transition-update-a-language-put
+https://app.lokalise.com/api2docs/curl/#transition-update-a-language-put
 
 ```php
 $response = $client->languages->update(
@@ -75,7 +75,7 @@ $response = $client->languages->update(
 ```
 
 ### Delete a language
-https://lokalise.com/api2docs/curl/#transition-delete-a-language-delete
+https://app.lokalise.com/api2docs/curl/#transition-delete-a-language-delete
 
 ```php
 $response = $client->languages->delete($projectId, $languageId);
