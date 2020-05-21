@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Tasks
  * @package Lokalise\Endpoints
- * @link https://lokalise.com/api2docs/curl/#object-tasks
+ * @link https://app.lokalise.com/api2docs/curl/#object-tasks
  */
 class Tasks extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-tasks-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-tasks-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Tasks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-tasks-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-tasks-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -57,7 +57,7 @@ class Tasks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-create-a-task-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-a-task-post
      *
      * @param string $projectId
      * @param array $body
@@ -78,7 +78,7 @@ class Tasks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-retrieve-a-task-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-task-get
      *
      * @param string $projectId
      * @param int $taskId
@@ -97,7 +97,7 @@ class Tasks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-update-a-task-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-task-put
      *
      * @param string $projectId
      * @param int $taskId
@@ -119,7 +119,7 @@ class Tasks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-delete-a-task-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-task-delete
      *
      * @param string $projectId
      * @param int $taskId

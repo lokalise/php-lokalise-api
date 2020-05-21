@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Translations
  * @package Lokalise\Endpoints]
- * @link https://lokalise.com/api2docs/curl/#resource-translations
+ * @link https://app.lokalise.com/api2docs/curl/#resource-translations
  */
 class Translations extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-translations-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-translations-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Translations extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-translations-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-translations-get
      *
      * @param string $projectId
      *
@@ -56,7 +56,7 @@ class Translations extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-retrieve-a-translation-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-translation-get
      *
      * @param string $projectId
      * @param int $translationId
@@ -75,7 +75,7 @@ class Translations extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-update-a-translation-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-translation-put
      *
      * @param string $projectId
      * @param int $translationId

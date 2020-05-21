@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Keys
  * @package Lokalise\Endpoints
- * @link https://lokalise.com/api2docs/curl/#resource-keys
+ * @link https://app.lokalise.com/api2docs/curl/#resource-keys
  */
 class Keys extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-keys-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-keys-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Keys extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-keys-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-keys-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -57,7 +57,7 @@ class Keys extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-create-keys-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-keys-post
      *
      * @param string $projectId
      * @param array $body
@@ -78,7 +78,7 @@ class Keys extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-retrieve-a-key-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-key-get
      *
      * @param string $projectId
      * @param int $keyId
@@ -97,7 +97,7 @@ class Keys extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-update-a-key-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-key-put
      *
      * @param string $projectId
      * @param int $keyId
@@ -119,7 +119,7 @@ class Keys extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-bulk-update-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-bulk-update-put
      *
      * @param string $projectId
      * @param array $body
@@ -140,7 +140,7 @@ class Keys extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-delete-a-key-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-key-delete
      *
      * @param string $projectId
      * @param int $keyId
@@ -159,7 +159,7 @@ class Keys extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-delete-multiple-keys-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-multiple-keys-delete
      *
      * @param string $projectId
      * @param array $body

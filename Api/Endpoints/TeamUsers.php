@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class TeamUsers
  * @package Lokalise\Endpoints]
- * @link https://lokalise.com/api2docs/curl/#resource-team-users
+ * @link https://app.lokalise.com/api2docs/curl/#resource-team-users
  */
 class TeamUsers extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-team-users-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-team-users-get
      *
      * @param int $teamId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-team-users-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-team-users-get
      *
      * @param int $teamId
      *
@@ -56,7 +56,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-retrieve-a-team-user-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-team-user-get
      *
      * @param int $teamId
      * @param int $userId
@@ -75,7 +75,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-update-a-team-user-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-team-user-put
      *
      * @param int $teamId
      * @param int $userId
@@ -97,7 +97,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-delete-a-team-user-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-team-user-delete
      *
      * @param int $teamId
      * @param int $userId

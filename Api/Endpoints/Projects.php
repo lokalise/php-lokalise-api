@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Projects
  * @package Lokalise\Endpoints
- * @link https://lokalise.com/api2docs/curl/#object-projects
+ * @link https://app.lokalise.com/api2docs/curl/#object-projects
  */
 class Projects extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-projects-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-projects-get
      *
      * @param array $queryParams
      *
@@ -34,7 +34,7 @@ class Projects extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-all-projects-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-projects-get
      *
      * @param array $queryParams
      *
@@ -55,7 +55,7 @@ class Projects extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-create-a-project-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-a-project-post
      *
      * @param array $body
      *
@@ -75,7 +75,7 @@ class Projects extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-retrieve-a-project-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-project-get
      *
      * @param string $projectId
      *
@@ -93,7 +93,7 @@ class Projects extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-update-a-project-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-project-put
      *
      * @param string $projectId
      * @param array $body
@@ -114,7 +114,7 @@ class Projects extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-empty-a-project-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-empty-a-project-put
      *
      * @param string $projectId
      *
@@ -132,7 +132,7 @@ class Projects extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-delete-a-project-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-project-delete
      *
      * @param string $projectId
      *

@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Comments
  * @package Lokalise\Endpoints]
- * @link https://lokalise.com/api2docs/curl/#resource-comments
+ * @link https://app.lokalise.com/api2docs/curl/#resource-comments
  */
 class Comments extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-project-comments-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-project-comments-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Comments extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-project-comments-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-project-comments-get
      *
      * @param string $projectId
      *
@@ -56,7 +56,7 @@ class Comments extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-key-comments-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-key-comments-get
      *
      * @param string $projectId
      * @param int $keyId
@@ -77,7 +77,7 @@ class Comments extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-list-key-comments-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-key-comments-get
      *
      * @param string $projectId
      * @param int $keyId
@@ -99,7 +99,7 @@ class Comments extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-create-comments-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-comments-post
      *
      * @param string $projectId
      * @param int $keyId
@@ -121,7 +121,7 @@ class Comments extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-retrieve-a-comment-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-comment-get
      *
      * @param string $projectId
      * @param int $keyId
@@ -141,7 +141,7 @@ class Comments extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.com/api2docs/curl/#transition-delete-a-comment-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-comment-delete
      *
      * @param string $projectId
      * @param int $keyId
