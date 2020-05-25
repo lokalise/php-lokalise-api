@@ -68,6 +68,9 @@ class Files extends Endpoint implements EndpointInterface
      */
     public function upload($projectId, $body)
     {
+        // Requests that do not use the queue=true parameter are deprecated and will be unsupported
+        $body['queue'] = true;
+
         return $this->request(
             'POST',
             "projects/$projectId/files/upload",

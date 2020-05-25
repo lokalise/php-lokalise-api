@@ -3,6 +3,8 @@
 Client library for [Lokalise](https://lokalise.com) API 2.0, written with PHP5.
 [Full API reference](https://lokalise.com/api2docs/curl/).
 
+Changelog is located [here](CHANGELOG.md).
+
 ## Getting started
 
 1. PHP 5.6.x or greater is required
@@ -36,6 +38,8 @@ $client = new \Lokalise\LokaliseApiClient($apiToken);
 [Payment Cards](Docs/paymentCards.md)
 
 [Projects](Docs/projects.md)
+
+[Queued Processes](Docs/queuedProcesses.md)
 
 [Screenshots](Docs/screenshots.md)
 
