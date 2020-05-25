@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Contributors
  * @package Lokalise\Endpoints
- * @link https://lokalise.co/api2docs/php/#resource-contributors
+ * @link https://app.lokalise.com/api2docs/curl/#resource-contributors
  */
 class Contributors extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-contributors-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-contributors-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Contributors extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-contributors-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-contributors-get
      *
      * @param string $projectId
      *
@@ -56,7 +56,7 @@ class Contributors extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-contributors-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-contributors-post
      *
      * @param string $projectId
      * @param array $body
@@ -77,7 +77,7 @@ class Contributors extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-contributor-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-contributor-get
      *
      * @param string $projectId
      * @param int $contributorId
@@ -96,7 +96,7 @@ class Contributors extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-a-contributor-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-contributor-put
      *
      * @param string $projectId
      * @param int $contributorId
@@ -118,7 +118,7 @@ class Contributors extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-contributor-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-contributor-delete
      *
      * @param string $projectId
      * @param int $contributorId

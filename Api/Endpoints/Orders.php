@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Orders
  * @package Lokalise\Endpoints]
- * @link https://lokalise.co/api2docs/php/#resource-team-user-groups
+ * @link https://app.lokalise.com/api2docs/curl/#resource-team-user-groups
  */
 class Orders extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-orders-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-orders-get
      *
      * @param int $teamId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Orders extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-orders-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-orders-get
      *
      * @param int $teamId
      *
@@ -56,7 +56,7 @@ class Orders extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-an-order-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-an-order-get
      *
      * @param int $teamId
      * @param string $orderId
@@ -75,7 +75,7 @@ class Orders extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-an-order-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-an-order-post
      *
      * @param int $teamId
      *

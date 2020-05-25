@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class CustomTranslationStatuses
  * @package Lokalise\Endpoints
- * @link https://lokalise.co/api2docs/php/#object-custom-translation-statuses
+ * @link https://app.lokalise.com/api2docs/curl/#object-custom-translation-statuses
  */
 class CustomTranslationStatuses extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-custom-translation-statuses-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-custom-translation-statuses-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class CustomTranslationStatuses extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-custom-translation-statuses-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-custom-translation-statuses-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -57,7 +57,7 @@ class CustomTranslationStatuses extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-a-custom-translation-status-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-a-custom-translation-status-post
      *
      * @param string $projectId
      * @param array $body
@@ -78,7 +78,7 @@ class CustomTranslationStatuses extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-custom-translation-status-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-custom-translation-status-get
      *
      * @param string $projectId
      * @param int $statusId
@@ -97,7 +97,7 @@ class CustomTranslationStatuses extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-a-custom-translation-status-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-custom-translation-status-put
      *
      * @param string $projectId
      * @param int $statusId
@@ -119,7 +119,7 @@ class CustomTranslationStatuses extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-custom-translation-status-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-custom-translation-status-delete
      *
      * @param string $projectId
      * @param int $statusId

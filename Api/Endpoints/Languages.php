@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Languages
  * @package Lokalise\Endpoints
- * @link https://lokalise.co/api2docs/php/#resource-languages
+ * @link https://app.lokalise.com/api2docs/curl/#resource-languages
  */
 class Languages extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-system-languages-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-system-languages-get
      *
      * @param array $queryParams
      *
@@ -34,7 +34,7 @@ class Languages extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-system-languages-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-system-languages-get
      *
      * @return LokaliseApiResponse
      *
@@ -53,7 +53,7 @@ class Languages extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-project-languages-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-project-languages-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -73,7 +73,7 @@ class Languages extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-project-languages-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-project-languages-get
      *
      * @param string $projectId
      *
@@ -94,7 +94,7 @@ class Languages extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-languages-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-languages-post
      *
      * @param string $projectId
      * @param array $body
@@ -115,7 +115,7 @@ class Languages extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-language-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-language-get
      *
      * @param string $projectId
      * @param int $languageId
@@ -134,7 +134,7 @@ class Languages extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-a-language-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-language-put
      *
      * @param string $projectId
      * @param int $languageId
@@ -156,7 +156,7 @@ class Languages extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-language-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-language-delete
      *
      * @param string $projectId
      * @param int $languageId

@@ -1,7 +1,7 @@
 # Providers API
 
 ### List providers
-https://lokalise.com/api2docs/curl/#transition-list-all-providers-get
+https://app.lokalise.com/api2docs/curl/#transition-list-all-providers-get
 
 ```php
 $response = $client->translationProviders->list(
@@ -18,7 +18,7 @@ $response = $client->translationProviders->fetchAll($teamId);
 ```
 
 ### Retrieve a provider
-https://lokalise.com/api2docs/curl/#transition-retrieve-a-provider-get
+https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-provider-get
 
 ```php
 $response = $client->translationProviders->retrieve($teamId, $providerId);

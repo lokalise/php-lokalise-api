@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Cards
  * @package Lokalise\Endpoints]
- * @link https://lokalise.co/api2docs/php/#resource-team-user-groups
+ * @link https://app.lokalise.com/api2docs/curl/#resource-team-user-groups
  */
 class PaymentCards extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-cards-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-cards-get
      *
      * @param array $queryParams
      *
@@ -34,7 +34,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-cards-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-cards-get
      *
      * @return LokaliseApiResponse
      *
@@ -53,7 +53,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-card-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-card-get
      *
      * @param int $cardId
      *
@@ -71,7 +71,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-a-card-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-a-card-post
      *
      * @param array $body
      *
@@ -91,7 +91,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-card-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-card-delete
      *
      * @param int $cardId
      *

@@ -94,7 +94,7 @@ final class LokaliseApiClientTest extends TestCase
     public function testEndpointUrl()
     {
         $this->assertEquals(
-            'https://api.lokalise.co/api2/',
+            'https://api.lokalise.com/api2/',
             ApiClient::ENDPOINT
         );
     }

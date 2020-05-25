@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Providers
  * @package Lokalise\Endpoints]
- * @link https://lokalise.co/api2docs/php/#resource-providers
+ * @link https://app.lokalise.com/api2docs/curl/#resource-providers
  */
 class TranslationProviders extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-providers-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-providers-get
      *
      * @param int $teamId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class TranslationProviders extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-providers-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-providers-get
      *
      * @param int $teamId
      *
@@ -56,7 +56,7 @@ class TranslationProviders extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-provider-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-provider-get
      *
      * @param int $teamId
      * @param int $providerId

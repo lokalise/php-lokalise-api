@@ -22,9 +22,9 @@ use \Lokalise\Endpoints\Translations;
 
 class LokaliseApiClient
 {
-    const VERSION = '2.2.0';
+    const VERSION = '2.2.1';
 
-    const ENDPOINT = 'https://api.lokalise.co/api2/';
+    const ENDPOINT = 'https://api.lokalise.com/api2/';
 
     /** @var Comments */
     public $comments;

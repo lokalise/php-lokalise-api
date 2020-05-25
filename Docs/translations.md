@@ -1,7 +1,7 @@
 # Translations API
 
 ### List translations
-https://lokalise.com/api2docs/curl/#transition-list-all-translations-get
+https://app.lokalise.com/api2docs/curl/#transition-list-all-translations-get
 
 ```php
 $response = $client->translations->list(
@@ -18,14 +18,14 @@ $response = $client->translations->fetchAll($projectId);
 ```
 
 ### Retrieve a translation
-https://lokalise.com/api2docs/curl/#transition-retrieve-a-translation-get
+https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-translation-get
 
 ```php
 $response = $client->translations->retrieve($projectId, $translationId);
 ```
 
 ### Update a translation
-https://lokalise.com/api2docs/curl/#transition-update-a-translation-put
+https://app.lokalise.com/api2docs/curl/#transition-update-a-translation-put
 
 ```php
 $response = $client->translations->update(

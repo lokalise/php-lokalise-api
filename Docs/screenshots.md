@@ -1,7 +1,7 @@
 # Screenshots API
 
 ### List screenshots
-https://lokalise.com/api2docs/curl/#transition-list-all-screenshots-get
+https://app.lokalise.com/api2docs/curl/#transition-list-all-screenshots-get
 
 ```php
 $response = $client->screenshots->list(
@@ -18,7 +18,7 @@ $response = $client->screenshots->fetchAll($projectId);
 ```
 
 ### Create screenshots
-https://lokalise.com/api2docs/curl/#transition-create-screenshots-post
+https://app.lokalise.com/api2docs/curl/#transition-create-screenshots-post
 
 ```php
 $response = $client->screenshots->create(
@@ -49,14 +49,14 @@ $response = $client->screenshots->create(
 ```
 
 ### Retrieve a screenshot
-https://lokalise.com/api2docs/curl/#transition-retrieve-a-screenshot-get
+https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-screenshot-get
 
 ```php
 $response = $client->screenshots->retrieve($projectId, $screenshotId);
 ```
 
 ### Update a screenshot
-https://lokalise.com/api2docs/curl/#transition-update-a-screenshot-put
+https://app.lokalise.com/api2docs/curl/#transition-update-a-screenshot-put
 
 ```php
 $response = $client->screenshots->update(
@@ -72,7 +72,7 @@ $response = $client->screenshots->update(
 ```
 
 ### Delete a screenshot
-https://lokalise.com/api2docs/curl/#transition-delete-a-screenshot-delete
+https://app.lokalise.com/api2docs/curl/#transition-delete-a-screenshot-delete
 
 ```php
 $response = $client->screenshots->delete($projectId, $screenshotId);
