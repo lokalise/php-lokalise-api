@@ -81,6 +81,7 @@ class Endpoint implements EndpointInterface
                 throw new LokaliseApiException($e->getMessage(), $e->getCode());
             }
         } catch (GuzzleException $e) {
+            // From guzzle6-adapter 1.* the RequestException does not implement GuzzleException
             throw new LokaliseApiException($e->getMessage(), $e->getCode());
         }
 
