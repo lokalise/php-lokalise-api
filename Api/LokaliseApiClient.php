@@ -20,6 +20,7 @@ use \Lokalise\Endpoints\Teams;
 use Lokalise\Endpoints\TeamUserGroups;
 use \Lokalise\Endpoints\TeamUsers;
 use \Lokalise\Endpoints\Translations;
+use Lokalise\Endpoints\Webhooks;
 
 class LokaliseApiClient
 {
@@ -81,6 +82,9 @@ class LokaliseApiClient
     /** @var CustomTranslationStatuses */
     public $customTranslationStatuses;
 
+    /** @var Webhooks */
+    public $webhooks;
+
     /**
      * LokaliseApiClient constructor.
      *
@@ -92,6 +96,7 @@ class LokaliseApiClient
         $this->contributors = new Contributors(self::ENDPOINT, $apiToken);
         $this->files = new Files(self::ENDPOINT, $apiToken);
         $this->keys = new Keys(self::ENDPOINT, $apiToken);
+        $this->webhooks = new Webhooks(self::ENDPOINT, $apiToken);
         $this->languages = new Languages(self::ENDPOINT, $apiToken);
         $this->projects = new Projects(self::ENDPOINT, $apiToken);
         $this->queuedProcesses = new QueuedProcesses(self::ENDPOINT, $apiToken);
