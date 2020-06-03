@@ -9,13 +9,13 @@ use \Lokalise\Exceptions\LokaliseResponseException;
 /**
  * Class Webhooks
  * @package Lokalise\Endpoints
- * @link https://lokalise.co/api2docs/php/#resource-webhooks
+ * @link https://app.lokalise.com/api2docs/curl/#resource-webhooks
  */
 class Webhooks extends Endpoint implements EndpointInterface
 {
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-webhooks-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-webhooks-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -35,7 +35,7 @@ class Webhooks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-list-all-webhooks-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-webhooks-get
      *
      * @param string $projectId
      * @param array $queryParams
@@ -57,7 +57,7 @@ class Webhooks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-create-webhooks-post
+     * @link https://app.lokalise.com/api2docs/curl/#transition-create-a-webhook-post
      *
      * @param string $projectId
      * @param array $body
@@ -78,7 +78,7 @@ class Webhooks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-retrieve-a-webhooks-get
+     * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-webhook-get
      *
      * @param string $projectId
      * @param int $webhookId
@@ -97,7 +97,7 @@ class Webhooks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-update-a-webhooks-put
+     * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-webhook-put
      *
      * @param string $projectId
      * @param int $webhookId
@@ -119,28 +119,7 @@ class Webhooks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-bulk-update-put
-     *
-     * @param string $projectId
-     * @param array $body
-     *
-     * @return LokaliseApiResponse
-     *
-     * @throws LokaliseApiException
-     * @throws LokaliseResponseException
-     */
-    public function bulkUpdate($projectId, $body)
-    {
-        return $this->request(
-            'PUT',
-            "projects/$projectId/webhooks",
-            [],
-            $body
-        );
-    }
-
-    /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-a-webhooks-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-webhook-delete
      *
      * @param string $projectId
      * @param int $webhookId
@@ -159,23 +138,21 @@ class Webhooks extends Endpoint implements EndpointInterface
     }
 
     /**
-     * @link https://lokalise.co/api2docs/php/#transition-delete-multiple-webhooks-delete
+     * @link https://app.lokalise.com/api2docs/curl/#transition-regenerate-a-webhook-secret-patch
      *
      * @param string $projectId
-     * @param array $body
+     * @param int $webhookId
      *
      * @return LokaliseApiResponse
      *
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function bulkDelete($projectId, $body)
+    public function regenerate($projectId, $webhookId)
     {
         return $this->request(
-            'DELETE',
-            "projects/$projectId/webhooks",
-            [],
-            $body
+            'PATCH',
+            "projects/$projectId/webhooks/$webhookId/secret/regenerate"
         );
     }
 }

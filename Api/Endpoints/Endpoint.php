@@ -44,7 +44,7 @@ class Endpoint implements EndpointInterface
     }
 
     /**
-     * @param string $requestType GET|POST|PUT|DELETE
+     * @param string $requestType GET|POST|PUT|PATCH|DELETE
      * @param string $uri
      * @param array $queryParams
      * @param array $body
