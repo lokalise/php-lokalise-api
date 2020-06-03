@@ -94,10 +94,12 @@ class LokaliseApiClient
     {
         $this->comments = new Comments(self::ENDPOINT, $apiToken);
         $this->contributors = new Contributors(self::ENDPOINT, $apiToken);
+        $this->customTranslationStatuses = new CustomTranslationStatuses(self::ENDPOINT, $apiToken);
         $this->files = new Files(self::ENDPOINT, $apiToken);
         $this->keys = new Keys(self::ENDPOINT, $apiToken);
-        $this->webhooks = new Webhooks(self::ENDPOINT, $apiToken);
         $this->languages = new Languages(self::ENDPOINT, $apiToken);
+        $this->orders = new Orders(self::ENDPOINT, $apiToken);
+        $this->paymentCards = new PaymentCards(self::ENDPOINT, $apiToken);
         $this->projects = new Projects(self::ENDPOINT, $apiToken);
         $this->queuedProcesses = new QueuedProcesses(self::ENDPOINT, $apiToken);
         $this->screenshots = new Screenshots(self::ENDPOINT, $apiToken);
@@ -108,9 +110,7 @@ class LokaliseApiClient
         $this->translations = new Translations(self::ENDPOINT, $apiToken);
         $this->teamUserGroups = new TeamUserGroups(self::ENDPOINT, $apiToken);
         $this->translationProviders = new TranslationProviders(self::ENDPOINT, $apiToken);
-        $this->paymentCards = new PaymentCards(self::ENDPOINT, $apiToken);
-        $this->orders = new Orders(self::ENDPOINT, $apiToken);
-        $this->customTranslationStatuses = new CustomTranslationStatuses(self::ENDPOINT, $apiToken);
+        $this->webhooks = new Webhooks(self::ENDPOINT, $apiToken);
     }
 
     /**

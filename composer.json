@@ -2,7 +2,7 @@
   "name": "lokalise/php-lokalise-api",
   "type": "library",
   "description": "Lokalise API client",
-  "homepage": "https://lokalise.co/api2docs/php/",
+  "homepage": "https://app.lokalise.com/api2docs/curl/",
   "keywords": ["REST", "API", "Lokalise"],
   "license": "MIT",
   "authors": [
