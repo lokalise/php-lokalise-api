@@ -150,7 +150,7 @@ final class WebhooksTest extends TestCase
         );
     }
 
-    public function testRegenerate()
+    public function testRegenerateSecret()
     {
         $projectId = '{Project_Id}';
         $webhookId = '{Webhook_Id}';
@@ -162,7 +162,7 @@ final class WebhooksTest extends TestCase
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedWebhooks->regenerate($projectId, $webhookId)
+            $this->mockedWebhooks->regenerateSecret($projectId, $webhookId)
         );
     }
 }

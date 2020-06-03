@@ -93,7 +93,7 @@ $response = $client->webhooks->delete($projectId, $webhookId);
 https://app.lokalise.com/api2docs/curl/#transition-regenerate-a-webhook-secret-patch
 
 ```php
-$response = $client->webhooks->regenerate($projectId, $webhookId);
+$response = $client->webhooks->regenerateSecret($projectId, $webhookId);
 ```
 
 <br/><br/><br/>

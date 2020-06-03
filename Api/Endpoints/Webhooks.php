@@ -148,7 +148,7 @@ class Webhooks extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function regenerate($projectId, $webhookId)
+    public function regenerateSecret($projectId, $webhookId)
     {
         return $this->request(
             'PATCH',
