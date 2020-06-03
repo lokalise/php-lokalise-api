@@ -59,6 +59,8 @@ $client = new \Lokalise\LokaliseApiClient($apiToken);
 
 [Orders](Docs/orders.md)
 
+[Webhooks](Docs/webhooks.md)
+
 ## Response
 
 ```php

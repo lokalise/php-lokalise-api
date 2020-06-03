@@ -24,7 +24,7 @@ use Lokalise\Endpoints\Webhooks;
 
 class LokaliseApiClient
 {
-    const VERSION = '3.0.0';
+    const VERSION = '3.1.0';
 
     const ENDPOINT = 'https://api.lokalise.com/api2/';
 
