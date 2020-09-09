@@ -40,7 +40,7 @@ $response = $client->files->download(
     $projectId,
     [
         'format' => 'json',
-        'oringal_filenames' => true,
+        'original_filenames' => true,
         'directory_prefix' => '/%LANG_ISO%/',
         'language_mapping' => [
             [
