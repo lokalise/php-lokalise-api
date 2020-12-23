@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
+namespace Lokalise\Tests\Endpoints;
+
+use Lokalise\Endpoints\EndpointInterface;
+use Lokalise\Endpoints\Endpoint;
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\Comments;
 use \PHPUnit\Framework\MockObject\MockObject;
 
 final class CommentsTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedComments;
+    /** @var MockObject|Comments */
+    private $mockedComments;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedComments = $this
-            ->getMockBuilder(Comments::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedComments->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedComments->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedComments = $this->createEndpointMock(Comments::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedComments = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedComments);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedComments);
+        self::assertInstanceOf(Endpoint::class, $this->mockedComments);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedComments);
     }
 
-    public function testListProject()
+    public function testListProject(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/comments",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedComments->listProject($projectId, $getParameters)
+            $this->mockedComments->listProject($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAllProject()
+    public function testFetchAllProject(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/comments",
@@ -81,33 +60,33 @@ final class CommentsTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'comments',
             ],
-            $this->mockedComments->fetchAllProject($projectId)
+            $this->mockedComments->fetchAllProject($projectId)->getContent()
         );
     }
 
-    public function testListKey()
+    public function testListKey(): void
     {
         $projectId = '{Project_Id}';
-        $keyId = '{Key_Id}';
+        $keyId = 123;
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/keys/$keyId/comments",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedComments->listKey($projectId, $keyId, $getParameters)
+            $this->mockedComments->listKey($projectId, $keyId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAllKey()
+    public function testFetchAllKey(): void
     {
         $projectId = '{Project_Id}';
-        $keyId = '{Key_Id}';
+        $keyId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/keys/$keyId/comments",
@@ -115,58 +94,58 @@ final class CommentsTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'comments',
             ],
-            $this->mockedComments->fetchAllKey($projectId, $keyId)
+            $this->mockedComments->fetchAllKey($projectId, $keyId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $projectId = '{Project_Id}';
-        $keyId = '{Key_Id}';
+        $keyId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/keys/$keyId/comments",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedComments->create($projectId, $keyId, $body)
+            $this->mockedComments->create($projectId, $keyId, $body)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
-        $keyId = '{Key_Id}';
-        $commentId = '{Comment_Id}';
+        $keyId = 123;
+        $commentId = 456;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/keys/$keyId/comments/$commentId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedComments->retrieve($projectId, $keyId, $commentId)
+            $this->mockedComments->retrieve($projectId, $keyId, $commentId)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $projectId = '{Project_Id}';
-        $keyId = '{Key_Id}';
-        $commentId = '{Comment_Id}';
+        $keyId = 123;
+        $commentId = 456;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId/keys/$keyId/comments/$commentId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedComments->delete($projectId, $keyId, $commentId)
+            $this->mockedComments->delete($projectId, $keyId, $commentId)->getContent()
         );
     }
 }

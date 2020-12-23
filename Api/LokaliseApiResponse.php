@@ -2,15 +2,15 @@
 
 namespace Lokalise;
 
+use Exception;
 use \Psr\Http\Message\ResponseInterface;
 
 class LokaliseApiResponse
 {
-
-    const HEADER_PAGINATION_COUNT = "X-Pagination-Total-Count";
-    const HEADER_PAGINATION_PAGES = "X-Pagination-Page-Count";
-    const HEADER_PAGINATION_LIMIT = "X-Pagination-Limit";
-    const HEADER_PAGINATION_PAGE = "X-Pagination-Page";
+    public const HEADER_PAGINATION_COUNT = "X-Pagination-Total-Count";
+    public const HEADER_PAGINATION_PAGES = "X-Pagination-Page-Count";
+    public const HEADER_PAGINATION_LIMIT = "X-Pagination-Limit";
+    public const HEADER_PAGINATION_PAGE = "X-Pagination-Page";
 
     /** @var array */
     public $headers;
@@ -38,7 +38,7 @@ class LokaliseApiResponse
 
         try {
             $this->body = json_decode($guzzleResponse->getBody(), true);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->body = [];
         }
     }
@@ -46,7 +46,7 @@ class LokaliseApiResponse
     /**
      * @return array
      */
-    public function getContent()
+    public function getContent(): ?array
     {
         return $this->body;
     }
@@ -55,24 +55,24 @@ class LokaliseApiResponse
      * Returns body content of the response
      * @return array
      */
-    public function __toArray()
+    public function __toArray(): ?array
     {
         return $this->getContent();
     }
 
     /**
      * Return body content of the response encoded to JSON string
-     * @return false|string
+     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode($this->getContent());
+        return json_encode($this->getContent()) ?: '';
     }
 
     /**
      * @return int|null
      */
-    public function getTotalCount()
+    public function getTotalCount(): ?int
     {
         return $this->getPaginationHeader(self::HEADER_PAGINATION_COUNT);
     }
@@ -80,7 +80,7 @@ class LokaliseApiResponse
     /**
      * @return int|null
      */
-    public function getPageCount()
+    public function getPageCount(): ?int
     {
         return $this->getPaginationHeader(self::HEADER_PAGINATION_PAGES);
     }
@@ -88,7 +88,7 @@ class LokaliseApiResponse
     /**
      * @return int|null
      */
-    public function getPaginationLimit()
+    public function getPaginationLimit(): ?int
     {
         return $this->getPaginationHeader(self::HEADER_PAGINATION_LIMIT);
     }
@@ -96,7 +96,7 @@ class LokaliseApiResponse
     /**
      * @return int|null
      */
-    public function getPaginationPage()
+    public function getPaginationPage(): ?int
     {
         return $this->getPaginationHeader(self::HEADER_PAGINATION_PAGE);
     }
@@ -106,7 +106,7 @@ class LokaliseApiResponse
      *
      * @return int|null
      */
-    private function getPaginationHeader($header)
+    private function getPaginationHeader(string $header): ?int
     {
         return isset($this->headers[$header]) ? (int)$this->headers[$header] : null;
     }

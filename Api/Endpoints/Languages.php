@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints
  * @link https://app.lokalise.com/api2docs/curl/#resource-languages
  */
-class Languages extends Endpoint implements EndpointInterface
+class Languages extends Endpoint
 {
 
     /**
@@ -24,7 +24,7 @@ class Languages extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function listSystem($queryParams = [])
+    public function listSystem(array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -41,7 +41,7 @@ class Languages extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAllSystem()
+    public function fetchAllSystem(): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -63,7 +63,7 @@ class Languages extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($projectId, $queryParams = [])
+    public function list(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -82,7 +82,7 @@ class Languages extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($projectId)
+    public function fetchAll(string $projectId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -104,7 +104,7 @@ class Languages extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($projectId, $body)
+    public function create(string $projectId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -125,7 +125,7 @@ class Languages extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($projectId, $languageId)
+    public function retrieve(string $projectId, int $languageId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -145,7 +145,7 @@ class Languages extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function update($projectId, $languageId, $body)
+    public function update(string $projectId, int $languageId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -166,7 +166,7 @@ class Languages extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($projectId, $languageId)
+    public function delete(string $projectId, int $languageId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',

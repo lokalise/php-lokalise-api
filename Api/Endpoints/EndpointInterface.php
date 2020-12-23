@@ -5,5 +5,5 @@ namespace Lokalise\Endpoints;
 interface EndpointInterface
 {
 
-    public function __construct($baseUrl, $apiToken);
+    public function __construct(string $baseUrl, ?string $apiToken);
 }

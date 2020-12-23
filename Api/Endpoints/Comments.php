@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://app.lokalise.com/api2docs/curl/#resource-comments
  */
-class Comments extends Endpoint implements EndpointInterface
+class Comments extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class Comments extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function listProject($projectId, $queryParams = [])
+    public function listProject(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -44,7 +44,7 @@ class Comments extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAllProject($projectId)
+    public function fetchAllProject(string $projectId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -67,7 +67,7 @@ class Comments extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function listKey($projectId, $keyId, $queryParams = [])
+    public function listKey(string $projectId, int $keyId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -87,7 +87,7 @@ class Comments extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAllKey($projectId, $keyId)
+    public function fetchAllKey(string $projectId, int $keyId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -110,7 +110,7 @@ class Comments extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($projectId, $keyId, $body)
+    public function create(string $projectId, int $keyId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -132,7 +132,7 @@ class Comments extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($projectId, $keyId, $commentId)
+    public function retrieve(string $projectId, int $keyId, int $commentId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -152,7 +152,7 @@ class Comments extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($projectId, $keyId, $commentId)
+    public function delete(string $projectId, int $keyId, int $commentId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',

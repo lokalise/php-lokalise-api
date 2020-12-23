@@ -11,8 +11,7 @@ use \Lokalise\LokaliseApiResponse;
 
 class Endpoint implements EndpointInterface
 {
-
-    const FETCH_ALL_LIMIT = 1000;
+    public const FETCH_ALL_LIMIT = 1000;
 
     /** @var string $baseUrl API base URL */
     protected $baseUrl;
@@ -27,9 +26,9 @@ class Endpoint implements EndpointInterface
      * Endpoint constructor.
      *
      * @param string $baseUrl parent::constant
-     * @param string $apiToken Client provided authentication token
+     * @param string|null $apiToken Client provided authentication token
      */
-    public function __construct($baseUrl, $apiToken)
+    public function __construct(string $baseUrl, ?string $apiToken)
     {
         $this->baseUrl = $baseUrl;
         $this->apiToken = $apiToken;
@@ -38,7 +37,7 @@ class Endpoint implements EndpointInterface
     /**
      * @param $client
      */
-    public function setClient(Client $client)
+    public function setClient(Client $client): void
     {
         $this->client = $client;
     }
@@ -54,7 +53,7 @@ class Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    protected function request($requestType, $uri, $queryParams = [], $body = [])
+    protected function request(string $requestType, string $uri, array $queryParams = [], array $body = []): LokaliseApiResponse
     {
         if (is_null($this->client)) {
             $this->setClient(new Client());
@@ -113,7 +112,7 @@ class Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    protected function requestAll($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '')
+    protected function requestAll(string $requestType, string $uri, array $queryParams = [], array $body = [], string $bodyResponseKey = ''): LokaliseApiResponse
     {
         $page = 1;
         $queryParams = array_merge($queryParams, ['limit' => self::FETCH_ALL_LIMIT, 'page' => $page]);
@@ -141,7 +140,7 @@ class Endpoint implements EndpointInterface
      *
      * @return null|string
      */
-    protected function queryParamsToQueryString($queryParams)
+    protected function queryParamsToQueryString($queryParams): ?string
     {
         return (!empty($queryParams) ? http_build_query($queryParams) : null);
     }
@@ -154,7 +153,7 @@ class Endpoint implements EndpointInterface
      *
      * @return array
      */
-    private function fixArraysInQueryParams($queryParams)
+    private function fixArraysInQueryParams(array $queryParams): array
     {
         foreach ($queryParams as $paramName => $paramValue) {
             $queryParams[$paramName] = $this->replaceArrayWithCommaSeparatedString($paramValue);
@@ -180,13 +179,13 @@ class Endpoint implements EndpointInterface
             }
             if (!$foundMultiDimension) {
                 return implode(',', $array);
-            } else {
-                foreach ($array as $key => $value) {
-                    $array[$key] = $this->replaceArrayWithCommaSeparatedString($value);
-                }
-
-                return $this->replaceArrayWithCommaSeparatedString($array);
             }
+
+            foreach ($array as $key => $value) {
+                $array[$key] = $this->replaceArrayWithCommaSeparatedString($value);
+            }
+
+            return $this->replaceArrayWithCommaSeparatedString($array);
         }
 
         return $array;

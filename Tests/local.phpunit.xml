@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         bootstrap="./../vendor/autoload.php"
         colors="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
         convertErrorsToExceptions="true"
         verbose="true"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
-    <testsuites>
-        <testsuite name="app">
-            <directory>.</directory>
-        </testsuite>
-    </testsuites>
-
-    <groups>
-        <exclude>
-            <group>integrationTest</group>
-        </exclude>
-    </groups>
-    <filter>
-        <whitelist addUncoveredFilesFromWhitelist="false">
-            <directory suffix=".php">./..</directory>
-            <exclude>
-                <directory>./../vendor</directory>
-            </exclude>
-        </whitelist>
-    </filter>
-    <php>
+  <coverage includeUncoveredFiles="false">
+    <include>
+      <directory suffix=".php">./..</directory>
+    </include>
+    <exclude>
+      <directory>./../vendor</directory>
+    </exclude>
+  </coverage>
+  <testsuites>
+    <testsuite name="app">
+      <directory>.</directory>
+    </testsuite>
+  </testsuites>
+  <groups>
+    <exclude>
+      <group>integrationTest</group>
+    </exclude>
+  </groups>
+  <php>
 
     </php>
 </phpunit>

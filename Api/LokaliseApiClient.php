@@ -24,9 +24,9 @@ use Lokalise\Endpoints\Webhooks;
 
 class LokaliseApiClient
 {
-    const VERSION = '3.1.0';
+    public const VERSION = '4.0.0';
 
-    const ENDPOINT = 'https://api.lokalise.com/api2/';
+    public const ENDPOINT = 'https://api.lokalise.com/api2/';
 
     /** @var Comments */
     public $comments;
@@ -90,7 +90,7 @@ class LokaliseApiClient
      *
      * @param string $apiToken
      */
-    public function __construct($apiToken)
+    public function __construct(string $apiToken)
     {
         $this->comments = new Comments(self::ENDPOINT, $apiToken);
         $this->contributors = new Contributors(self::ENDPOINT, $apiToken);
@@ -116,7 +116,7 @@ class LokaliseApiClient
     /**
      * @return string
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         return self::VERSION;
     }

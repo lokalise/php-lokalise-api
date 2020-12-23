@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\Webhooks;
 use \PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class WebhooksTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedWebhooks;
+    /** @var MockObject|Webhooks */
+    private $mockedWebhooks;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedWebhooks = $this
-            ->getMockBuilder(Webhooks::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedWebhooks->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedWebhooks->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedWebhooks = $this->createEndpointMock(Webhooks::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedWebhooks = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedWebhooks);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedWebhooks);
+        self::assertInstanceOf(Endpoint::class, $this->mockedWebhooks);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedWebhooks);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/webhooks",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedWebhooks->list($projectId, $getParameters)
+            $this->mockedWebhooks->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/webhooks",
@@ -81,88 +60,88 @@ final class WebhooksTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'webhooks',
             ],
-            $this->mockedWebhooks->fetchAll($projectId)
+            $this->mockedWebhooks->fetchAll($projectId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/webhooks",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedWebhooks->create($projectId, $body)
+            $this->mockedWebhooks->create($projectId, $body)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
-        $webhookId = '{Webhook_Id}';
+        $webhookId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/webhooks/$webhookId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedWebhooks->retrieve($projectId, $webhookId)
+            $this->mockedWebhooks->retrieve($projectId, $webhookId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $projectId = '{Project_Id}';
-        $webhookId = '{Webhook_Id}';
+        $webhookId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/webhooks/$webhookId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedWebhooks->update($projectId, $webhookId, $body)
+            $this->mockedWebhooks->update($projectId, $webhookId, $body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $projectId = '{Project_Id}';
-        $webhookId = '{Webhook_Id}';
+        $webhookId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId/webhooks/$webhookId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedWebhooks->delete($projectId, $webhookId)
+            $this->mockedWebhooks->delete($projectId, $webhookId)->getContent()
         );
     }
 
-    public function testRegenerateSecret()
+    public function testRegenerateSecret(): void
     {
         $projectId = '{Project_Id}';
-        $webhookId = '{Webhook_Id}';
+        $webhookId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PATCH',
                 'uri' => "projects/$projectId/webhooks/$webhookId/secret/regenerate",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedWebhooks->regenerateSecret($projectId, $webhookId)
+            $this->mockedWebhooks->regenerateSecret($projectId, $webhookId)->getContent()
         );
     }
 }

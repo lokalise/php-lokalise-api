@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\Tasks;
 use \PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class TasksTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedTasks;
+    /** @var MockObject|Tasks */
+    private $mockedTasks;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedTasks = $this
-            ->getMockBuilder(Tasks::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedTasks->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedTasks->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedTasks = $this->createEndpointMock(Tasks::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedTasks = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedTasks);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedTasks);
+        self::assertInstanceOf(Endpoint::class, $this->mockedTasks);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedTasks);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/tasks",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedTasks->list($projectId, $getParameters)
+            $this->mockedTasks->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/tasks",
@@ -81,72 +60,72 @@ final class TasksTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'tasks',
             ],
-            $this->mockedTasks->fetchAll($projectId)
+            $this->mockedTasks->fetchAll($projectId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/tasks",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTasks->create($projectId, $body)
+            $this->mockedTasks->create($projectId, $body)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
-        $taskId = '{Task_Id}';
+        $taskId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/tasks/$taskId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedTasks->retrieve($projectId, $taskId)
+            $this->mockedTasks->retrieve($projectId, $taskId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $projectId = '{Project_Id}';
-        $taskId = '{Task_Id}';
+        $taskId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/tasks/$taskId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTasks->update($projectId, $taskId, $body)
+            $this->mockedTasks->update($projectId, $taskId, $body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $projectId = '{Project_Id}';
-        $taskId = '{Task_Id}';
+        $taskId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId/tasks/$taskId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedTasks->delete($projectId, $taskId)
+            $this->mockedTasks->delete($projectId, $taskId)->getContent()
         );
     }
 }

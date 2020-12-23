@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://app.lokalise.com/api2docs/curl/#resource-team-user-groups
  */
-class PaymentCards extends Endpoint implements EndpointInterface
+class PaymentCards extends Endpoint
 {
 
     /**
@@ -24,7 +24,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($queryParams = [])
+    public function list(array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -41,7 +41,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll()
+    public function fetchAll(): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -62,7 +62,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($cardId)
+    public function retrieve(int $cardId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -80,7 +80,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($body)
+    public function create(array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -100,7 +100,7 @@ class PaymentCards extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($cardId)
+    public function delete(int $cardId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',

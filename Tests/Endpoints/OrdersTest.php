@@ -1,78 +1,59 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
-use \PHPUnit\Framework\TestCase;
+namespace Lokalise\Tests\Endpoints;
+
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Lokalise\Endpoints\Orders;
+use Lokalise\Endpoints\EndpointInterface;
+use Lokalise\Endpoints\Endpoint;
 
 final class OrdersTest extends TestCase
 {
-    /** @var Orders */
-    protected $mockedOrders;
+    use MockEndpointTrait;
 
-    protected function setUp()
+    /** @var Orders|MockObject */
+    private $mockedOrders;
+
+    protected function setUp(): void
     {
-        $this->mockedOrders = $this
-            ->getMockBuilder(Orders::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedOrders->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedOrders->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedOrders = $this->createEndpointMock(Orders::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedOrders = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedOrders);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedOrders);
+        self::assertInstanceOf(Endpoint::class, $this->mockedOrders);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedOrders);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $getParameters = ['params' => ['any']];
 
-        $teamId = '{Team_Id}';
+        $teamId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/{$teamId}/orders",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedOrders->list($teamId, $getParameters)
+            $this->mockedOrders->list($teamId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
-        $teamId = '{Team_Id}';
+        $teamId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/{$teamId}/orders",
@@ -80,40 +61,40 @@ final class OrdersTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'orders',
             ],
-            $this->mockedOrders->fetchAll($teamId)
+            $this->mockedOrders->fetchAll($teamId)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
-        $teamId = '{Team_Id}';
+        $teamId = 123;
         $orderId = '{Order_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/{$teamId}/orders/{$orderId}",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedOrders->retrieve($teamId, $orderId)
+            $this->mockedOrders->retrieve($teamId, $orderId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $body = ['params' => ['any']];
 
-        $teamId = '{Team_Id}';
+        $teamId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "teams/{$teamId}/orders",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedOrders->create($teamId, $body)
+            $this->mockedOrders->create($teamId, $body)->getContent()
         );
     }
 }

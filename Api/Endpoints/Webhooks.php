@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints
  * @link https://app.lokalise.com/api2docs/curl/#resource-webhooks
  */
-class Webhooks extends Endpoint implements EndpointInterface
+class Webhooks extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class Webhooks extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($projectId, $queryParams = [])
+    public function list(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -45,7 +45,7 @@ class Webhooks extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($projectId, $queryParams = [])
+    public function fetchAll(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -67,7 +67,7 @@ class Webhooks extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($projectId, $body)
+    public function create(string $projectId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -88,7 +88,7 @@ class Webhooks extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($projectId, $webhookId)
+    public function retrieve(string $projectId, int $webhookId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -108,7 +108,7 @@ class Webhooks extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function update($projectId, $webhookId, $body)
+    public function update(string $projectId, int $webhookId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -129,7 +129,7 @@ class Webhooks extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($projectId, $webhookId)
+    public function delete(string $projectId, int $webhookId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',
@@ -148,7 +148,7 @@ class Webhooks extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function regenerateSecret($projectId, $webhookId)
+    public function regenerateSecret(string $projectId, int $webhookId): LokaliseApiResponse
     {
         return $this->request(
             'PATCH',

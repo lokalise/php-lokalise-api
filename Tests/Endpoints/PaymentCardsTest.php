@@ -1,74 +1,55 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
-use \PHPUnit\Framework\TestCase;
+namespace Lokalise\Tests\Endpoints;
+
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Lokalise\Endpoints\PaymentCards;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class PaymentCardsTest extends TestCase
 {
-    /** @var PaymentCards */
-    protected $mockedCards;
+    use MockEndpointTrait;
 
-    protected function setUp()
+    /** @var PaymentCards|MockObject */
+    private $mockedCards;
+
+    protected function setUp(): void
     {
-        $this->mockedCards = $this
-            ->getMockBuilder(PaymentCards::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedCards->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedCards->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedCards = $this->createEndpointMock(PaymentCards::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedCards = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedCards);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedCards);
+        self::assertInstanceOf(Endpoint::class, $this->mockedCards);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedCards);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "payment_cards",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedCards->list($getParameters)
+            $this->mockedCards->list($getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "payment_cards",
@@ -76,52 +57,52 @@ final class PaymentCardsTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'payment_cards',
             ],
-            $this->mockedCards->fetchAll()
+            $this->mockedCards->fetchAll()->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
-        $cardId = '{Card_Id}';
+        $cardId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "payment_cards/$cardId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedCards->retrieve($cardId)
+            $this->mockedCards->retrieve($cardId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "payment_cards",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedCards->create($body)
+            $this->mockedCards->create($body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
-        $cardId = '{Card_Id}';
+        $cardId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "payment_cards/{$cardId}",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedCards->delete($cardId)
+            $this->mockedCards->delete($cardId)->getContent()
         );
     }
 }

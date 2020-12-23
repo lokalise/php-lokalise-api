@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
-use \PHPUnit\Framework\TestCase;
-use \Lokalise\Endpoints\Files;
-use \PHPUnit\Framework\MockObject\MockObject;
+namespace Lokalise\Tests\Endpoints;
+
+use PHPUnit\Framework\TestCase;
+use Lokalise\Endpoints\Files;
+use PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class FilesTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
+    /** @var MockObject|Files */
     protected $mockedFiles;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedFiles = $this
-            ->getMockBuilder(Files::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedFiles->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedFiles->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedFiles = $this->createEndpointMock(Files::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedFiles = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedFiles);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedFiles);
+        self::assertInstanceOf(Endpoint::class, $this->mockedFiles);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedFiles);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/files",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedFiles->list($projectId, $getParameters)
+            $this->mockedFiles->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/files",
@@ -81,39 +60,39 @@ final class FilesTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'files',
             ],
-            $this->mockedFiles->fetchAll($projectId)
+            $this->mockedFiles->fetchAll($projectId)->getContent()
         );
     }
 
-    public function testUpload()
+    public function testUpload(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any'], 'queue' => true];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/files/upload",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedFiles->upload($projectId, $body)
+            $this->mockedFiles->upload($projectId, $body)->getContent()
         );
     }
 
-    public function testDownload()
+    public function testDownload(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/files/download",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedFiles->download($projectId, $body)
+            $this->mockedFiles->download($projectId, $body)->getContent()
         );
     }
 }

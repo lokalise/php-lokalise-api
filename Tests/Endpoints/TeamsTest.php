@@ -1,76 +1,55 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\Teams;
 use \PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class TeamsTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedTeams;
+    /** @var MockObject|Teams */
+    private $mockedTeams;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedTeams = $this
-            ->getMockBuilder(Teams::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedTeams->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedTeams->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedTeams = $this->createEndpointMock(Teams::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedTeams = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedTeams);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedTeams);
+        self::assertInstanceOf(Endpoint::class, $this->mockedTeams);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedTeams);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedTeams->list($getParameters)
+            $this->mockedTeams->list($getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams",
@@ -78,7 +57,7 @@ final class TeamsTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'teams',
             ],
-            $this->mockedTeams->fetchAll()
+            $this->mockedTeams->fetchAll()->getContent()
         );
     }
 }

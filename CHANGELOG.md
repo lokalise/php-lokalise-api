@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0 (Dec 23, 2020)
+- Added support of PHP 8.
+- Dropped support of PHP 5.6.
+
 ## 3.1.0 (Jun 3, 2020)
 - Added [webhook](Docs/webhooks.md) API.
 

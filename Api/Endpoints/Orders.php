@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://app.lokalise.com/api2docs/curl/#resource-team-user-groups
  */
-class Orders extends Endpoint implements EndpointInterface
+class Orders extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class Orders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($teamId, $queryParams = [])
+    public function list(int $teamId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -44,7 +44,7 @@ class Orders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($teamId)
+    public function fetchAll(int $teamId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -66,7 +66,7 @@ class Orders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($teamId, $orderId)
+    public function retrieve(int $teamId, string $orderId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -78,7 +78,6 @@ class Orders extends Endpoint implements EndpointInterface
      * @link https://app.lokalise.com/api2docs/curl/#transition-create-an-order-post
      *
      * @param int $teamId
-     *
      * @param array $body
      *
      * @return LokaliseApiResponse
@@ -86,7 +85,7 @@ class Orders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($teamId, $body)
+    public function create(int $teamId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',

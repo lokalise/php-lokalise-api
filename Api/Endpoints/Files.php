@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints
  * @link https://app.lokalise.com/api2docs/curl/#resource-files
  */
-class Files extends Endpoint implements EndpointInterface
+class Files extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class Files extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($projectId, $queryParams = [])
+    public function list(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -44,7 +44,7 @@ class Files extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($projectId)
+    public function fetchAll(string $projectId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -66,7 +66,7 @@ class Files extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function upload($projectId, $body)
+    public function upload(string $projectId, array $body): LokaliseApiResponse
     {
         // Requests that do not use the queue=true parameter are deprecated and will be unsupported
         $body['queue'] = true;
@@ -90,7 +90,7 @@ class Files extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function download($projectId, $body)
+    public function download(string $projectId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',

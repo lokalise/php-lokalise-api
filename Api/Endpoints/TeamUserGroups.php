@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://app.lokalise.com/api2docs/curl/#resource-team-user-groups
  */
-class TeamUserGroups extends Endpoint implements EndpointInterface
+class TeamUserGroups extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($teamId, $queryParams = [])
+    public function list(int $teamId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -44,7 +44,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($teamId)
+    public function fetchAll(int $teamId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -66,7 +66,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($teamId, $groupId)
+    public function retrieve(int $teamId, int $groupId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -86,7 +86,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function update($teamId, $groupId, $body)
+    public function update(int $teamId, int $groupId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -107,7 +107,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($teamId, $body)
+    public function create(int $teamId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -128,7 +128,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($teamId, $groupId)
+    public function delete(int $teamId, int $groupId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',
@@ -148,7 +148,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function addProjects($teamId, $groupId, $body)
+    public function addProjects(int $teamId, int $groupId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -170,7 +170,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function removeProjects($teamId, $groupId, $body)
+    public function removeProjects(int $teamId, int $groupId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -192,7 +192,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function addMembers($teamId, $groupId, $body)
+    public function addMembers(int $teamId, int $groupId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -214,7 +214,7 @@ class TeamUserGroups extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function removeMembers($teamId, $groupId, $body)
+    public function removeMembers(int $teamId, int $groupId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',

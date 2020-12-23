@@ -1,78 +1,59 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
+namespace Lokalise\Tests\Endpoints;
+
+use PHPUnit\Framework\MockObject\MockObject;
 use \PHPUnit\Framework\TestCase;
 use Lokalise\Endpoints\TranslationProviders;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class TranslationProvidersTest extends TestCase
 {
-    /** @var TranslationProviders */
-    protected $mockedProviders;
+    use MockEndpointTrait;
 
-    protected function setUp()
+    /** @var TranslationProviders|MockObject */
+    private $mockedProviders;
+
+    protected function setUp(): void
     {
-        $this->mockedProviders = $this
-            ->getMockBuilder(TranslationProviders::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedProviders->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedProviders->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedProviders = $this->createEndpointMock(TranslationProviders::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedProviders = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedProviders);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedProviders);
+        self::assertInstanceOf(Endpoint::class, $this->mockedProviders);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedProviders);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $getParameters = ['params' => ['any']];
 
-        $teamId = '{Team_Id}';
+        $teamId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/{$teamId}/translation_providers",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedProviders->list($teamId, $getParameters)
+            $this->mockedProviders->list($teamId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
-        $teamId = '{Team_Id}';
+        $teamId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/{$teamId}/translation_providers",
@@ -80,23 +61,23 @@ final class TranslationProvidersTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'translation_providers',
             ],
-            $this->mockedProviders->fetchAll($teamId)
+            $this->mockedProviders->fetchAll($teamId)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
-        $teamId = '{Team_Id}';
-        $providerId = '{Provider_Id}';
+        $teamId = 123;
+        $providerId = 456;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/{$teamId}/translation_providers/$providerId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedProviders->retrieve($teamId, $providerId)
+            $this->mockedProviders->retrieve($teamId, $providerId)->getContent()
         );
     }
 }

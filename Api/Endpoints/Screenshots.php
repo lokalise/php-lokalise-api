@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://app.lokalise.com/api2docs/curl/#resource-screenshots
  */
-class Screenshots extends Endpoint implements EndpointInterface
+class Screenshots extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class Screenshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($projectId, $queryParams = [])
+    public function list(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -44,7 +44,7 @@ class Screenshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($projectId)
+    public function fetchAll(string $projectId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -66,7 +66,7 @@ class Screenshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($projectId, $body)
+    public function create(string $projectId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -87,7 +87,7 @@ class Screenshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($projectId, $screenshotId)
+    public function retrieve(string $projectId, int $screenshotId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -107,7 +107,7 @@ class Screenshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function update($projectId, $screenshotId, $body)
+    public function update(string $projectId, int $screenshotId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -128,7 +128,7 @@ class Screenshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($projectId, $screenshotId)
+    public function delete(string $projectId, int $screenshotId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',

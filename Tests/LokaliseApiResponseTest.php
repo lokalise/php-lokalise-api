@@ -1,5 +1,7 @@
 <?php
 
+namespace Lokalise\Tests;
+
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\LokaliseApiResponse as ApiResponse;
 use \GuzzleHttp\Client;
@@ -14,7 +16,7 @@ final class LokaliseApiResponseTest extends TestCase
 
     private $headers;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->headers = [
             'X-Pagination-Total-Count' => 14,
@@ -24,79 +26,79 @@ final class LokaliseApiResponseTest extends TestCase
         ];
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->headers = null;
     }
 
-    public function testHeaders()
+    public function testHeaders(): void
     {
         $apiResponse = $this->getApiResponse(200, $this->headers);
 
-        $this->assertEquals($this->headers, $apiResponse->headers);
+        self::assertEquals($this->headers, $apiResponse->headers);
     }
 
-    public function testGetTotalCount()
+    public function testGetTotalCount(): void
     {
         $apiResponse = $this->getApiResponse(200, $this->headers);
 
-        $this->assertEquals($this->headers['X-Pagination-Total-Count'], $apiResponse->getTotalCount());
+        self::assertEquals($this->headers['X-Pagination-Total-Count'], $apiResponse->getTotalCount());
     }
 
-    public function testGetPageCount()
+    public function testGetPageCount(): void
     {
         $apiResponse = $this->getApiResponse(200, $this->headers);
 
-        $this->assertEquals($this->headers['X-Pagination-Page-Count'], $apiResponse->getPageCount());
+        self::assertEquals($this->headers['X-Pagination-Page-Count'], $apiResponse->getPageCount());
     }
 
-    public function testGetPaginationLimit()
+    public function testGetPaginationLimit(): void
     {
         $apiResponse = $this->getApiResponse(200, $this->headers);
 
-        $this->assertEquals($this->headers['X-Pagination-Limit'], $apiResponse->getPaginationLimit());
+        self::assertEquals($this->headers['X-Pagination-Limit'], $apiResponse->getPaginationLimit());
     }
 
-    public function testGetPaginationPage()
+    public function testGetPaginationPage(): void
     {
         $apiResponse = $this->getApiResponse(200, $this->headers);
 
-        $this->assertEquals($this->headers['X-Pagination-Page'], $apiResponse->getPaginationPage());
+        self::assertEquals($this->headers['X-Pagination-Page'], $apiResponse->getPaginationPage());
     }
 
-    public function testBody()
+    public function testBody(): void
     {
         $body = ['keys' => ['one' => 'key']];
         $apiResponse = $this->getApiResponse(200, [], $body);
 
-        $this->assertEquals($body, $apiResponse->body);
+        self::assertEquals($body, $apiResponse->body);
     }
 
-    public function testGetContent()
+    public function testGetContent(): void
     {
         $body = ['keys' => ['one' => 'key']];
         $apiResponse = $this->getApiResponse(200, [], $body);
 
-        $this->assertEquals($body, $apiResponse->getContent());
+        self::assertEquals($body, $apiResponse->getContent());
     }
 
-    public function testToArray()
+    public function testToArray(): void
     {
         $body = ['keys' => ['one' => 'key']];
         $apiResponse = $this->getApiResponse(200, [], $body);
 
-        $this->assertEquals($body, $apiResponse->getContent());
-        $this->assertEquals($body, $apiResponse->__toArray());
+        self::assertEquals($body, $apiResponse->getContent());
+        self::assertEquals($body, $apiResponse->__toArray());
     }
 
-    public function testToString()
+    public function testToString(): void
     {
         $body = ['keys' => ['one' => 'key']];
         $bodyString = '{"keys":{"one":"key"}}';
         $apiResponse = $this->getApiResponse(200, [], $body);
 
-        $this->assertEquals($body, $apiResponse->getContent());
-        $this->assertEquals($bodyString, $apiResponse->__toString());
+        self::assertEquals($body, $apiResponse->getContent());
+        self::assertEquals($bodyString, $apiResponse->__toString());
     }
 
     /**
@@ -105,7 +107,7 @@ final class LokaliseApiResponseTest extends TestCase
      * @param null|array $body
      * @return ApiResponse
      */
-    private function getApiResponse($status = 200, $headers = [], $body = null)
+    private function getApiResponse($status = 200, $headers = [], $body = null): ApiResponse
     {
         $client = new Client([
             'handler' => HandlerStack::create(
@@ -120,7 +122,7 @@ final class LokaliseApiResponseTest extends TestCase
         ]);
 
         try {
-            $guzzleResponse = $client->request('GET', null);
+            $guzzleResponse = $client->request('GET', 'https://api.lokalise.com/api2');
         } catch (RequestException $e) {
             $guzzleResponse = new Response($status, $headers, json_encode($body));
         } catch (GuzzleException $e) {

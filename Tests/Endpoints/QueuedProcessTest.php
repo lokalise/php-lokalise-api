@@ -1,75 +1,66 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
-use \PHPUnit\Framework\TestCase;
-use \Lokalise\Endpoints\QueuedProcesses;
-use \PHPUnit\Framework\MockObject\MockObject;
+namespace Lokalise\Tests\Endpoints;
+
+use PHPUnit\Framework\TestCase;
+use Lokalise\Endpoints\QueuedProcesses;
+use PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class QueuedProcessTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedProcesses;
+    /** @var MockObject|QueuedProcesses */
+    private $mockedProcesses;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedProcesses = $this
-            ->getMockBuilder(QueuedProcesses::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request'])
-            ->getMock();
-
-        $this->mockedProcesses->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
+        $this->mockedProcesses = $this->createEndpointMock(QueuedProcesses::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedProcesses = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedProcesses);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedProcesses);
+        self::assertInstanceOf(Endpoint::class, $this->mockedProcesses);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedProcesses);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/processes",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedProcesses->list($projectId, $getParameters)
+            $this->mockedProcesses->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
         $processId = '{Screenshot_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/processes/$processId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedProcesses->retrieve($projectId, $processId)
+            $this->mockedProcesses->retrieve($projectId, $processId)->getContent()
         );
     }
 }
