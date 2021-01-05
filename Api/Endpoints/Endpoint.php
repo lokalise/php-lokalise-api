@@ -16,7 +16,7 @@ class Endpoint implements EndpointInterface
     /** @var string $baseUrl API base URL */
     protected $baseUrl;
 
-    /** @var null|string `X-Api-Token` authentication header */
+    /** @var string `X-Api-Token` authentication header */
     protected $apiToken;
 
     /** @var Client */
@@ -26,9 +26,9 @@ class Endpoint implements EndpointInterface
      * Endpoint constructor.
      *
      * @param string $baseUrl parent::constant
-     * @param string|null $apiToken Client provided authentication token
+     * @param string $apiToken Client provided authentication token
      */
-    public function __construct(string $baseUrl, ?string $apiToken)
+    public function __construct(string $baseUrl, string $apiToken)
     {
         $this->baseUrl = $baseUrl;
         $this->apiToken = $apiToken;
