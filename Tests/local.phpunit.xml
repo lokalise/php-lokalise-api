@@ -9,25 +9,25 @@
         verbose="true"
         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
-  <coverage includeUncoveredFiles="false">
-    <include>
-      <directory suffix=".php">./..</directory>
-    </include>
-    <exclude>
-      <directory>./../vendor</directory>
-    </exclude>
-  </coverage>
-  <testsuites>
-    <testsuite name="app">
-      <directory>.</directory>
-    </testsuite>
-  </testsuites>
-  <groups>
-    <exclude>
-      <group>integrationTest</group>
-    </exclude>
-  </groups>
-  <php>
+    <coverage includeUncoveredFiles="false">
+        <include>
+            <directory suffix=".php">./..</directory>
+        </include>
+        <exclude>
+            <directory>./../vendor</directory>
+        </exclude>
+    </coverage>
+    <testsuites>
+        <testsuite name="app">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+    <groups>
+        <exclude>
+            <group>integrationTest</group>
+        </exclude>
+    </groups>
+    <php>
 
     </php>
 </phpunit>
