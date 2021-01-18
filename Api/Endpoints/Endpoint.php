@@ -11,16 +11,15 @@ use \Lokalise\LokaliseApiResponse;
 
 class Endpoint implements EndpointInterface
 {
-    public const FETCH_ALL_LIMIT = 1000;
+    public const FETCH_ALL_LIMIT = 1_000;
 
     /** @var string $baseUrl API base URL */
-    protected $baseUrl;
+    protected string $baseUrl;
 
     /** @var string `X-Api-Token` authentication header */
-    protected $apiToken;
+    protected string $apiToken;
 
-    /** @var Client */
-    private $client;
+    private ?Client $client = null;
 
     /**
      * Endpoint constructor.
@@ -84,11 +83,11 @@ class Endpoint implements EndpointInterface
             throw new LokaliseApiException($e->getMessage(), $e->getCode());
         }
 
-        $body = $guzzleResponse->getBody();
-        if (is_null($body)) {
+        $responseBody = $guzzleResponse->getBody();
+        if (is_null($responseBody)) {
             throw new LokaliseApiException('Not found', 404);
         }
-        $bodyJson = @json_decode($body, true);
+        $bodyJson = @json_decode($responseBody, true);
         if (!is_array($bodyJson) || json_last_error() !== JSON_ERROR_NONE) {
             throw new LokaliseApiException('Not found', 404);
         }
@@ -124,6 +123,7 @@ class Endpoint implements EndpointInterface
         }
         while ($result->getPageCount() > $page) {
             $page++;
+            /** @noinspection SlowArrayOperationsInLoopInspection */
             $queryParams = array_merge($queryParams, ['limit' => self::FETCH_ALL_LIMIT, 'page' => $page]);
             $result = $this->request($requestType, $uri, $queryParams, $body);
             if (is_array($result->body[$bodyResponseKey])) {

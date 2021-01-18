@@ -16,9 +16,7 @@ use ReflectionClass;
 
 final class EndpointTest extends TestCase
 {
-
-    /** @var Endpoint */
-    protected $endpoint;
+    protected ?Endpoint $endpoint = null;
 
     protected function setUp(): void
     {
@@ -47,7 +45,7 @@ final class EndpointTest extends TestCase
                     new Response(
                         $status,
                         $headers,
-                        json_encode($body)
+                        json_encode($body, JSON_THROW_ON_ERROR)
                     ),
                 ])
             ),

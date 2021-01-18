@@ -22,9 +22,7 @@ use Lokalise\Endpoints\TeamUserGroups;
 
 final class LokaliseApiClientTest extends TestCase
 {
-
-    /** @var ApiClient */
-    protected $apiClient;
+    protected ?ApiClient $apiClient = null;
 
     protected function setUp(): void
     {

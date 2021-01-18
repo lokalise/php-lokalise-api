@@ -3,6 +3,7 @@
 namespace Lokalise;
 
 use Exception;
+use JsonException;
 use \Psr\Http\Message\ResponseInterface;
 
 class LokaliseApiResponse
@@ -12,11 +13,8 @@ class LokaliseApiResponse
     public const HEADER_PAGINATION_LIMIT = "X-Pagination-Limit";
     public const HEADER_PAGINATION_PAGE = "X-Pagination-Page";
 
-    /** @var array */
-    public $headers;
-
-    /** @var array */
-    public $body;
+    public array $headers;
+    public ?array $body;
 
     /**
      * LokaliseApiResponse constructor.
@@ -37,7 +35,7 @@ class LokaliseApiResponse
         }
 
         try {
-            $this->body = json_decode($guzzleResponse->getBody(), true);
+            $this->body = json_decode($guzzleResponse->getBody(), true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception $e) {
             $this->body = [];
         }
@@ -63,10 +61,11 @@ class LokaliseApiResponse
     /**
      * Return body content of the response encoded to JSON string
      * @return string
+     * @throws JsonException
      */
     public function __toString(): string
     {
-        return json_encode($this->getContent()) ?: '';
+        return json_encode($this->getContent(), JSON_THROW_ON_ERROR);
     }
 
     /**

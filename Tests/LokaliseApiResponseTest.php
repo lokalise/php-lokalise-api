@@ -1,7 +1,8 @@
-<?php
+<?php /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Lokalise\Tests;
 
+use JsonException;
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\LokaliseApiResponse as ApiResponse;
 use \GuzzleHttp\Client;
@@ -14,7 +15,7 @@ use \GuzzleHttp\Exception\GuzzleException;
 final class LokaliseApiResponseTest extends TestCase
 {
 
-    private $headers;
+    private ?array $headers = null;
 
     protected function setUp(): void
     {
@@ -98,16 +99,18 @@ final class LokaliseApiResponseTest extends TestCase
         $apiResponse = $this->getApiResponse(200, [], $body);
 
         self::assertEquals($body, $apiResponse->getContent());
-        self::assertEquals($bodyString, $apiResponse->__toString());
+        self::assertEquals($bodyString, (string)$apiResponse);
     }
 
     /**
      * @param int $status
      * @param array $headers
      * @param null|array $body
+     *
      * @return ApiResponse
+     * @throws JsonException
      */
-    private function getApiResponse($status = 200, $headers = [], $body = null): ApiResponse
+    private function getApiResponse(int $status = 200, array $headers = [], array $body = null): ApiResponse
     {
         $client = new Client([
             'handler' => HandlerStack::create(
@@ -115,7 +118,7 @@ final class LokaliseApiResponseTest extends TestCase
                     new Response(
                         $status,
                         $headers,
-                        json_encode($body)
+                        json_encode($body, JSON_THROW_ON_ERROR)
                     )
                 ])
             )
@@ -124,9 +127,9 @@ final class LokaliseApiResponseTest extends TestCase
         try {
             $guzzleResponse = $client->request('GET', 'https://api.lokalise.com/api2');
         } catch (RequestException $e) {
-            $guzzleResponse = new Response($status, $headers, json_encode($body));
+            $guzzleResponse = new Response($status, $headers, json_encode($body, JSON_THROW_ON_ERROR));
         } catch (GuzzleException $e) {
-            $guzzleResponse = new Response($status, $headers, json_encode($body));
+            $guzzleResponse = new Response($status, $headers, json_encode($body, JSON_THROW_ON_ERROR));
         }
 
         return new ApiResponse($guzzleResponse);
