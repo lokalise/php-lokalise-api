@@ -123,8 +123,10 @@ class Endpoint implements EndpointInterface
         }
         while ($result->getPageCount() > $page) {
             $page++;
-            /** @noinspection SlowArrayOperationsInLoopInspection */
-            $queryParams = array_merge($queryParams, ['limit' => self::FETCH_ALL_LIMIT, 'page' => $page]);
+
+            $queryParams['limit'] = self::FETCH_ALL_LIMIT;
+            $queryParams['page'] = $page;
+
             $result = $this->request($requestType, $uri, $queryParams, $body);
             if (is_array($result->body[$bodyResponseKey])) {
                 $bodyData = array_merge($result->body[$bodyResponseKey], $bodyData);
