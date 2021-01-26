@@ -1,13 +1,13 @@
 # Lokalise API v2 official PHP library
 
-Client library for [Lokalise](https://lokalise.com) API 2.0, written with PHP5.
+Client library for [Lokalise](https://lokalise.com) API 2.0, written with PHP.
 [Full API reference](https://lokalise.com/api2docs/curl/).
 
 Changelog is located [here](CHANGELOG.md).
 
 ## Getting started
 
-1. PHP 7.2.x or greater is required
+1. PHP 7.4.x or greater is required
 2. Install LokaliseApiClient using [Composer](#composer-installation) (recommended) or manually
 
 ## Composer installation
