@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0 (Jan 18, 2021)
+- Support from 7.4 (lower in 3..)
+- Response serialisation throws exceptions on failure
+
 ## 3.1.0 (Jun 3, 2020)
 - Added [webhook](Docs/webhooks.md) API.
 

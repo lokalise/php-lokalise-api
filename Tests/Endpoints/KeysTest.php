@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\Keys;
 use \PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class KeysTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedKeys;
+    /** @var MockObject|Keys */
+    private $mockedKeys;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedKeys = $this
-            ->getMockBuilder(Keys::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedKeys->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedKeys->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedKeys = $this->createEndpointMock(Keys::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedKeys = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedKeys);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedKeys);
+        self::assertInstanceOf(Endpoint::class, $this->mockedKeys);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedKeys);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/keys",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedKeys->list($projectId, $getParameters)
+            $this->mockedKeys->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/keys",
@@ -81,104 +60,104 @@ final class KeysTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'keys',
             ],
-            $this->mockedKeys->fetchAll($projectId)
+            $this->mockedKeys->fetchAll($projectId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/keys",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedKeys->create($projectId, $body)
+            $this->mockedKeys->create($projectId, $body)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
-        $keyId = '{Key_Id}';
+        $keyId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/keys/$keyId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedKeys->retrieve($projectId, $keyId)
+            $this->mockedKeys->retrieve($projectId, $keyId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $projectId = '{Project_Id}';
-        $keyId = '{Key_Id}';
+        $keyId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/keys/$keyId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedKeys->update($projectId, $keyId, $body)
+            $this->mockedKeys->update($projectId, $keyId, $body)->getContent()
         );
     }
 
-    public function testBulkUpdate()
+    public function testBulkUpdate(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/keys",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedKeys->bulkUpdate($projectId, $body)
+            $this->mockedKeys->bulkUpdate($projectId, $body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $projectId = '{Project_Id}';
-        $keyId = '{Key_Id}';
+        $keyId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId/keys/$keyId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedKeys->delete($projectId, $keyId)
+            $this->mockedKeys->delete($projectId, $keyId)->getContent()
         );
     }
 
-    public function testBulkDelete()
+    public function testBulkDelete(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId/keys",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedKeys->bulkDelete($projectId, $body)
+            $this->mockedKeys->bulkDelete($projectId, $body)->getContent()
         );
     }
 }

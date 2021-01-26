@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use Lokalise\Endpoints\CustomTranslationStatuses;
-use \PHPUnit\Framework\TestCase;
-use \PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class CustomTranslationStatusesTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedCustomTranslationStatuses;
+    /** @var MockObject|CustomTranslationStatuses */
+    private $mockedCustomTranslationStatuses;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedCustomTranslationStatuses = $this
-            ->getMockBuilder(CustomTranslationStatuses::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedCustomTranslationStatuses->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedCustomTranslationStatuses->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedCustomTranslationStatuses = $this->createEndpointMock(CustomTranslationStatuses::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedCustomTranslationStatuses = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedCustomTranslationStatuses);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedCustomTranslationStatuses);
+        self::assertInstanceOf(Endpoint::class, $this->mockedCustomTranslationStatuses);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedCustomTranslationStatuses);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/custom-translation-statuses",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedCustomTranslationStatuses->list($projectId, $getParameters)
+            $this->mockedCustomTranslationStatuses->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/custom-translation-statuses",
@@ -81,72 +60,72 @@ final class CustomTranslationStatusesTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'custom_translation_statuses',
             ],
-            $this->mockedCustomTranslationStatuses->fetchAll($projectId)
+            $this->mockedCustomTranslationStatuses->fetchAll($projectId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/custom-translation-statuses",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedCustomTranslationStatuses->create($projectId, $body)
+            $this->mockedCustomTranslationStatuses->create($projectId, $body)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
-        $statusId = '{Status_Id}';
+        $statusId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/custom-translation-statuses/$statusId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedCustomTranslationStatuses->retrieve($projectId, $statusId)
+            $this->mockedCustomTranslationStatuses->retrieve($projectId, $statusId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $projectId = '{Project_Id}';
-        $statusId = '{Status_Id}';
+        $statusId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/custom-translation-statuses/$statusId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedCustomTranslationStatuses->update($projectId, $statusId, $body)
+            $this->mockedCustomTranslationStatuses->update($projectId, $statusId, $body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $projectId = '{Project_Id}';
-        $statusId = '{Status_Id}';
+        $statusId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId/custom-translation-statuses/$statusId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedCustomTranslationStatuses->delete($projectId, $statusId)
+            $this->mockedCustomTranslationStatuses->delete($projectId, $statusId)->getContent()
         );
     }
 }

@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://app.lokalise.com/api2docs/curl/#resource-snapshots
  */
-class Snapshots extends Endpoint implements EndpointInterface
+class Snapshots extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($projectId, $queryParams = [])
+    public function list(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -44,7 +44,7 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($projectId)
+    public function fetchAll(string $projectId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -66,7 +66,7 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($projectId, $body)
+    public function create(string $projectId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -87,7 +87,7 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function restore($projectId, $snapshotId)
+    public function restore(string $projectId, int $snapshotId): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -106,7 +106,7 @@ class Snapshots extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($projectId, $snapshotId)
+    public function delete(string $projectId, int $snapshotId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',

@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\TeamUsers;
 use \PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class TeamUsersTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedTeamUsers;
+    /** @var MockObject|TeamUsers */
+    private $mockedTeamUsers;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedTeamUsers = $this
-            ->getMockBuilder(TeamUsers::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedTeamUsers->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedTeamUsers->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedTeamUsers = $this->createEndpointMock(TeamUsers::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedTeamUsers = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedTeamUsers);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedTeamUsers);
+        self::assertInstanceOf(Endpoint::class, $this->mockedTeamUsers);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedTeamUsers);
     }
 
-    public function testList()
+    public function testList(): void
     {
-        $teamId = '{Team_Id}';
+        $teamId = 123;
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/$teamId/users",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedTeamUsers->list($teamId, $getParameters)
+            $this->mockedTeamUsers->list($teamId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
-        $teamId = '{Team_Id}';
+        $teamId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/$teamId/users",
@@ -81,56 +60,56 @@ final class TeamUsersTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'team_users',
             ],
-            $this->mockedTeamUsers->fetchAll($teamId)
+            $this->mockedTeamUsers->fetchAll($teamId)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
-        $teamId = '{Team_Id}';
-        $userId = '{User_Id}';
+        $teamId = 123;
+        $userId = 456;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/$teamId/users/$userId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedTeamUsers->retrieve($teamId, $userId)
+            $this->mockedTeamUsers->retrieve($teamId, $userId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
-        $teamId = '{Team_Id}';
-        $userId = '{User_Id}';
+        $teamId = 123;
+        $userId = 456;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "teams/$teamId/users/$userId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTeamUsers->update($teamId, $userId, $body)
+            $this->mockedTeamUsers->update($teamId, $userId, $body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
-        $teamId = '{Team_Id}';
-        $userId = '{User_Id}';
+        $teamId = 123;
+        $userId = 456;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "teams/$teamId/users/$userId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedTeamUsers->delete($teamId, $userId)
+            $this->mockedTeamUsers->delete($teamId, $userId)->getContent()
         );
     }
 }

@@ -1,78 +1,57 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\Projects;
 use \PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class ProjectsTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedProjects;
+    /** @var MockObject|Projects */
+    private $mockedProjects;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedProjects = $this
-            ->getMockBuilder(Projects::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedProjects->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedProjects->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedProjects = $this->createEndpointMock(Projects::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedProjects = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedProjects);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedProjects);
+        self::assertInstanceOf(Endpoint::class, $this->mockedProjects);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedProjects);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedProjects->list($getParameters)
+            $this->mockedProjects->list($getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects",
@@ -80,83 +59,83 @@ final class ProjectsTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'projects',
             ],
-            $this->mockedProjects->fetchAll($getParameters)
+            $this->mockedProjects->fetchAll($getParameters)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedProjects->create($body)
+            $this->mockedProjects->create($body)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedProjects->retrieve($projectId)
+            $this->mockedProjects->retrieve($projectId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedProjects->update($projectId, $body)
+            $this->mockedProjects->update($projectId, $body)->getContent()
         );
     }
 
-    public function testEmpty()
+    public function testEmpty(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/empty",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedProjects->empty($projectId)
+            $this->mockedProjects->empty($projectId)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedProjects->delete($projectId)
+            $this->mockedProjects->delete($projectId)->getContent()
         );
     }
 }

@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://app.lokalise.com/api2docs/curl/#resource-providers
  */
-class TranslationProviders extends Endpoint implements EndpointInterface
+class TranslationProviders extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class TranslationProviders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($teamId, $queryParams = [])
+    public function list(int $teamId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -44,7 +44,7 @@ class TranslationProviders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($teamId)
+    public function fetchAll(int $teamId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -66,7 +66,7 @@ class TranslationProviders extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($teamId, $providerId)
+    public function retrieve(int $teamId, int $providerId): LokaliseApiResponse
     {
         return $this->request(
             'GET',

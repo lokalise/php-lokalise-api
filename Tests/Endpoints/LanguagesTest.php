@@ -1,76 +1,55 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\Languages;
 use \PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class LanguagesTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedLanguages;
+    /** @var MockObject|Languages */
+    private $mockedLanguages;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedLanguages = $this
-            ->getMockBuilder(Languages::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedLanguages->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedLanguages->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedLanguages = $this->createEndpointMock(Languages::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedLanguages = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedLanguages);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedLanguages);
+        self::assertInstanceOf(Endpoint::class, $this->mockedLanguages);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedLanguages);
     }
 
-    public function testListSystem()
+    public function testListSystem(): void
     {
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "system/languages",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedLanguages->listSystem($getParameters)
+            $this->mockedLanguages->listSystem($getParameters)->getContent()
         );
     }
 
-    public function testFetchAllSystem()
+    public function testFetchAllSystem(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "system/languages",
@@ -78,31 +57,31 @@ final class LanguagesTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'languages',
             ],
-            $this->mockedLanguages->fetchAllSystem()
+            $this->mockedLanguages->fetchAllSystem()->getContent()
         );
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/languages",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedLanguages->list($projectId, $getParameters)
+            $this->mockedLanguages->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/languages",
@@ -110,72 +89,72 @@ final class LanguagesTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'languages',
             ],
-            $this->mockedLanguages->fetchAll($projectId)
+            $this->mockedLanguages->fetchAll($projectId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/languages",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedLanguages->create($projectId, $body)
+            $this->mockedLanguages->create($projectId, $body)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
-        $languageId = '{Language_Id}';
+        $languageId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/languages/$languageId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedLanguages->retrieve($projectId, $languageId)
+            $this->mockedLanguages->retrieve($projectId, $languageId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $projectId = '{Project_Id}';
-        $languageId = '{Language_Id}';
+        $languageId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/languages/$languageId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedLanguages->update($projectId, $languageId, $body)
+            $this->mockedLanguages->update($projectId, $languageId, $body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $projectId = '{Project_Id}';
-        $languageId = '{Languages_Id}';
+        $languageId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId/languages/$languageId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedLanguages->delete($projectId, $languageId)
+            $this->mockedLanguages->delete($projectId, $languageId)->getContent()
         );
     }
 }

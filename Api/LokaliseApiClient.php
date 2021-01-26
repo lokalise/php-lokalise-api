@@ -24,73 +24,54 @@ use Lokalise\Endpoints\Webhooks;
 
 class LokaliseApiClient
 {
-    const VERSION = '3.1.0';
+    public const VERSION = '4.0.0';
 
-    const ENDPOINT = 'https://api.lokalise.com/api2/';
+    public const ENDPOINT = 'https://api.lokalise.com/api2/';
 
-    /** @var Comments */
-    public $comments;
+    public Comments $comments;
 
-    /** @var Contributors */
-    public $contributors;
+    public Contributors $contributors;
 
-    /** @var Files */
-    public $files;
+    public Files $files;
 
-    /** @var Keys */
-    public $keys;
+    public Keys $keys;
 
-    /** @var Languages */
-    public $languages;
+    public Languages $languages;
 
-    /** @var Projects */
-    public $projects;
+    public Projects $projects;
 
-    /** @var QueuedProcesses */
-    public $queuedProcesses;
+    public QueuedProcesses $queuedProcesses;
 
-    /** @var Screenshots */
-    public $screenshots;
+    public Screenshots $screenshots;
 
-    /** @var Snapshots */
-    public $snapshots;
+    public Snapshots $snapshots;
 
-    /** @var Tasks */
-    public $tasks;
+    public Tasks $tasks;
 
-    /** @var Teams */
-    public $teams;
+    public Teams $teams;
 
-    /** @var TeamUsers */
-    public $teamUsers;
+    public TeamUsers $teamUsers;
 
-    /** @var Translations */
-    public $translations;
+    public Translations $translations;
 
-    /** @var TeamUserGroups */
-    public $teamUserGroups;
+    public TeamUserGroups $teamUserGroups;
 
-    /** @var TranslationProviders */
-    public $translationProviders;
+    public TranslationProviders $translationProviders;
 
-    /** @var PaymentCards */
-    public $paymentCards;
+    public PaymentCards $paymentCards;
 
-    /** @var Orders */
-    public $orders;
+    public Orders $orders;
 
-    /** @var CustomTranslationStatuses */
-    public $customTranslationStatuses;
+    public CustomTranslationStatuses $customTranslationStatuses;
 
-    /** @var Webhooks */
-    public $webhooks;
+    public Webhooks $webhooks;
 
     /**
      * LokaliseApiClient constructor.
      *
      * @param string $apiToken
      */
-    public function __construct($apiToken)
+    public function __construct(string $apiToken)
     {
         $this->comments = new Comments(self::ENDPOINT, $apiToken);
         $this->contributors = new Contributors(self::ENDPOINT, $apiToken);
@@ -116,7 +97,7 @@ class LokaliseApiClient
     /**
      * @return string
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         return self::VERSION;
     }

@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints]
  * @link https://app.lokalise.com/api2docs/curl/#resource-team-users
  */
-class TeamUsers extends Endpoint implements EndpointInterface
+class TeamUsers extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($teamId, $queryParams = [])
+    public function list(int $teamId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -44,7 +44,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($teamId)
+    public function fetchAll(int $teamId): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -66,7 +66,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($teamId, $userId)
+    public function retrieve(int $teamId, int $userId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -86,7 +86,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function update($teamId, $userId, $body)
+    public function update(int $teamId, int $userId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -107,7 +107,7 @@ class TeamUsers extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($teamId, $userId)
+    public function delete(int $teamId, int $userId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',

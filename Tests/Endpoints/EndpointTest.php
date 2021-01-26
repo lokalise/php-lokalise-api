@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\LokaliseApiResponse as ApiResponse;
@@ -9,49 +12,47 @@ use \GuzzleHttp\Client;
 use \GuzzleHttp\Handler\MockHandler;
 use \GuzzleHttp\HandlerStack;
 use \GuzzleHttp\Psr7\Response;
+use ReflectionClass;
 
 final class EndpointTest extends TestCase
 {
+    protected ?Endpoint $endpoint = null;
 
-    /** @var Endpoint */
-    protected $endpoint;
-
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->endpoint = new Lokalise\Endpoints\Endpoint(null, '{Test_Api_Token}');
+        $this->endpoint = new Endpoint('https://api.lokalise.com/api2', '{Test_Api_Token}');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->endpoint = null;
     }
 
-    private function callPrivateMethod($class, $name, $arguments = [])
+    private function callPrivateMethod($class, string $name, array $arguments = [])
     {
         $reflectionClass = new ReflectionClass(get_class($class));
         $method = $reflectionClass->getMethod($name);
         $method->setAccessible(true);
+
         return $method->invokeArgs($class, $arguments);
     }
 
-    private function getMockClient($status = 200, $headers = [], $body = null)
+    private function getMockClient($status = 200, $headers = [], $body = null): Client
     {
-        $client = new Client([
+        return new Client([
             'handler' => HandlerStack::create(
                 new MockHandler([
                     new Response(
                         $status,
                         $headers,
-                        json_encode($body)
-                    )
+                        json_encode($body, JSON_THROW_ON_ERROR)
+                    ),
                 ])
-            )
+            ),
         ]);
-
-        return $client;
     }
 
-    public function testQueryParamsToQueryString()
+    public function testQueryParamsToQueryString(): void
     {
         $params = [
             'param1' => 2,
@@ -63,7 +64,7 @@ final class EndpointTest extends TestCase
         ];
         $result = $this->callPrivateMethod($this->endpoint, 'queryParamsToQueryString', [$params]);
 
-        $this->assertEquals(
+        self::assertEquals(
             'param1=2&param2=exist&array%5Bfirst%5D=Hello&array%5Bsecond%5D=World',
             $result
         );
@@ -72,7 +73,7 @@ final class EndpointTest extends TestCase
     /**
      * @covers \Lokalise\Endpoints\Endpoint::replaceArrayWithCommaSeparatedString
      */
-    public function testFixArraysInQueryParams()
+    public function testFixArraysInQueryParams(): void
     {
         $params = [
             'param1' => 'single',
@@ -87,7 +88,7 @@ final class EndpointTest extends TestCase
         ];
         $result = $this->callPrivateMethod($this->endpoint, 'fixArraysInQueryParams', [$params]);
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'param1' => 'single',
                 'param2' => 'Hello,World',
@@ -97,7 +98,7 @@ final class EndpointTest extends TestCase
         );
     }
 
-    public function testRequest()
+    public function testRequest(): void
     {
         $client = $this->getMockClient(
             $status = 200,
@@ -116,23 +117,22 @@ final class EndpointTest extends TestCase
         /** @var ApiResponse $apiResponse */
         $apiResponse = $this->callPrivateMethod($this->endpoint, 'request', ['GET', '']);
 
-        $this->assertInstanceOf('\Lokalise\LokaliseApiResponse', $apiResponse);
-        $this->assertEquals($headers, $apiResponse->headers);
-        $this->assertEquals($body, $apiResponse->getContent());
+        self::assertInstanceOf(ApiResponse::class, $apiResponse);
+        self::assertEquals($headers, $apiResponse->headers);
+        self::assertEquals($body, $apiResponse->getContent());
     }
 
-    public function testRequestApiException()
+    public function testRequestApiException(): void
     {
         $this->expectException(LokaliseApiException::class);
         $this->expectExceptionCode(404);
 
         $client = $this->getMockClient(404);
         $this->callPrivateMethod($this->endpoint, 'setClient', [$client]);
-        /** @var ApiResponse $apiResponse */
-        $apiResponse = $this->callPrivateMethod($this->endpoint, 'request', ['GET', '']);
+        $this->callPrivateMethod($this->endpoint, 'request', ['GET', '']);
     }
 
-    public function testRequestResponseException()
+    public function testRequestResponseException(): void
     {
         $this->expectException(LokaliseResponseException::class);
         $this->expectExceptionMessage('test');
@@ -142,7 +142,6 @@ final class EndpointTest extends TestCase
 
         $client = $this->getMockClient(500, [], $body);
         $this->callPrivateMethod($this->endpoint, 'setClient', [$client]);
-        /** @var ApiResponse $apiResponse */
-        $apiResponse = $this->callPrivateMethod($this->endpoint, 'request', ['GET', '']);
+        $this->callPrivateMethod($this->endpoint, 'request', ['GET', '']);
     }
 }

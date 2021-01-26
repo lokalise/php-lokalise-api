@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
+namespace Lokalise\Tests\Endpoints;
 
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\Endpoints\Translations;
 use \PHPUnit\Framework\MockObject\MockObject;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class TranslationsTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedTranslations;
+    /** @var Translations|MockObject */
+    private $mockedTranslations;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedTranslations = $this
-            ->getMockBuilder(Translations::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedTranslations->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedTranslations->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedTranslations = $this->createEndpointMock(Translations::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedTranslations = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedTranslations);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedTranslations);
+        self::assertInstanceOf(Endpoint::class, $this->mockedTranslations);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedTranslations);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/translations",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedTranslations->list($projectId, $getParameters)
+            $this->mockedTranslations->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/translations",
@@ -81,40 +60,40 @@ final class TranslationsTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'translations',
             ],
-            $this->mockedTranslations->fetchAll($projectId)
+            $this->mockedTranslations->fetchAll($projectId)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
-        $translationId = '{Translation_Id}';
+        $translationId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/translations/$translationId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedTranslations->retrieve($projectId, $translationId)
+            $this->mockedTranslations->retrieve($projectId, $translationId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $projectId = '{Project_Id}';
-        $translationId = '{Translation_Id}';
+        $translationId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/translations/$translationId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTranslations->update($projectId, $translationId, $body)
+            $this->mockedTranslations->update($projectId, $translationId, $body)->getContent()
         );
     }
 }

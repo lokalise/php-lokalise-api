@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints
  * @link https://app.lokalise.com/api2docs/curl/#resource-queued-processes
  */
-class QueuedProcesses extends Endpoint implements EndpointInterface
+class QueuedProcesses extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class QueuedProcesses extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($projectId, $queryParams = [])
+    public function list(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -45,7 +45,7 @@ class QueuedProcesses extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($projectId, $processId)
+    public function retrieve(string $projectId, string $processId): LokaliseApiResponse
     {
         return $this->request(
             'GET',

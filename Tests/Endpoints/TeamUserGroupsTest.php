@@ -1,78 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
-use \PHPUnit\Framework\TestCase;
+namespace Lokalise\Tests\Endpoints;
+
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Lokalise\Endpoints\TeamUserGroups;
+use Lokalise\Endpoints\Endpoint;
+use Lokalise\Endpoints\EndpointInterface;
 
 final class TeamUserGroupsTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var TeamUserGroups */
-    protected $mockedTeamUserGroups;
+    /** @var TeamUserGroups|MockObject */
+    private $mockedTeamUserGroups;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedTeamUserGroups = $this
-            ->getMockBuilder(TeamUserGroups::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedTeamUserGroups->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedTeamUserGroups->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedTeamUserGroups = $this->createEndpointMock(TeamUserGroups::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedTeamUserGroups = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedTeamUserGroups);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedTeamUserGroups);
+        self::assertInstanceOf(Endpoint::class, $this->mockedTeamUserGroups);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedTeamUserGroups);
     }
 
-    public function testList()
+    public function testList(): void
     {
-        $teamId = '{Team_Id}';
+        $teamId = 123;
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/$teamId/groups",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedTeamUserGroups->list($teamId, $getParameters)
+            $this->mockedTeamUserGroups->list($teamId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
-        $teamId = '{Team_Id}';
+        $teamId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/$teamId/groups",
@@ -80,140 +60,140 @@ final class TeamUserGroupsTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'user_groups',
             ],
-            $this->mockedTeamUserGroups->fetchAll($teamId)
+            $this->mockedTeamUserGroups->fetchAll($teamId)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
-        $teamId = '{Team_Id}';
-        $groupId = '{Group_Id}';
+        $teamId = 123;
+        $groupId = 456;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "teams/$teamId/groups/$groupId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedTeamUserGroups->retrieve($teamId, $groupId)
+            $this->mockedTeamUserGroups->retrieve($teamId, $groupId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
-        $teamId = '{Team_Id}';
-        $groupId = '{Group_Id}';
+        $teamId = 123;
+        $groupId = 456;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "teams/$teamId/groups/$groupId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTeamUserGroups->update($teamId, $groupId, $body)
+            $this->mockedTeamUserGroups->update($teamId, $groupId, $body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
-        $teamId = '{Team_Id}';
-        $groupId = '{Group_Id}';
+        $teamId = 123;
+        $groupId = 456;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "teams/$teamId/groups/$groupId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedTeamUserGroups->delete($teamId, $groupId)
+            $this->mockedTeamUserGroups->delete($teamId, $groupId)->getContent()
         );
     }
 
-    public function testAddProjects()
+    public function testAddProjects(): void
     {
-        $teamId = '{Team_Id}';
-        $groupId = '{Group_Id}';
+        $teamId = 123;
+        $groupId = 456;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "teams/$teamId/groups/$groupId/projects/add",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTeamUserGroups->addProjects($teamId, $groupId, $body)
+            $this->mockedTeamUserGroups->addProjects($teamId, $groupId, $body)->getContent()
         );
     }
 
-    public function testRemoveProjects()
+    public function testRemoveProjects(): void
     {
-        $teamId = '{Team_Id}';
-        $groupId = '{Group_Id}';
+        $teamId = 123;
+        $groupId = 456;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "teams/$teamId/groups/$groupId/projects/remove",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTeamUserGroups->removeProjects($teamId, $groupId, $body)
+            $this->mockedTeamUserGroups->removeProjects($teamId, $groupId, $body)->getContent()
         );
     }
 
-    public function testAddMembers()
+    public function testAddMembers(): void
     {
-        $teamId = '{Team_Id}';
-        $groupId = '{Group_Id}';
+        $teamId = 123;
+        $groupId = 456;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "teams/$teamId/groups/$groupId/members/add",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTeamUserGroups->addMembers($teamId, $groupId, $body)
+            $this->mockedTeamUserGroups->addMembers($teamId, $groupId, $body)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
-        $teamId = '{Team_Id}';
+        $teamId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "teams/$teamId/groups",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTeamUserGroups->create($teamId, $body)
+            $this->mockedTeamUserGroups->create($teamId, $body)->getContent()
         );
     }
 
-    public function testRemoveMembers()
+    public function testRemoveMembers(): void
     {
-        $teamId = '{Team_Id}';
-        $groupId = '{Group_Id}';
+        $teamId = 123;
+        $groupId = 456;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "teams/$teamId/groups/$groupId/members/remove",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedTeamUserGroups->removeMembers($teamId, $groupId, $body)
+            $this->mockedTeamUserGroups->removeMembers($teamId, $groupId, $body)->getContent()
         );
     }
 }

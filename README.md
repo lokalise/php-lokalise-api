@@ -7,7 +7,7 @@ Changelog is located [here](CHANGELOG.md).
 
 ## Getting started
 
-1. PHP 5.6.x or greater is required
+1. PHP 7.2.x or greater is required
 2. Install LokaliseApiClient using [Composer](#composer-installation) (recommended) or manually
 
 ## Composer installation

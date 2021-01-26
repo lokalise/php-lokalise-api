@@ -11,7 +11,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  * @package Lokalise\Endpoints
  * @link https://app.lokalise.com/api2docs/curl/#resource-keys
  */
-class Keys extends Endpoint implements EndpointInterface
+class Keys extends Endpoint
 {
 
     /**
@@ -25,7 +25,7 @@ class Keys extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function list($projectId, $queryParams = [])
+    public function list(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -45,7 +45,7 @@ class Keys extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function fetchAll($projectId, $queryParams = [])
+    public function fetchAll(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
         return $this->requestAll(
             'GET',
@@ -67,7 +67,7 @@ class Keys extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function create($projectId, $body)
+    public function create(string $projectId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'POST',
@@ -88,7 +88,7 @@ class Keys extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve($projectId, $keyId)
+    public function retrieve(string $projectId, int $keyId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -108,7 +108,7 @@ class Keys extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function update($projectId, $keyId, $body)
+    public function update(string $projectId, int $keyId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -129,7 +129,7 @@ class Keys extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function bulkUpdate($projectId, $body)
+    public function bulkUpdate(string $projectId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -150,7 +150,7 @@ class Keys extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete($projectId, $keyId)
+    public function delete(string $projectId, int $keyId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',
@@ -169,7 +169,7 @@ class Keys extends Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function bulkDelete($projectId, $body)
+    public function bulkDelete(string $projectId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',

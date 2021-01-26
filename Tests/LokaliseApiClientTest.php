@@ -1,5 +1,7 @@
 <?php
 
+namespace Lokalise\Tests;
+
 use \PHPUnit\Framework\TestCase;
 use \Lokalise\LokaliseApiClient as ApiClient;
 use \Lokalise\Endpoints\Endpoint;
@@ -20,88 +22,86 @@ use Lokalise\Endpoints\TeamUserGroups;
 
 final class LokaliseApiClientTest extends TestCase
 {
+    protected ?ApiClient $apiClient = null;
 
-    /** @var ApiClient */
-    protected $apiClient;
-
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->apiClient = new ApiClient('{Test_Api_Token}');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->apiClient = null;
     }
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
-        $this->assertInstanceOf(ApiClient::class, $this->apiClient);
+        self::assertInstanceOf(ApiClient::class, $this->apiClient);
 
-        $this->assertInstanceOf(Comments::class, $this->apiClient->comments);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->comments);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->comments);
+        self::assertInstanceOf(Comments::class, $this->apiClient->comments);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->comments);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->comments);
 
-        $this->assertInstanceOf(Contributors::class, $this->apiClient->contributors);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->contributors);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->contributors);
+        self::assertInstanceOf(Contributors::class, $this->apiClient->contributors);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->contributors);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->contributors);
 
-        $this->assertInstanceOf(Files::class, $this->apiClient->files);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->files);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->files);
+        self::assertInstanceOf(Files::class, $this->apiClient->files);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->files);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->files);
 
-        $this->assertInstanceOf(Keys::class, $this->apiClient->keys);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->keys);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->keys);
+        self::assertInstanceOf(Keys::class, $this->apiClient->keys);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->keys);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->keys);
 
-        $this->assertInstanceOf(Languages::class, $this->apiClient->languages);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->languages);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->languages);
+        self::assertInstanceOf(Languages::class, $this->apiClient->languages);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->languages);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->languages);
 
-        $this->assertInstanceOf(Projects::class, $this->apiClient->projects);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->projects);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->projects);
+        self::assertInstanceOf(Projects::class, $this->apiClient->projects);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->projects);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->projects);
 
-        $this->assertInstanceOf(Screenshots::class, $this->apiClient->screenshots);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->screenshots);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->screenshots);
+        self::assertInstanceOf(Screenshots::class, $this->apiClient->screenshots);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->screenshots);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->screenshots);
 
-        $this->assertInstanceOf(Snapshots::class, $this->apiClient->snapshots);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->snapshots);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->snapshots);
+        self::assertInstanceOf(Snapshots::class, $this->apiClient->snapshots);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->snapshots);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->snapshots);
 
-        $this->assertInstanceOf(Tasks::class, $this->apiClient->tasks);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->tasks);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->tasks);
+        self::assertInstanceOf(Tasks::class, $this->apiClient->tasks);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->tasks);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->tasks);
 
-        $this->assertInstanceOf(Teams::class, $this->apiClient->teams);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->teams);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->teams);
+        self::assertInstanceOf(Teams::class, $this->apiClient->teams);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->teams);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->teams);
 
-        $this->assertInstanceOf(TeamUsers::class, $this->apiClient->teamUsers);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->teamUsers);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->teamUsers);
+        self::assertInstanceOf(TeamUsers::class, $this->apiClient->teamUsers);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->teamUsers);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->teamUsers);
 
-        $this->assertInstanceOf(Translations::class, $this->apiClient->translations);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->translations);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->translations);
+        self::assertInstanceOf(Translations::class, $this->apiClient->translations);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->translations);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->translations);
 
-        $this->assertInstanceOf(TeamUserGroups::class, $this->apiClient->teamUserGroups);
-        $this->assertInstanceOf(Endpoint::class, $this->apiClient->teamUserGroups);
-        $this->assertInstanceOf(EndpointInterface::class, $this->apiClient->teamUserGroups);
+        self::assertInstanceOf(TeamUserGroups::class, $this->apiClient->teamUserGroups);
+        self::assertInstanceOf(Endpoint::class, $this->apiClient->teamUserGroups);
+        self::assertInstanceOf(EndpointInterface::class, $this->apiClient->teamUserGroups);
     }
 
-    public function testEndpointUrl()
+    public function testEndpointUrl(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'https://api.lokalise.com/api2/',
             ApiClient::ENDPOINT
         );
     }
 
-    public function testGetVersion()
+    public function testGetVersion(): void
     {
-        $this->assertStringMatchesFormat(
+        self::assertStringMatchesFormat(
             '%d.%d.%d',
             $this->apiClient->getVersion()
         );

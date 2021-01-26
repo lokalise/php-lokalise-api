@@ -1,79 +1,58 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
-use \PHPUnit\Framework\TestCase;
-use \Lokalise\Endpoints\Contributors;
-use \PHPUnit\Framework\MockObject\MockObject;
+namespace Lokalise\Tests\Endpoints;
+
+use Lokalise\Endpoints\EndpointInterface;
+use Lokalise\Endpoints\Endpoint;
+use PHPUnit\Framework\TestCase;
+use Lokalise\Endpoints\Contributors;
+use PHPUnit\Framework\MockObject\MockObject;
 
 final class ContributorsTest extends TestCase
 {
+    use MockEndpointTrait;
 
-    /** @var MockObject */
-    protected $mockedContributors;
+    /** @var MockObject|Contributors */
+    private $mockedContributors;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->mockedContributors = $this
-            ->getMockBuilder(Contributors::class)
-            ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->setMethods(['request', 'requestAll'])
-            ->getMock();
-
-        $this->mockedContributors->method('request')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = []) {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                ];
-            }
-        );
-
-        $this->mockedContributors->method('requestAll')->willReturnCallback(
-            function ($requestType, $uri, $queryParams = [], $body = [], $bodyResponseKey = '') {
-                return [
-                    'requestType' => $requestType,
-                    'uri' => $uri,
-                    'queryParams' => $queryParams,
-                    'body' => $body,
-                    'bodyResponseKey' => $bodyResponseKey,
-                ];
-            }
-        );
+        $this->mockedContributors = $this->createEndpointMock(Contributors::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mockedContributors = null;
     }
 
-    public function testEndpointClass()
+    public function testEndpointClass(): void
     {
-        $this->assertInstanceOf('\Lokalise\Endpoints\Endpoint', $this->mockedContributors);
-        $this->assertInstanceOf('\Lokalise\Endpoints\EndpointInterface', $this->mockedContributors);
+        self::assertInstanceOf(Endpoint::class, $this->mockedContributors);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedContributors);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $projectId = '{Project_Id}';
         $getParameters = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/contributors",
                 'queryParams' => $getParameters,
                 'body' => [],
             ],
-            $this->mockedContributors->list($projectId, $getParameters)
+            $this->mockedContributors->list($projectId, $getParameters)->getContent()
         );
     }
 
-    public function testFetchAll()
+    public function testFetchAll(): void
     {
         $projectId = '{Project_Id}';
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/contributors",
@@ -81,72 +60,72 @@ final class ContributorsTest extends TestCase
                 'body' => [],
                 'bodyResponseKey' => 'contributors',
             ],
-            $this->mockedContributors->fetchAll($projectId)
+            $this->mockedContributors->fetchAll($projectId)->getContent()
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $projectId = '{Project_Id}';
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'POST',
                 'uri' => "projects/$projectId/contributors",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedContributors->create($projectId, $body)
+            $this->mockedContributors->create($projectId, $body)->getContent()
         );
     }
 
-    public function testRetrieve()
+    public function testRetrieve(): void
     {
         $projectId = '{Project_Id}';
-        $contributorId = '{Contributor_Id}';
+        $contributorId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'GET',
                 'uri' => "projects/$projectId/contributors/$contributorId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedContributors->retrieve($projectId, $contributorId)
+            $this->mockedContributors->retrieve($projectId, $contributorId)->getContent()
         );
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $projectId = '{Project_Id}';
-        $contributorId = '{Contributor_Id}';
+        $contributorId = 123;
         $body = ['params' => ['any']];
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'PUT',
                 'uri' => "projects/$projectId/contributors/$contributorId",
                 'queryParams' => [],
                 'body' => $body,
             ],
-            $this->mockedContributors->update($projectId, $contributorId, $body)
+            $this->mockedContributors->update($projectId, $contributorId, $body)->getContent()
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $projectId = '{Project_Id}';
-        $contributorId = '{Contributor_Id}';
+        $contributorId = 123;
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'requestType' => 'DELETE',
                 'uri' => "projects/$projectId/contributors/$contributorId",
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedContributors->delete($projectId, $contributorId)
+            $this->mockedContributors->delete($projectId, $contributorId)->getContent()
         );
     }
 }

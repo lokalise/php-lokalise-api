@@ -2,6 +2,8 @@
 
 namespace Lokalise;
 
+use finfo;
+
 class Utils
 {
 
@@ -10,7 +12,7 @@ class Utils
      * @param string $path Relative|Absolute path to a file
      * @return null|string Base64 string with leading mime type
      */
-    public static function base64FileEncode($path)
+    public static function base64FileEncode($path): ?string
     {
         if (empty($path)) {
             return null;
@@ -19,7 +21,7 @@ class Utils
         $realPath = realpath($path);
 
         if (!empty($realPath)) {
-            $fileInfo = new \finfo(FILEINFO_MIME_TYPE);
+            $fileInfo = new finfo(FILEINFO_MIME_TYPE);
             $type = $fileInfo->file($realPath);
             if ($type === false) {
                 return null;
