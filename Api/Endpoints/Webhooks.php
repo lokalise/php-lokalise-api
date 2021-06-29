@@ -81,14 +81,14 @@ class Webhooks extends Endpoint
      * @link https://app.lokalise.com/api2docs/curl/#transition-retrieve-a-webhook-get
      *
      * @param string $projectId
-     * @param int $webhookId
+     * @param string $webhookId
      *
      * @return LokaliseApiResponse
      *
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function retrieve(string $projectId, int $webhookId): LokaliseApiResponse
+    public function retrieve(string $projectId, string $webhookId): LokaliseApiResponse
     {
         return $this->request(
             'GET',
@@ -100,7 +100,7 @@ class Webhooks extends Endpoint
      * @link https://app.lokalise.com/api2docs/curl/#transition-update-a-webhook-put
      *
      * @param string $projectId
-     * @param int $webhookId
+     * @param string $webhookId
      * @param array $body
      *
      * @return LokaliseApiResponse
@@ -108,7 +108,7 @@ class Webhooks extends Endpoint
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function update(string $projectId, int $webhookId, array $body): LokaliseApiResponse
+    public function update(string $projectId, string $webhookId, array $body): LokaliseApiResponse
     {
         return $this->request(
             'PUT',
@@ -122,14 +122,14 @@ class Webhooks extends Endpoint
      * @link https://app.lokalise.com/api2docs/curl/#transition-delete-a-webhook-delete
      *
      * @param string $projectId
-     * @param int $webhookId
+     * @param string $webhookId
      *
      * @return LokaliseApiResponse
      *
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function delete(string $projectId, int $webhookId): LokaliseApiResponse
+    public function delete(string $projectId, string $webhookId): LokaliseApiResponse
     {
         return $this->request(
             'DELETE',
@@ -141,14 +141,14 @@ class Webhooks extends Endpoint
      * @link https://app.lokalise.com/api2docs/curl/#transition-regenerate-a-webhook-secret-patch
      *
      * @param string $projectId
-     * @param int $webhookId
+     * @param string $webhookId
      *
      * @return LokaliseApiResponse
      *
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    public function regenerateSecret(string $projectId, int $webhookId): LokaliseApiResponse
+    public function regenerateSecret(string $projectId, string $webhookId): LokaliseApiResponse
     {
         return $this->request(
             'PATCH',
