@@ -1,7 +1,7 @@
 # Lokalise API v2 official PHP library
 
 Client library for [Lokalise](https://lokalise.com) API 2.0, written with PHP.
-[Full API reference](https://lokalise.com/api2docs/curl/).
+[Full API reference](https://app.lokalise.com/api2docs/curl/).
 
 Changelog is located [here](CHANGELOG.md).
 
@@ -17,7 +17,7 @@ Changelog is located [here](CHANGELOG.md).
 3. Add the following to your application's main PHP file: `require 'vendor/autoload.php';`
 
 ## Construct LokaliseApiClient
-Create and grab your API token at [Lokalise profile](https://lokalise.com/profile)
+Create and grab your API token at [Lokalise profile](https://app.lokalise.com/profile)
 
 ```php
 $client = new \Lokalise\LokaliseApiClient($apiToken);
@@ -106,3 +106,8 @@ try {
     // break
 }
 ```
+
+## Rate limits
+[Access to all endpoints is limited](https://app.lokalise.com/api2docs/curl/#resource-rate-limits) to 6 requests per second from 14 September, 2021. This limit is applied per API token and per IP address. If you exceed the limit, a 429 HTTP status code will be returned and the corresponding exception will be raised that you should handle properly. To handle such errors, we recommend an exponential backoff mechanism with a limited number of retries.
+
+Only one concurrent request per token is allowed.
