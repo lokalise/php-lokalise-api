@@ -2,12 +2,12 @@
 
 namespace Lokalise\Endpoints;
 
-use \GuzzleHttp\Client;
-use \GuzzleHttp\Exception\RequestException;
-use \GuzzleHttp\Exception\GuzzleException;
-use \Lokalise\Exceptions\LokaliseApiException;
-use \Lokalise\Exceptions\LokaliseResponseException;
-use \Lokalise\LokaliseApiResponse;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
+use Lokalise\Exceptions\LokaliseApiException;
+use Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\LokaliseApiResponse;
 
 class Endpoint implements EndpointInterface
 {
@@ -34,7 +34,7 @@ class Endpoint implements EndpointInterface
     }
 
     /**
-     * @param $client
+     * @param Client $client
      */
     public function setClient(Client $client): void
     {
@@ -111,8 +111,13 @@ class Endpoint implements EndpointInterface
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
      */
-    protected function requestAll(string $requestType, string $uri, array $queryParams = [], array $body = [], string $bodyResponseKey = ''): LokaliseApiResponse
-    {
+    protected function requestAll(
+        string $requestType,
+        string $uri,
+        array $queryParams = [],
+        array $body = [],
+        string $bodyResponseKey = ''
+    ): LokaliseApiResponse {
         $page = 1;
         $queryParams = array_merge($queryParams, ['limit' => self::FETCH_ALL_LIMIT, 'page' => $page]);
 
@@ -160,6 +165,7 @@ class Endpoint implements EndpointInterface
         foreach ($queryParams as $paramName => $paramValue) {
             $queryParams[$paramName] = $this->replaceArrayWithCommaSeparatedString($paramValue);
         }
+
         return $queryParams;
     }
 

@@ -2,29 +2,30 @@
 
 namespace Lokalise;
 
+use Lokalise\Endpoints\Branches;
+use Lokalise\Endpoints\Comments;
+use Lokalise\Endpoints\Contributors;
 use Lokalise\Endpoints\CustomTranslationStatuses;
-use Lokalise\Endpoints\PaymentCards;
-use \Lokalise\Endpoints\Comments;
-use \Lokalise\Endpoints\Contributors;
-use \Lokalise\Endpoints\Files;
-use \Lokalise\Endpoints\Keys;
-use \Lokalise\Endpoints\Languages;
+use Lokalise\Endpoints\Files;
+use Lokalise\Endpoints\Keys;
+use Lokalise\Endpoints\Languages;
 use Lokalise\Endpoints\Orders;
-use \Lokalise\Endpoints\Projects;
+use Lokalise\Endpoints\PaymentCards;
+use Lokalise\Endpoints\Projects;
 use Lokalise\Endpoints\QueuedProcesses;
-use Lokalise\Endpoints\TranslationProviders;
-use \Lokalise\Endpoints\Screenshots;
-use \Lokalise\Endpoints\Snapshots;
-use \Lokalise\Endpoints\Tasks;
-use \Lokalise\Endpoints\Teams;
+use Lokalise\Endpoints\Screenshots;
+use Lokalise\Endpoints\Snapshots;
+use Lokalise\Endpoints\Tasks;
+use Lokalise\Endpoints\Teams;
 use Lokalise\Endpoints\TeamUserGroups;
-use \Lokalise\Endpoints\TeamUsers;
-use \Lokalise\Endpoints\Translations;
+use Lokalise\Endpoints\TeamUsers;
+use Lokalise\Endpoints\TranslationProviders;
+use Lokalise\Endpoints\Translations;
 use Lokalise\Endpoints\Webhooks;
 
 class LokaliseApiClient
 {
-    public const VERSION = '4.0.0';
+    public const VERSION = '4.1.0';
 
     public const ENDPOINT = 'https://api.lokalise.com/api2/';
 
@@ -66,6 +67,8 @@ class LokaliseApiClient
 
     public Webhooks $webhooks;
 
+    public Branches $branches;
+
     /**
      * LokaliseApiClient constructor.
      *
@@ -92,6 +95,7 @@ class LokaliseApiClient
         $this->teamUserGroups = new TeamUserGroups(self::ENDPOINT, $apiToken);
         $this->translationProviders = new TranslationProviders(self::ENDPOINT, $apiToken);
         $this->webhooks = new Webhooks(self::ENDPOINT, $apiToken);
+        $this->branches = new Branches(self::ENDPOINT, $apiToken);
     }
 
     /**
