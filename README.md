@@ -61,6 +61,8 @@ $client = new \Lokalise\LokaliseApiClient($apiToken);
 
 [Webhooks](Docs/webhooks.md)
 
+[Branches](Docs/branches.md)
+
 ## Response
 
 ```php
