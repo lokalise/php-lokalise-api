@@ -119,7 +119,7 @@ class Endpoint implements EndpointInterface
         string $bodyResponseKey = ''
     ): LokaliseApiResponse {
         $page = 1;
-        $queryParams = array_merge($queryParams, ['limit' => self::FETCH_ALL_LIMIT, 'page' => $page]);
+        $queryParams = array_merge($queryParams, ['limit' => static::FETCH_ALL_LIMIT, 'page' => $page]);
 
         $bodyData = [];
         $result = $this->request($requestType, $uri, $queryParams, $body);
@@ -129,7 +129,7 @@ class Endpoint implements EndpointInterface
         while ($result->getPageCount() > $page) {
             $page++;
 
-            $queryParams['limit'] = self::FETCH_ALL_LIMIT;
+            $queryParams['limit'] = static::FETCH_ALL_LIMIT;
             $queryParams['page'] = $page;
 
             $result = $this->request($requestType, $uri, $queryParams, $body);
