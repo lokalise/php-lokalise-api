@@ -13,6 +13,7 @@ use \Lokalise\Exceptions\LokaliseResponseException;
  */
 class Keys extends Endpoint
 {
+    public const FETCH_ALL_LIMIT = 500;
 
     /**
      * @link https://app.lokalise.com/api2docs/curl/#transition-list-all-keys-get
