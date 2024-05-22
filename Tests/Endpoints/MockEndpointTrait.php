@@ -15,7 +15,7 @@ trait MockEndpointTrait
             ->getMockBuilder($endpointClassName)
             ->disableOriginalConstructor()
             ->setConstructorArgs([null, '{Test_Api_Token}'])
-            ->onlyMethods(['request', 'requestAll'])
+            ->onlyMethods(['request', 'requestAllUsingPaging', 'requestAllUsingCursor'])
             ->getMock();
 
         $mock->method('request')->willReturnCallback(
@@ -36,7 +36,27 @@ trait MockEndpointTrait
             }
         );
 
-        $mock->method('requestAll')->willReturnCallback(
+        $mock->method('requestAllUsingPaging')->willReturnCallback(
+            function (string $requestType, string $uri, array $queryParams = [], array $body = [], string $bodyResponseKey = ''): LokaliseApiResponse {
+                $lokaliseApiResponse = new LokaliseApiResponse($this->createMock(ResponseInterface::class));
+
+                $reflection = new ReflectionClass($lokaliseApiResponse);
+                $property = $reflection->getProperty('body');
+                $property->setAccessible(true);
+
+                $property->setValue($lokaliseApiResponse, [
+                    'requestType' => $requestType,
+                    'uri' => $uri,
+                    'queryParams' => $queryParams,
+                    'body' => $body,
+                    'bodyResponseKey' => $bodyResponseKey,
+                ]);
+
+                return $lokaliseApiResponse;
+            }
+        );
+
+        $mock->method('requestAllUsingCursor')->willReturnCallback(
             function (string $requestType, string $uri, array $queryParams = [], array $body = [], string $bodyResponseKey = ''): LokaliseApiResponse {
                 $lokaliseApiResponse = new LokaliseApiResponse($this->createMock(ResponseInterface::class));
 

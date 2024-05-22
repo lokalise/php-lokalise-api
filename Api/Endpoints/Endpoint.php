@@ -110,6 +110,7 @@ class Endpoint implements EndpointInterface
      *
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
+     * @deprecated Use requestAllUsingCursor or requestAllUsingPaging instead
      */
     protected function requestAll(
         string $requestType,
@@ -118,12 +119,35 @@ class Endpoint implements EndpointInterface
         array $body = [],
         string $bodyResponseKey = ''
     ): LokaliseApiResponse {
+        return $this->requestAllUsingPaging($requestType, $uri, $queryParams, $body, $bodyResponseKey);
+    }
+
+    /**
+     * @param string $requestType
+     * @param string $uri
+     * @param array $queryParams
+     * @param array $body
+     * @param string $bodyResponseKey
+     *
+     * @return LokaliseApiResponse
+     *
+     * @throws LokaliseApiException
+     * @throws LokaliseResponseException
+     */
+    protected function requestAllUsingPaging(
+        string $requestType,
+        string $uri,
+        array  $queryParams = [],
+        array  $body = [],
+        string $bodyResponseKey = ''
+    ): LokaliseApiResponse
+    {
         $page = 1;
         $queryParams = array_merge($queryParams, ['limit' => static::FETCH_ALL_LIMIT, 'page' => $page]);
 
         $bodyData = [];
         $result = $this->request($requestType, $uri, $queryParams, $body);
-        if (is_array($result->body[$bodyResponseKey])) {
+        if (isset($result->body[$bodyResponseKey]) && is_array($result->body[$bodyResponseKey])) {
             $bodyData = $result->body[$bodyResponseKey];
         }
         while ($result->getPageCount() > $page) {
@@ -134,9 +158,54 @@ class Endpoint implements EndpointInterface
 
             $result = $this->request($requestType, $uri, $queryParams, $body);
             if (is_array($result->body[$bodyResponseKey])) {
-                $bodyData = array_merge($result->body[$bodyResponseKey], $bodyData);
+                $bodyData = array_merge($bodyData, $result->body[$bodyResponseKey]);
                 $result->body[$bodyResponseKey] = $bodyData;
             }
+        }
+
+        return $result;
+    }
+
+
+    /**
+     * @param string $requestType
+     * @param string $uri
+     * @param array $queryParams
+     * @param array $body
+     * @param string $bodyResponseKey
+     *
+     * @return LokaliseApiResponse
+     *
+     * @throws LokaliseApiException
+     * @throws LokaliseResponseException
+     */
+    protected function requestAllUsingCursor(
+        string $requestType,
+        string $uri,
+        array  $queryParams = [],
+        array  $body = [],
+        string $bodyResponseKey = ''
+    ): LokaliseApiResponse
+    {
+        $bodyData = [];
+        $cursor = '';
+        $queryParams['limit'] = static::FETCH_ALL_LIMIT;
+        $queryParams['pagination'] = 'cursor';
+        while (true) {
+            $queryParams['cursor'] = $cursor;
+
+            $result = $this->request($requestType, $uri, $queryParams, $body);
+
+            if (is_array($result->body[$bodyResponseKey]) && !empty($result->body[$bodyResponseKey])) {
+                $bodyData = array_merge($bodyData, $result->body[$bodyResponseKey]);
+                $result->body[$bodyResponseKey] = $bodyData;
+            }
+
+            if (!$result->hasNextCursor()) {
+                break;
+            }
+
+            $cursor = $result->getNextCursor();
         }
 
         return $result;

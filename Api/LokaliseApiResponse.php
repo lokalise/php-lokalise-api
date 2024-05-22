@@ -4,7 +4,7 @@ namespace Lokalise;
 
 use Exception;
 use JsonException;
-use \Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class LokaliseApiResponse
 {
@@ -12,6 +12,7 @@ class LokaliseApiResponse
     public const HEADER_PAGINATION_PAGES = "X-Pagination-Page-Count";
     public const HEADER_PAGINATION_LIMIT = "X-Pagination-Limit";
     public const HEADER_PAGINATION_PAGE = "X-Pagination-Page";
+    public const HEADER_PAGINATION_NEXT_CURSOR = "X-Pagination-Next-Cursor";
 
     public array $headers;
     public ?array $body;
@@ -31,8 +32,11 @@ class LokaliseApiResponse
         ];
 
         foreach ($headers as $header) {
-            $this->headers[$header] = (int)$guzzleResponse->getHeaderLine($header);
+            $this->headers[$header] = $guzzleResponse->getHeaderLine($header);
         }
+
+        $this->headers[self::HEADER_PAGINATION_NEXT_CURSOR] =
+            $guzzleResponse->getHeaderLine(self::HEADER_PAGINATION_NEXT_CURSOR);
 
         try {
             $this->body = json_decode($guzzleResponse->getBody(), true, 512, JSON_THROW_ON_ERROR);
@@ -98,6 +102,16 @@ class LokaliseApiResponse
     public function getPaginationPage(): ?int
     {
         return $this->getPaginationHeader(self::HEADER_PAGINATION_PAGE);
+    }
+
+    public function getNextCursor(): ?string
+    {
+        return $this->headers[self::HEADER_PAGINATION_NEXT_CURSOR];
+    }
+
+    public function hasNextCursor(): bool
+    {
+        return !empty($this->headers[self::HEADER_PAGINATION_NEXT_CURSOR]);
     }
 
     /**

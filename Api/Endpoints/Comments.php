@@ -2,9 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use \Lokalise\LokaliseApiResponse;
-use \Lokalise\Exceptions\LokaliseApiException;
-use \Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\Exceptions\LokaliseApiException;
+use Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\LokaliseApiResponse;
 
 /**
  * Class Comments
@@ -46,7 +46,7 @@ class Comments extends Endpoint
      */
     public function fetchAllProject(string $projectId): LokaliseApiResponse
     {
-        return $this->requestAll(
+        return $this->requestAllUsingPaging(
             'GET',
             "projects/$projectId/comments",
             [],
@@ -89,7 +89,7 @@ class Comments extends Endpoint
      */
     public function fetchAllKey(string $projectId, int $keyId): LokaliseApiResponse
     {
-        return $this->requestAll(
+        return $this->requestAllUsingPaging(
             'GET',
             "projects/$projectId/keys/$keyId/comments",
             [],

@@ -2,9 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use \Lokalise\LokaliseApiResponse;
-use \Lokalise\Exceptions\LokaliseApiException;
-use \Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\Exceptions\LokaliseApiException;
+use Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\LokaliseApiResponse;
 
 /**
  * Class Webhooks
@@ -47,7 +47,7 @@ class Webhooks extends Endpoint
      */
     public function fetchAll(string $projectId, array $queryParams = []): LokaliseApiResponse
     {
-        return $this->requestAll(
+        return $this->requestAllUsingPaging(
             'GET',
             "projects/$projectId/webhooks",
             $queryParams,
