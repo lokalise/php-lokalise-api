@@ -78,6 +78,8 @@ $response->
     getPageCount()         // Return count of pages in List methods (based on limit parameter)
     getPaginationLimit()   // Return pagination limit used in the request
     getPaginationPage()    // Return current page of the request
+    getNextCursor()        // Return next cursor for cursor based pagination
+    hasNextCursor()        // Return true if next cursor is present for cursor based pagination
 ```
 
 ## Utils

@@ -2,9 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use \Lokalise\LokaliseApiResponse;
-use \Lokalise\Exceptions\LokaliseApiException;
-use \Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\Exceptions\LokaliseApiException;
+use Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\LokaliseApiResponse;
 
 /**
  * Class Files
@@ -46,7 +46,7 @@ class Files extends Endpoint
      */
     public function fetchAll(string $projectId): LokaliseApiResponse
     {
-        return $this->requestAll(
+        return $this->requestAllUsingPaging(
             'GET',
             "projects/$projectId/files",
             [],

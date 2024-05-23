@@ -2,15 +2,15 @@
 
 namespace Lokalise\Tests;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use JsonException;
-use \PHPUnit\Framework\TestCase;
-use \Lokalise\LokaliseApiResponse as ApiResponse;
-use \GuzzleHttp\Client;
-use \GuzzleHttp\Handler\MockHandler;
-use \GuzzleHttp\HandlerStack;
-use \GuzzleHttp\Psr7\Response;
-use \GuzzleHttp\Exception\RequestException;
-use \GuzzleHttp\Exception\GuzzleException;
+use Lokalise\LokaliseApiResponse as ApiResponse;
+use PHPUnit\Framework\TestCase;
 
 final class LokaliseApiResponseTest extends TestCase
 {
@@ -24,6 +24,7 @@ final class LokaliseApiResponseTest extends TestCase
             'X-Pagination-Page-Count' => 2,
             'X-Pagination-Limit' => 10,
             'X-Pagination-Page' => 1,
+            'X-Pagination-Next-Cursor' => ''
         ];
     }
 

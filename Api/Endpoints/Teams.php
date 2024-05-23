@@ -2,9 +2,9 @@
 
 namespace Lokalise\Endpoints;
 
-use \Lokalise\LokaliseApiResponse;
-use \Lokalise\Exceptions\LokaliseApiException;
-use \Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\Exceptions\LokaliseApiException;
+use Lokalise\Exceptions\LokaliseResponseException;
+use Lokalise\LokaliseApiResponse;
 
 /**
  * Class Teams
@@ -43,7 +43,7 @@ class Teams extends Endpoint
      */
     public function fetchAll(): LokaliseApiResponse
     {
-        return $this->requestAll(
+        return $this->requestAllUsingPaging(
             'GET',
             "teams",
             [],
