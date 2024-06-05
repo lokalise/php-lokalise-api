@@ -188,24 +188,22 @@ class Endpoint implements EndpointInterface
     ): LokaliseApiResponse
     {
         $bodyData = [];
-        $cursor = '';
         $queryParams['limit'] = static::FETCH_ALL_LIMIT;
         $queryParams['pagination'] = 'cursor';
-        while (true) {
+        $result = $this->request($requestType, $uri, $queryParams, $body);
+        $cursor = $result->getNextCursor();
+
+        while (!empty($cursor)) {
             $queryParams['cursor'] = $cursor;
 
-            $result = $this->request($requestType, $uri, $queryParams, $body);
+            $nextResult = $this->request($requestType, $uri, $queryParams, $body);
 
-            if (is_array($result->body[$bodyResponseKey]) && !empty($result->body[$bodyResponseKey])) {
-                $bodyData = array_merge($bodyData, $result->body[$bodyResponseKey]);
+            if (is_array($nextResult->body[$bodyResponseKey]) && !empty($nextResult->body[$bodyResponseKey])) {
+                $bodyData = array_merge($bodyData, $nextResult->body[$bodyResponseKey]);
                 $result->body[$bodyResponseKey] = $bodyData;
             }
 
-            if (!$result->hasNextCursor()) {
-                break;
-            }
-
-            $cursor = $result->getNextCursor();
+            $cursor = $nextResult->getNextCursor();
         }
 
         return $result;
