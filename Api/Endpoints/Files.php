@@ -99,4 +99,23 @@ class Files extends Endpoint
             $body
         );
     }
+
+	/**
+	 * @link https://developers.lokalise.com/reference/delete-a-file
+	 *
+	 * @param string $projectId
+	 * @param int $fileId
+	 *
+	 * @return LokaliseApiResponse
+	 *
+	 * @throws LokaliseApiException
+	 * @throws LokaliseResponseException
+	 */
+	public function delete(string $projectId, int $fileId): LokaliseApiResponse
+	{
+		return $this->request(
+			'DELETE',
+			"projects/$projectId/files/$fileId"
+		);
+	}
 }

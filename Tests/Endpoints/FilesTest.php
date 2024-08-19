@@ -95,4 +95,21 @@ final class FilesTest extends TestCase
             $this->mockedFiles->download($projectId, $body)->getContent()
         );
     }
+
+	public function testDelete(): void
+	{
+		$projectId = '{Project_Id}';
+		$fileId = '{File_Id}';
+
+		self::assertEquals(
+			[
+				'requestType' => 'DELETE',
+				'uri' => "projects/$projectId/files/$fileId",
+				'queryParams' => [],
+				'body' => [],
+			],
+			$this->mockedFiles->delete($projectId, $fileId)->getContent()
+		);
+
+	}
 }
