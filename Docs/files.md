@@ -52,6 +52,13 @@ $response = $client->files->download(
 );
 ```
 
+### Delete a file
+https://developers.lokalise.com/reference/delete-a-file
+
+```php
+$response = $client->files->delete($projectId, $fileId);
+```
+
 <br/><br/><br/>
 <div align="right">
     <b><a href="/README.md#request">⇚ Back</a></b>
