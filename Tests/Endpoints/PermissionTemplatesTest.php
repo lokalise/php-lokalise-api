@@ -18,18 +18,18 @@ final class PermissionTemplatesTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->mockedContributors = $this->createEndpointMock(PermissionTemplates::class);
+        $this->mockedPermisionTemplates = $this->createEndpointMock(PermissionTemplates::class);
     }
 
     protected function tearDown(): void
     {
-        $this->mockedContributors = null;
+        $this->mockedPermisionTemplates = null;
     }
 
     public function testEndpointClass(): void
     {
-        self::assertInstanceOf(Endpoint::class, $this->mockedContributors);
-        self::assertInstanceOf(EndpointInterface::class, $this->mockedContributors);
+        self::assertInstanceOf(Endpoint::class, $this->mockedPermisionTemplates);
+        self::assertInstanceOf(EndpointInterface::class, $this->mockedPermisionTemplates);
     }
 
     public function testList(): void
@@ -43,7 +43,7 @@ final class PermissionTemplatesTest extends TestCase
                 'queryParams' => [],
                 'body' => [],
             ],
-            $this->mockedContributors->list($teamId)->getContent()
+            $this->mockedPermisionTemplates->list($teamId)->getContent()
         );
     }
 }
