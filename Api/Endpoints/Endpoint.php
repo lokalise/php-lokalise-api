@@ -70,30 +70,37 @@ class Endpoint implements EndpointInterface
             $options['json'] = $body;
         }
 
+        $exception = null;
         try {
             $guzzleResponse = $this->client->request($requestType, "{$this->baseUrl}$uri", $options);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
+                $exception = $e;
                 $guzzleResponse = $e->getResponse();
             } else {
-                throw new LokaliseApiException($e->getMessage(), $e->getCode());
+                throw new LokaliseApiException($e->getMessage(), $e->getCode(), $e);
             }
         } catch (GuzzleException $e) {
             // From guzzle6-adapter 1.* the RequestException does not implement GuzzleException
-            throw new LokaliseApiException($e->getMessage(), $e->getCode());
+            throw new LokaliseApiException($e->getMessage(), $e->getCode(), $e);
         }
 
         $responseBody = $guzzleResponse->getBody();
         if (is_null($responseBody)) {
-            throw new LokaliseApiException('Not found', 404);
+            throw new LokaliseApiException('Not found', 404, $exception, $guzzleResponse);
         }
         $bodyJson = @json_decode($responseBody, true);
         if (!is_array($bodyJson) || json_last_error() !== JSON_ERROR_NONE) {
-            throw new LokaliseApiException('Not found', 404);
+            throw new LokaliseApiException('Not found', 404, $exception, $guzzleResponse);
         }
 
         if (!empty($bodyJson['error']['code']) && isset($bodyJson['error']['message'])) {
-            throw new LokaliseResponseException($bodyJson['error']['message'], $bodyJson['error']['code']);
+            throw new LokaliseResponseException(
+                $bodyJson['error']['message'],
+                $bodyJson['error']['code'],
+                $exception,
+                $guzzleResponse,
+            );
         }
 
         return new LokaliseApiResponse($guzzleResponse);
