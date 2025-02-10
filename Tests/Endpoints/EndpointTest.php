@@ -204,7 +204,7 @@ final class EndpointTest extends TestCase
                             "X-Pagination-Total-Count" => 14,
                             "X-Pagination-Limit" => 10,
                             "X-Pagination-Page" => 1,
-                            "X-Pagination-Page-Count" => 2,
+                            "X-Pagination-Page-Count" => 3,
                         ],
                         json_encode(['mockedResults' => [["id" => "element from page 1 using paging"]]], JSON_THROW_ON_ERROR)
                     ),
@@ -214,9 +214,19 @@ final class EndpointTest extends TestCase
                             "X-Pagination-Total-Count" => 14,
                             "X-Pagination-Limit" => 10,
                             "X-Pagination-Page" => 2,
-                            "X-Pagination-Page-Count" => 2,
+                            "X-Pagination-Page-Count" => 3,
                         ],
                         json_encode(['mockedResults' => [["id" => "element from page 2 using paging"]]], JSON_THROW_ON_ERROR)
+                    ),
+                    new Response(
+                        200,
+                        [
+                            "X-Pagination-Total-Count" => 14,
+                            "X-Pagination-Limit" => 10,
+                            "X-Pagination-Page" => 3,
+                            "X-Pagination-Page-Count" => 3,
+                        ],
+                        json_encode(['mockedResults' => []], JSON_THROW_ON_ERROR)
                     ),
                 ])
             ),
@@ -267,7 +277,7 @@ final class EndpointTest extends TestCase
                             "X-Pagination-Next-Cursor" => "",
                             "X-Pagination-Limit" => 10,
                         ],
-                        json_encode(['mockedResults' => [["id" => "element from cursor 3 using cursor"]]], JSON_THROW_ON_ERROR)
+                        json_encode(['mockedResults' => []], JSON_THROW_ON_ERROR)
                     ),
                 ])
             ),
@@ -281,7 +291,6 @@ final class EndpointTest extends TestCase
             "mockedResults" => [
                 ["id" => "element from cursor 1 using cursor"],
                 ["id" => "element from cursor 2 using cursor"],
-                ["id" => "element from cursor 3 using cursor"],
             ]
         ], $apiResponse->getContent());
     }
