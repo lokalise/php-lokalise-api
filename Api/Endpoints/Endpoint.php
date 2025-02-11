@@ -147,7 +147,7 @@ class Endpoint implements EndpointInterface
 
         $bodyData = [];
         $result = $this->request($requestType, $uri, $queryParams, $body);
-        if (isset($result->body[$bodyResponseKey]) && is_array($result->body[$bodyResponseKey])) {
+        if (is_array($result->body[$bodyResponseKey]) && !empty($result->body[$bodyResponseKey])) {
             $bodyData = $result->body[$bodyResponseKey];
         }
         while ($result->getPageCount() > $page) {
@@ -157,11 +157,12 @@ class Endpoint implements EndpointInterface
             $queryParams['page'] = $page;
 
             $result = $this->request($requestType, $uri, $queryParams, $body);
-            if (is_array($result->body[$bodyResponseKey])) {
+            if (is_array($result->body[$bodyResponseKey]) && !empty($result->body[$bodyResponseKey])) {
                 $bodyData = array_merge($bodyData, $result->body[$bodyResponseKey]);
-                $result->body[$bodyResponseKey] = $bodyData;
             }
         }
+
+        $result->body[$bodyResponseKey] = $bodyData;
 
         return $result;
     }
@@ -198,7 +199,6 @@ class Endpoint implements EndpointInterface
 
             if (is_array($result->body[$bodyResponseKey]) && !empty($result->body[$bodyResponseKey])) {
                 $bodyData = array_merge($bodyData, $result->body[$bodyResponseKey]);
-                $result->body[$bodyResponseKey] = $bodyData;
             }
 
             if (!$result->hasNextCursor()) {
@@ -207,6 +207,8 @@ class Endpoint implements EndpointInterface
 
             $cursor = $result->getNextCursor();
         }
+
+        $result->body[$bodyResponseKey] = $bodyData;
 
         return $result;
     }
