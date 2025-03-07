@@ -99,4 +99,25 @@ class Files extends Endpoint
             $body
         );
     }
+
+    /**
+     * @link https://developers.lokalise.com/reference/download-files-async
+     *
+     * @param string $projectId
+     * @param array $body
+     *
+     * @return LokaliseApiResponse
+     *
+     * @throws LokaliseApiException
+     * @throws LokaliseResponseException
+     */
+    public function asyncDownload(string $projectId, array $body): LokaliseApiResponse
+    {
+        return $this->request(
+            'POST',
+            "projects/$projectId/files/async-download",
+            [],
+            $body
+        );
+    }
 }
