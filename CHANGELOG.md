@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.0 (March 25, 2025)
+
+- Added support for async download in files.
+
 ## 4.1.0 (March 18, 2022)
 
 - Added [branches](Docs/branches.md) API.
