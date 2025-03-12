@@ -95,4 +95,20 @@ final class FilesTest extends TestCase
             $this->mockedFiles->download($projectId, $body)->getContent()
         );
     }
+
+    public function testAsyncDownload(): void
+    {
+        $projectId = '{Project_Id}';
+        $body = ['params' => ['any']];
+
+        self::assertEquals(
+            [
+                'requestType' => 'POST',
+                'uri' => "projects/$projectId/files/async-download",
+                'queryParams' => [],
+                'body' => $body,
+            ],
+            $this->mockedFiles->asyncDownload($projectId, $body)->getContent()
+        );
+    }
 }
