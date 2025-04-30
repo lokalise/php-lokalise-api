@@ -13,6 +13,7 @@ class LokaliseApiResponse
     public const HEADER_PAGINATION_LIMIT = "X-Pagination-Limit";
     public const HEADER_PAGINATION_PAGE = "X-Pagination-Page";
     public const HEADER_PAGINATION_NEXT_CURSOR = "X-Pagination-Next-Cursor";
+    public const HEADER_RESPONSE_TOO_BIG = "X-Response-Too-Big";
 
     public array $headers;
     public ?array $body;
@@ -37,6 +38,11 @@ class LokaliseApiResponse
 
         $this->headers[self::HEADER_PAGINATION_NEXT_CURSOR] =
             $guzzleResponse->getHeaderLine(self::HEADER_PAGINATION_NEXT_CURSOR);
+
+        $responseTooBig = $guzzleResponse->getHeaderLine(self::HEADER_RESPONSE_TOO_BIG);
+        if (!empty($responseTooBig)) {
+            $this->headers[self::HEADER_RESPONSE_TOO_BIG] = $guzzleResponse->getHeaderLine($responseTooBig);
+        }
 
         try {
             $this->body = json_decode($guzzleResponse->getBody(), true, 512, JSON_THROW_ON_ERROR);

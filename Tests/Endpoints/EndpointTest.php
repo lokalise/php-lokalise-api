@@ -183,7 +183,7 @@ final class EndpointTest extends TestCase
             "mockedResults" => [
                 ["id" => "element from page 1"],
                 ["id" => "element from page 2"],
-            ]
+            ],
         ], $apiResponse->getContent());
     }
 
@@ -242,6 +242,8 @@ final class EndpointTest extends TestCase
                 ["id" => "element from page 2 using paging"],
             ]
         ], $apiResponse->getContent());
+
+        self::assertArrayNotHasKey("X-Response-Too-Big", $apiResponse->headers);
     }
 
     public function testRequestAllUsingCursor(): void
@@ -291,7 +293,69 @@ final class EndpointTest extends TestCase
             "mockedResults" => [
                 ["id" => "element from cursor 1 using cursor"],
                 ["id" => "element from cursor 2 using cursor"],
+            ],
+        ], $apiResponse->getContent());
+    }
+
+    public function testRequestAllUsingPagingTooBigHeader(): void
+    {
+        $endpoint = new class('https://api.lokalise.com/api2', '{Test_Api_Token}') extends Endpoint {
+            public function fetchAll(): ApiResponse
+            {
+                return $this->requestAllUsingPaging('GET', '', [], [], 'mockedResults');
+            }
+        };
+        $client = new Client([
+            'handler' => HandlerStack::create(
+                new MockHandler([
+                    new Response(
+                        200,
+                        [
+                            "X-Pagination-Total-Count" => 14,
+                            "X-Pagination-Limit" => 10,
+                            "X-Pagination-Page" => 1,
+                            "X-Pagination-Page-Count" => 3,
+                            "X-Response-Too-Big" => "Too big project for sync export",
+                        ],
+                        json_encode(['mockedResults' => [["id" => "element from page 1 using paging"]]], JSON_THROW_ON_ERROR)
+                    ),
+                    new Response(
+                        200,
+                        [
+                            "X-Pagination-Total-Count" => 14,
+                            "X-Pagination-Limit" => 10,
+                            "X-Pagination-Page" => 2,
+                            "X-Pagination-Page-Count" => 3,
+                            "X-Response-Too-Big" => "Too big project for sync export",
+                        ],
+                        json_encode(['mockedResults' => [["id" => "element from page 2 using paging"]]], JSON_THROW_ON_ERROR)
+                    ),
+                    new Response(
+                        200,
+                        [
+                            "X-Pagination-Total-Count" => 14,
+                            "X-Pagination-Limit" => 10,
+                            "X-Pagination-Page" => 3,
+                            "X-Pagination-Page-Count" => 3,
+                            "X-Response-Too-Big" => "Too big project for sync export",
+                        ],
+                        json_encode(['mockedResults' => []], JSON_THROW_ON_ERROR)
+                    ),
+                ])
+            ),
+        ]);
+
+        $endpoint->setClient($client);
+
+        $apiResponse = $endpoint->fetchAll();
+
+        self::assertEquals([
+            "mockedResults" => [
+                ["id" => "element from page 1 using paging"],
+                ["id" => "element from page 2 using paging"],
             ]
         ], $apiResponse->getContent());
+
+        self::assertArrayHasKey("X-Response-Too-Big", $apiResponse->headers);
     }
 }
