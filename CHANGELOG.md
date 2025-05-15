@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.4.1 (May 15, 2025)
+
+- Added a special header for big projects for sync download in files.
+
 ## 4.4.0 (Mar 25, 2025)
 
 - Added support for async download in files.
