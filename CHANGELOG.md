@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.4.1 (May 1, 2025)
+## 4.4.1 (May 15, 2025)
 
 - Added a special header for big projects for sync download in files.
 
