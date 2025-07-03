@@ -89,6 +89,8 @@ class Files extends Endpoint
      *
      * @throws LokaliseApiException
      * @throws LokaliseResponseException
+     *
+     * @note Important: Starting June 1st, 2025, this method will be limited to projects with under 10,000 key-language pairs. For larger projects, please use `asyncDownload` instead.
      */
     public function download(string $projectId, array $body): LokaliseApiResponse
     {
@@ -99,23 +101,43 @@ class Files extends Endpoint
             $body
         );
     }
+  
+    /**
+     * @link https://developers.lokalise.com/reference/download-files-async
+     *
+     * @param string $projectId
+     * @param array $body
+     *
+     * @return LokaliseApiResponse
+     *
+     * @throws LokaliseApiException
+     * @throws LokaliseResponseException
+     */
+    public function asyncDownload(string $projectId, array $body): LokaliseApiResponse
+    {
+        return $this->request(
+            'POST',
+            "projects/$projectId/files/async-download",
+            [],
+            $body
+        );
+    }
 
-	/**
-	 * @link https://developers.lokalise.com/reference/delete-a-file
-	 *
-	 * @param string $projectId
-	 * @param int $fileId
-	 *
-	 * @return LokaliseApiResponse
-	 *
-	 * @throws LokaliseApiException
-	 * @throws LokaliseResponseException
-	 */
-	public function delete(string $projectId, int $fileId): LokaliseApiResponse
-	{
-		return $this->request(
-			'DELETE',
-			"projects/$projectId/files/$fileId"
-		);
-	}
-}
+    /**
+    * @link https://developers.lokalise.com/reference/delete-a-file
+    *
+    * @param string $projectId
+    * @param int $fileId
+    *
+    * @return LokaliseApiResponse
+    *
+    * @throws LokaliseApiException
+    * @throws LokaliseResponseException
+    */
+    public function delete(string $projectId, int $fileId): LokaliseApiResponse
+    {
+        return $this->request(
+            'DELETE',
+            "projects/$projectId/files/$fileId"
+		    );
+    }

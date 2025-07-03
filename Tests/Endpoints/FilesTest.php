@@ -95,21 +95,35 @@ final class FilesTest extends TestCase
             $this->mockedFiles->download($projectId, $body)->getContent()
         );
     }
+  
+    public function testAsyncDownload(): void
+    {
+        $projectId = '{Project_Id}';
+        $body = ['params' => ['any']];
 
-	public function testDelete(): void
-	{
-		$projectId = '{Project_Id}';
-		$fileId = '{File_Id}';
+        self::assertEquals(
+            [
+                'requestType' => 'POST',
+                'uri' => "projects/$projectId/files/async-download",
+                'queryParams' => [],
+                'body' => $body,
+            ],
+            $this->mockedFiles->asyncDownload($projectId, $body)->getContent()
+        );
+    }
+  
+    public function testDelete(): void
+    {
+        $projectId = '{Project_Id}';
+        $fileId = '{File_Id}';
 
-		self::assertEquals(
-			[
-				'requestType' => 'DELETE',
-				'uri' => "projects/$projectId/files/$fileId",
-				'queryParams' => [],
-				'body' => [],
-			],
-			$this->mockedFiles->delete($projectId, $fileId)->getContent()
-		);
-
-	}
-}
+        self::assertEquals(
+            [
+                'requestType' => 'DELETE',
+                'uri' => "projects/$projectId/files/$fileId",
+                'queryParams' => [],
+                'body' => [],
+            ],
+            $this->mockedFiles->delete($projectId, $fileId)->getContent()
+        );
+    }
