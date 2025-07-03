@@ -101,7 +101,7 @@ class Files extends Endpoint
             $body
         );
     }
-  
+
     /**
      * @link https://developers.lokalise.com/reference/download-files-async
      *
