@@ -115,7 +115,7 @@ final class FilesTest extends TestCase
     public function testDelete(): void
     {
         $projectId = '{Project_Id}';
-        $fileId = '{File_Id}';
+        $fileId = 123;
 
         self::assertEquals(
             [
