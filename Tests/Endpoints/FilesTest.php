@@ -127,3 +127,4 @@ final class FilesTest extends TestCase
             $this->mockedFiles->delete($projectId, $fileId)->getContent()
         );
     }
+}
