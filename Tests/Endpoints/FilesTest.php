@@ -95,7 +95,7 @@ final class FilesTest extends TestCase
             $this->mockedFiles->download($projectId, $body)->getContent()
         );
     }
-  
+
     public function testAsyncDownload(): void
     {
         $projectId = '{Project_Id}';
@@ -111,7 +111,7 @@ final class FilesTest extends TestCase
             $this->mockedFiles->asyncDownload($projectId, $body)->getContent()
         );
     }
-  
+
     public function testDelete(): void
     {
         $projectId = '{Project_Id}';
