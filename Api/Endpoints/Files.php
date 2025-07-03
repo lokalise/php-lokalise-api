@@ -141,3 +141,4 @@ class Files extends Endpoint
             "projects/$projectId/files/$fileId"
 		    );
     }
+}
